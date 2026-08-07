@@ -6,10 +6,13 @@
 
 ## 当前设计产物
 
-- `01-novice-teacher-user-flow.md`：小白老师立项申请用户流程
-- `02-demo-conversation-script.md`：第一版 demo 对话脚本
-- `03-proposal-quality-rubric.md`：申报书质量检查表
-- `04-customer-materials-request.md`：需要客户提供的资料清单
+- `01-novice-teacher-user-flow.md`：小白老师立项申请用户流程(含纠偏收敛设计与异常处理)
+- `02-demo-conversation-script.md`：第一版 demo 对话脚本(含纠偏演示片段、文献政策环节、课题方案卡与映射稿输出)
+- `03-proposal-quality-rubric.md`：申报书质量检查表(含硬性门槛、证据字段、测试案例)
+- `04-customer-materials-request.md`：需要客户提供的资料清单(含资料收集责任表)
+- `05-stage-rule-state-table.md`：立项引导阶段规则状态表(可执行产品规则,兼容 Skill/Agent)
+- `06-deliverable-templates.md`：课题方案卡与申报书字段映射稿模板
+- `07-customer-confirmation-checklist.md`：第一次客户演示会议确认清单
 
 ## 设计原则
 
