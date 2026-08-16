@@ -56,11 +56,13 @@ C 级条件不成立，但任一条件成立即判 B：
 | 方法路径或数据来源仍需细化 | `method_plan` | `missing` 或 `ai_suggestion` |
 | 非论文成果尚未确认 | `deliverables` | `missing` |
 | 真实申报指南尚未接入 | `evidence_basis.guide` | `demo_fixture` 或 `missing` |
+| 真实文献检索结果尚未接入 | `evidence_basis.literature` | `demo_fixture` 或 `missing` |
 | 真实申报模板尚未接入 | `proposal_mapping.template` | `missing` |
 
 允许输出：
 
 - 课题方案卡
+- 文献综述草稿
 - 申报书字段映射稿
 - 待补充清单
 - 质量结果
@@ -84,11 +86,13 @@ C 级条件不成立，但任一条件成立即判 B：
 5. 方法和数据来源可执行。
 6. 至少一个非论文成果已确认。
 7. 真实申报指南来源为 `material_verified`。
-8. 真实申报模板来源为 `material_verified`。
+8. 真实文献检索结果和综述依据来源为 `material_verified`。
+9. 真实申报模板来源为 `material_verified`。
 
 允许输出：
 
 - 课题方案卡
+- 文献综述草稿
 - 申报书字段映射稿
 - 待补充清单
 - 质量结果
@@ -107,7 +111,7 @@ C 级条件不成立，但任一条件成立即判 B：
 | 非论文成果 | `deliverables` | 至少一个可复用成果 | 判 B，追问成果形式 |
 | 申报价值 | `evidence_basis` | 能说明与学校/政策/专业建设相关 | 判 B，待科研处确认 |
 | 政策依据 | `evidence_basis` | 真实材料或明确演示标记 | 判 B，标记来源 |
-| 文献支撑 | `evidence_basis` | 有研究现状或待检索标记 | 判 B，待真实检索 |
+| 文献支撑 | `evidence_basis` | 有真实检索结果、前沿研究摘要和综述草稿 | 判 B，待真实检索 |
 | 模板适配 | `proposal_mapping` | 能映射到申报书字段 | 判 B，待真实模板 |
 
 ## 测试案例
@@ -130,12 +134,12 @@ C 级条件不成立，但任一条件成立即判 B：
 
 ```text
 李老师确认网络营销与直播电商专业课程场景、直播任务全流程问题、岗位任务导向课题、研究问题、可执行方法和非论文成果。
-当前指南为 demo_fixture，申报模板为 missing。
+当前指南和文献综述依据为 demo_fixture，申报模板为 missing。
 ```
 
 判定：B。
 
-允许输出：课题方案卡、申报书字段映射稿、待补充清单、质量结果。
+允许输出：课题方案卡、文献综述草稿、申报书字段映射稿、待补充清单、质量结果。
 
 ### 案例 3：真实材料齐备
 

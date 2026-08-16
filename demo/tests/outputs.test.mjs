@@ -28,3 +28,9 @@ test("B 级不生成 proposal_draft", () => {
   assert.equal(outputs.quality.grade, "B");
   assert.equal(outputs.proposalDraft, null);
 });
+
+test("B 级生成带来源标记的文献综述草稿", () => {
+  const outputs = buildDemoOutputs(liveCommerceFixture);
+  assert.ok(outputs.literatureReviewDraft);
+  assert.equal(outputs.literatureReviewDraft.sourceType, "demo_fixture");
+});

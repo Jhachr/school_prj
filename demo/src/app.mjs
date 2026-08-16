@@ -1,9 +1,8 @@
 import { CUSTOMER_STAGES, deriveProgress, SOURCE_LABELS } from "./state.mjs";
 import { liveCommerceFixture } from "./fixtures.mjs";
-import { buildDemoOutputs } from "./outputs.mjs";
+import { buildStepSnapshot } from "./outputs.mjs";
 
 const fixture = liveCommerceFixture;
-const outputs = buildDemoOutputs(fixture);
 
 let stepIndex = 0;
 let activeTab = "status";
@@ -29,6 +28,10 @@ function visibleSteps() {
   return fixture.dialogueSteps.slice(0, stepIndex + 1);
 }
 
+function currentSnapshot() {
+  return buildStepSnapshot(fixture, stepIndex);
+}
+
 function renderStageRail() {
   const activeStage = currentStep().stage;
   const activeStageIndex = CUSTOMER_STAGES.indexOf(activeStage);
@@ -47,35 +50,39 @@ function renderStageRail() {
 function renderConversation() {
   conversationLog.innerHTML = visibleSteps()
     .map(
-      (step) => `
+      (step, index) => {
+        const grade = buildStepSnapshot(fixture, index).quality.grade;
+        return `
         <article class="message ${step.speaker}">
           <div class="message-meta">
             <span>${step.speaker === "teacher" ? "教师" : "助手"}</span>
             <span>${step.stage}</span>
-            <span class="grade-badge grade-${step.status.toLowerCase()}">${step.status}</span>
+            <span class="grade-badge grade-${grade.toLowerCase()}">${grade}</span>
           </div>
           <p>${step.text}</p>
           <p class="message-meta">${step.note}</p>
         </article>
-      `,
+      `;
+      },
     )
     .join("");
   conversationLog.scrollTop = conversationLog.scrollHeight;
 }
 
 function renderGrade() {
-  const grade = currentStep().status;
+  const grade = currentSnapshot().quality.grade;
   gradeBadge.textContent = grade;
   gradeBadge.className = `grade-badge grade-${grade.toLowerCase()}`;
 }
 
 function renderStatusTab() {
-  const progress = deriveProgress(stepIndex, fixture.dialogueSteps.length);
+  const snapshot = currentSnapshot();
+  const progress = deriveProgress(currentStep().stateId);
   return `
     <div class="content-section">
       <div class="output-block">
         <h3>当前结论</h3>
-        <p>${outputs.quality.label}。${outputs.quality.nextAction}</p>
+        <p>${snapshot.quality.label}。${snapshot.quality.nextAction}</p>
       </div>
       <table class="state-list">
         <thead>
@@ -100,14 +107,10 @@ function renderStatusTab() {
 }
 
 function renderConfirmedTab() {
-  const facts = [
-    outputs.topicCard.teacher,
-    outputs.topicCard.courses,
-    outputs.topicCard.realProblem,
-    outputs.topicCard.researchQuestion,
-    outputs.topicCard.officialMajor,
-    outputs.topicCard.officialPractice,
-  ];
+  const facts = currentSnapshot().confirmedFacts;
+  if (facts.length === 0) {
+    return `<div class="output-block"><h3>暂无已确认字段</h3><p>继续推进对话后，这里会逐步显示用户确认和真实材料来源。</p></div>`;
+  }
   return `
     <div class="info-grid">
       ${facts
@@ -126,9 +129,13 @@ function renderConfirmedTab() {
 }
 
 function renderMissingTab() {
+  const missingItems = currentSnapshot().outputs.missingItems;
+  if (missingItems.length === 0) {
+    return `<div class="output-block"><h3>缺口清单尚未生成</h3><p>进入“申报材料生成与质检”后，系统会根据当前质量等级列出需要客户补充的材料。</p></div>`;
+  }
   return `
     <div class="content-section">
-      ${outputs.missingItems
+      ${missingItems
         .map(
           (item) => `
             <div class="output-block">
@@ -145,12 +152,37 @@ function renderMissingTab() {
 }
 
 function renderOutputsTab() {
+  const snapshot = currentSnapshot();
+  const outputs = snapshot.outputs;
+  if (!outputs.topicCard) {
+    return `
+      <div class="content-section">
+        <div class="output-block">
+          <h3>最终产物尚未生成</h3>
+          <p>当前质量等级为 ${snapshot.quality.grade}。系统会先解除阻断并收集必要确认，进入“申报材料生成与质检”后再展示方案卡和字段映射稿。</p>
+        </div>
+        <div class="output-block">
+          <h3>当前允许产出</h3>
+          <p>${snapshot.quality.allowedOutputs.length === 0 ? "暂无。继续追问，不生成申报材料。" : snapshot.quality.allowedOutputs.join(" / ")}</p>
+        </div>
+      </div>
+    `;
+  }
   return `
     <div class="content-section">
       <div class="output-block">
         <h3>课题方案卡 ${sourceBadge(outputs.topicCard.title.sourceType)}</h3>
         <p><strong>${outputs.topicCard.title.value}</strong></p>
         <p>${outputs.topicCard.researchQuestion.value}</p>
+      </div>
+      <div class="output-block">
+        <h3>${outputs.literatureReviewDraft.title} ${sourceBadge(outputs.literatureReviewDraft.sourceType)}</h3>
+        <p>${outputs.literatureReviewDraft.sourceLabel}</p>
+        <ul>
+          ${outputs.literatureReviewDraft.sections
+            .map((section) => `<li><strong>${section.heading}：</strong>${section.content}</li>`)
+            .join("")}
+        </ul>
       </div>
       <div class="output-block">
         <h3>申报书字段映射稿</h3>

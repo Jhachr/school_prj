@@ -11,8 +11,54 @@ function entry(label, fact) {
 }
 
 export function buildDemoOutputs(fixture) {
+  return buildStepSnapshot(fixture, fixture.dialogueSteps.length - 1).outputs;
+}
+
+export function buildStepSnapshot(fixture, stepIndex) {
+  const boundedIndex = Math.max(
+    0,
+    Math.min(stepIndex, fixture.dialogueSteps.length - 1),
+  );
+  const step = fixture.dialogueSteps[boundedIndex];
+  const quality = evaluateGrade(step.gradeInput);
+  const visibleFacts = new Set(step.visibleFactKeys ?? []);
+  const canShowOutputs = Boolean(step.showOutputs);
+
+  return {
+    step,
+    quality,
+    confirmedFacts: buildConfirmedFacts(fixture, visibleFacts),
+    outputs: buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs),
+  };
+}
+
+function buildConfirmedFacts(fixture, visibleFacts) {
+  return [
+    ["教师画像", "teacher"],
+    ["课程场景", "courses"],
+    ["真实问题", "realProblem"],
+    ["核心研究问题", "researchQuestion"],
+    ["专业依据", "officialMajor"],
+    ["实训条件", "officialPractice"],
+    ["政策/指南依据", "evidence"],
+  ]
+    .filter(([, key]) => visibleFacts.has(key))
+    .map(([label, key]) => entry(label, fixture.facts[key]));
+}
+
+function buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs) {
+  if (!canShowOutputs || !quality.allowedOutputs.includes("topic_card")) {
+    return {
+      topicCard: null,
+      literatureReviewDraft: null,
+      proposalMapping: [],
+      missingItems: [],
+      quality,
+      proposalDraft: null,
+    };
+  }
+
   const { facts } = fixture;
-  const quality = evaluateGrade(fixture.gradeInput);
 
   const topicCard = {
     title: entry("课题名称", facts.topicName),
@@ -23,6 +69,7 @@ export function buildDemoOutputs(fixture) {
     officialPractice: entry("实训条件", facts.officialPractice),
     researchQuestion: entry("核心研究问题", facts.researchQuestion),
     evidence: entry("政策/指南依据", facts.evidence),
+    literatureFrontier: entry("前沿研究依据", facts.literatureFrontier),
     value: {
       label: "申报价值",
       value:
@@ -34,6 +81,11 @@ export function buildDemoOutputs(fixture) {
     risks: [
       {
         value: "学校真实申报指南尚未接入，政策贴合度只能演示。",
+        sourceType: "demo_fixture",
+        sourceLabel: "演示边界",
+      },
+      {
+        value: "当前文献综述为演示占位，正式版本必须替换为真实检索结果。",
         sourceType: "demo_fixture",
         sourceLabel: "演示边界",
       },
@@ -82,8 +134,7 @@ export function buildDemoOutputs(fixture) {
     },
     {
       field: "研究现状",
-      content:
-        "暂以演示数据说明职业教育教学改革、产教融合、课程资源建设和评价工具方向；正式版必须替换为真实政策和文献。",
+      content: `${facts.literatureFrontier.value} 正式版需替换为真实检索记录和可追溯引用。`,
       sourceType: "demo_fixture",
       status: "待真实材料替换",
     },
@@ -138,8 +189,32 @@ export function buildDemoOutputs(fixture) {
     nextAction: quality.nextAction,
   };
 
+  const literatureReviewDraft = {
+    title: "文献综述草稿",
+    sourceType: "demo_fixture",
+    sourceLabel: "演示占位文献摘要；正式版本必须由真实检索结果生成",
+    sections: [
+      {
+        heading: "研究现状",
+        content:
+          "直播电商相关教学改革可围绕产教融合任务转化、直播运营岗位能力、数据化复盘评价和课堂实训资源建设展开。",
+      },
+      {
+        heading: "已有研究不足",
+        content:
+          "演示假设中，已有研究容易停留在平台工具应用或话术训练层面，对直播前策划、直播中执行、直播后数据复盘的全流程评价支撑不足。",
+      },
+      {
+        heading: "本课题切入点",
+        content:
+          "本课题将企业直播运营岗位任务转化为课程实训任务，并形成数据复盘评价量表、任务包和复盘模板。",
+      },
+    ],
+  };
+
   return {
     topicCard,
+    literatureReviewDraft,
     proposalMapping,
     missingItems,
     quality: qualityReport,

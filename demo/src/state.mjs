@@ -31,9 +31,16 @@ export const INTERNAL_STATES = Object.freeze([
 ]);
 
 export const ALLOWED_OUTPUTS = Object.freeze({
-  B: ["topic_card", "proposal_mapping", "missing_items", "quality_report"],
+  B: [
+    "topic_card",
+    "literature_review_draft",
+    "proposal_mapping",
+    "missing_items",
+    "quality_report",
+  ],
   A: [
     "topic_card",
+    "literature_review_draft",
     "proposal_mapping",
     "missing_items",
     "quality_report",
@@ -90,6 +97,9 @@ export function evaluateGrade(input = {}) {
   if (!isVerified(input.guideSource)) {
     bReasons.push("真实申报指南尚未接入");
   }
+  if (!isVerified(input.literatureSource)) {
+    bReasons.push("真实文献检索结果尚未接入");
+  }
   if (!isVerified(input.templateSource)) {
     bReasons.push("真实申报模板尚未接入");
   }
@@ -108,22 +118,23 @@ export function evaluateGrade(input = {}) {
     grade: "A",
     label: "A：可生成结构化内容草稿",
     allowedOutputs: [...ALLOWED_OUTPUTS.A],
-    reasons: ["核心字段、可执行方法、非论文成果、真实指南和真实模板均已确认。"],
+    reasons: ["核心字段、可执行方法、非论文成果、真实指南、真实文献和真实模板均已确认。"],
     nextAction: "可生成申报书结构化内容草稿，仍需人工和专家审核。",
   };
 }
 
-export function deriveProgress(stepIndex, totalSteps) {
-  const boundedIndex = Math.max(0, Math.min(stepIndex, totalSteps - 1));
-  const ratio = totalSteps <= 1 ? 1 : boundedIndex / (totalSteps - 1);
-  const completedCount = Math.round(ratio * INTERNAL_STATES.length);
+export function deriveProgress(currentStateId) {
+  const currentIndex = Math.max(
+    0,
+    INTERNAL_STATES.findIndex((state) => state.id === currentStateId),
+  );
 
   return INTERNAL_STATES.map((state, index) => ({
     ...state,
     status:
-      index < completedCount
+      index < currentIndex
         ? "completed"
-        : index === completedCount
+        : index === currentIndex
           ? "active"
           : "pending",
   }));
