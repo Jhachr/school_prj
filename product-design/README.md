@@ -6,10 +6,17 @@
 
 ## 当前设计产物
 
+- `00-first-demo-delivery-plan.md`：第一次客户演示交付方案
 - `01-novice-teacher-user-flow.md`：小白老师立项申请用户流程
 - `02-demo-conversation-script.md`：第一版 demo 对话脚本
 - `03-proposal-quality-rubric.md`：申报书质量检查表
 - `04-customer-materials-request.md`：需要客户提供的资料清单
+- `05-stage-rule-blueprint.md`：阶段规则蓝图，用于指导后续 Agent/Skill 建设
+- `06-demo-output-samples.md`：Demo 输出样例
+- `07-customer-confirmation-checklist.md`：客户会议确认清单
+- `08-demo-format-recommendation.md`：Demo 展示形式建议
+- `09-customer-facing-process-spec.md`：面向客户的流程技术说明书
+- `10-demo-major-selection-rationale.md`：Demo 专业选择依据
 
 ## 设计原则
 
