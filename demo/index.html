@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>科研立项引导助手流程验证 Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">流程验证 Demo</p>
+        <h1>科研立项引导助手</h1>
+      </div>
+      <div class="topbar-actions">
+        <p class="runtime-note">正式版本将在成熟 Harness 中运行科研立项 Skill</p>
+        <button id="resetButton" class="button secondary" type="button">重置</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="conversation-panel" aria-labelledby="conversationTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">直播电商案例</p>
+            <h2 id="conversationTitle">从“AI+教育”到可申报课题</h2>
+          </div>
+          <span id="gradeBadge" class="grade-badge grade-c">C</span>
+        </div>
+
+        <ol id="stageRail" class="stage-rail" aria-label="业务阶段"></ol>
+
+        <div id="conversationLog" class="conversation-log" aria-live="polite"></div>
+
+        <div class="step-controls">
+          <button id="prevButton" class="button secondary" type="button">上一步</button>
+          <button id="nextButton" class="button primary" type="button">下一步</button>
+        </div>
+      </section>
+
+      <section class="inspector-panel" aria-labelledby="inspectorTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">业务契约视图</p>
+            <h2 id="inspectorTitle">状态、来源与产物</h2>
+          </div>
+        </div>
+
+        <nav class="tabs" aria-label="查看内容">
+          <button class="tab active" type="button" data-tab="status">阶段状态</button>
+          <button class="tab" type="button" data-tab="confirmed">已确认</button>
+          <button class="tab" type="button" data-tab="missing">缺失项</button>
+          <button class="tab" type="button" data-tab="outputs">最终产物</button>
+        </nav>
+
+        <div id="tabContent" class="tab-content"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.mjs"></script>
+  </body>
+</html>
