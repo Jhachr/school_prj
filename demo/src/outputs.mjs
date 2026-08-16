@@ -80,14 +80,14 @@ function buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs) {
     },
     risks: [
       {
-        value: "学校真实申报指南尚未接入，政策贴合度只能演示。",
+        value: "学校本期申报指南尚未接入，课题方向还需要按真实指南复核。",
         sourceType: "demo_fixture",
-        sourceLabel: "演示边界",
+        sourceLabel: "示例依据；正式版本将替换为学校真实申报指南",
       },
       {
-        value: "当前文献综述为演示占位，正式版本必须替换为真实检索结果。",
+        value: "当前文献综述草稿使用示例文献线索，正式版本需要替换为真实检索结果。",
         sourceType: "demo_fixture",
-        sourceLabel: "演示边界",
+        sourceLabel: "示例依据；正式版本将替换为真实文献检索结果",
       },
       {
         value: "学校真实申报书模板尚未提供，字段只能使用通用结构。",
@@ -134,7 +134,7 @@ function buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs) {
     },
     {
       field: "研究现状",
-      content: `${facts.literatureFrontier.value} 正式版需替换为真实检索记录和可追溯引用。`,
+      content: `${facts.literatureFrontier.value} 正式版本会替换为真实检索记录，并保留可追溯引用。`,
       sourceType: "demo_fixture",
       status: "待真实材料替换",
     },
@@ -192,7 +192,7 @@ function buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs) {
   const literatureReviewDraft = {
     title: "文献综述草稿",
     sourceType: "demo_fixture",
-    sourceLabel: "演示占位文献摘要；正式版本必须由真实检索结果生成",
+    sourceLabel: "示例依据；正式版本将替换为真实文献检索结果",
     sections: [
       {
         heading: "研究现状",
@@ -202,7 +202,7 @@ function buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs) {
       {
         heading: "已有研究不足",
         content:
-          "演示假设中，已有研究容易停留在平台工具应用或话术训练层面，对直播前策划、直播中执行、直播后数据复盘的全流程评价支撑不足。",
+          "已有研究容易停留在平台工具应用或话术训练层面，对直播前策划、直播中执行、直播后数据复盘的全流程评价支撑不足。",
       },
       {
         heading: "本课题切入点",

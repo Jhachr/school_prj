@@ -46,7 +46,7 @@ export const liveCommerceFixture = {
     topicName: {
       value: "岗位任务导向的直播电商实训教学改革研究",
       sourceType: "ai_suggestion",
-      sourceLabel: "系统基于教师画像、真实问题和演示指南生成，需教师最终采纳",
+      sourceLabel: "系统基于教师画像、真实问题、申报导向和文献线索生成，需教师最终采纳",
     },
     researchQuestion: {
       value:
@@ -56,15 +56,15 @@ export const liveCommerceFixture = {
     },
     evidence: {
       value:
-        "模拟指南鼓励职业教育教学改革、产教融合、课程资源建设、评价工具和岗位能力提升。",
+        "当前示例中的申报导向强调职业教育教学改革、产教融合、课程资源建设、评价工具和岗位能力提升。",
       sourceType: "demo_fixture",
-      sourceLabel: "演示占位指南，不代表学校真实申报文件",
+      sourceLabel: "示例依据；正式版本将替换为学校真实申报指南",
     },
     literatureFrontier: {
       value:
-        "演示性前沿研究摘要：直播电商教学研究通常关注产教融合任务转化、数据化运营能力培养、课堂实训评价和 AI 辅助内容诊断。",
+        "当前示例中的文献线索显示，直播电商教学研究常关注真实岗位任务、数据化运营能力、课堂实训评价和 AI 辅助诊断。",
       sourceType: "demo_fixture",
-      sourceLabel: "演示占位文献摘要；正式版本必须由真实检索结果生成",
+      sourceLabel: "示例依据；正式版本将替换为真实文献检索结果",
     },
     template: {
       value: "学校真实申报书模板尚未提供。",
@@ -118,8 +118,8 @@ export const liveCommerceFixture = {
       stateId: "intent_refinement",
       speaker: "assistant",
       text:
-        "这个方向现在还不能直接生成申报材料。“AI+教育”太宽泛，我需要先确认专业、课程、学生问题和可获得数据。",
-      note: "允许输出：继续追问，不生成申报材料。",
+        "现在还不能生成申报材料，因为“AI+教育”只是一类方向，缺少课程场景、学生卡点、可用数据和预期成果这些具体信息。先把问题问清楚，再判断能不能形成课题。",
+      note: "当前只允许先追问；信息不足时不生成申报材料。",
       visibleFactKeys: ["teacher", "courses", "officialMajor", "officialPractice"],
       gradeInput: {
         teacherProfileConfirmed: true,
@@ -138,8 +138,8 @@ export const liveCommerceFixture = {
       stateId: "problem_discovery",
       speaker: "teacher",
       text:
-        "学生会模仿直播话术，但真正做直播任务时，选品、人群分析、脚本策划和数据复盘都比较弱。",
-      note: "真实问题开始形成，但还需要确认其是否是课题核心。",
+        "在新媒体直播运营课上，学生能模仿主播话术，但做完整直播任务时，选品、人群分析、脚本策划、开播执行和数据复盘都断开。",
+      note: "老师提供了真实教学现象，但还要判断它是不是本课题要解决的核心问题。",
       visibleFactKeys: ["teacher", "courses", "officialMajor", "officialPractice", "realProblem"],
       gradeInput: {
         teacherProfileConfirmed: true,
@@ -158,8 +158,8 @@ export const liveCommerceFixture = {
       stateId: "problem_discovery",
       speaker: "assistant",
       text:
-        "核心问题可能不是 AI 工具，而是直播电商岗位任务和课程实训没有充分对齐。请确认是否更想解决直播全流程能力问题。",
-      note: "AI 建议需用户确认，不能替代教师判断。",
+        "我先把您的描述整理成一个待确认判断：难点不一定是缺 AI 工具，而是课程实训和直播电商岗位任务没有对齐，学生没有按“选品-脚本-直播-复盘”的完整流程训练。请您确认，我们是不是优先解决直播任务全流程能力不足？",
+      note: "这是系统归纳出的假设，老师确认前不能当作最终课题判断。",
       visibleFactKeys: ["teacher", "courses", "officialMajor", "officialPractice", "realProblem"],
       gradeInput: {
         teacherProfileConfirmed: true,
@@ -197,8 +197,8 @@ export const liveCommerceFixture = {
       stateId: "topic_recommendation",
       speaker: "assistant",
       text:
-        "结合教师画像、真实问题和演示性前沿研究摘要，我建议 3 个方向：岗位任务导向实训改革、数据复盘评价体系、AI 辅助脚本诊断。我推荐第 1 个，因为它覆盖实训流程、评价工具和可复用成果。",
-      note: "系统推荐方向，等待用户选择；仍不生成申报材料。",
+        "结合您的课程、学生问题和直播电商教学研究中常见的关注点，我建议先比较 3 个方向：岗位任务导向实训改革、数据复盘评价体系、AI 辅助脚本诊断。为什么推荐第 1 个？因为它更具体，能把选品、脚本、直播执行和复盘串成完整教学改革，也更容易形成任务包、评价量表和复盘模板这些可交付成果。",
+      note: "这是系统给出的课题方向建议，需要老师选择后才能继续生成后续材料。",
       visibleFactKeys: ["teacher", "courses", "officialMajor", "officialPractice", "realProblem", "topicName"],
       gradeInput: {
         teacherProfileConfirmed: true,
@@ -291,8 +291,8 @@ export const liveCommerceFixture = {
       stateId: "evidence_support",
       speaker: "assistant",
       text:
-        "当前用模拟申报指南和演示性文献检索摘要演示：若强调产教融合、前沿研究缺口、课程资源、评价工具和岗位能力，比泛泛写 AI+教育更贴近申报导向。",
-      note: "依据为 demo_fixture，不能视为真实材料。",
+        "方向已经确认后，我再做一次依据校验：它是否符合申报关注点，是否能接上前沿研究。职业教育类项目通常重视教学改革、产教融合、课程资源和评价工具；直播电商教学研究也关注岗位任务、数据化运营能力和实训评价。这样看，“直播电商岗位任务导向的实训改革”比“AI+教育”更具体，也更容易说明研究价值。",
+      note: "正式版本会接入学校真实申报指南和真实文献检索结果；本步的作用是说明系统如何用依据校验推荐方向，下一步再确认教师是否具备实施资源。",
       visibleFactKeys: [
         "teacher",
         "courses",
@@ -321,7 +321,7 @@ export const liveCommerceFixture = {
       stateId: "method_and_outcomes",
       speaker: "teacher",
       text:
-        "企业案例、课程试点、学生作业和直播数据截图可以配合。成果可以做任务包、评价量表、复盘模板和案例库。",
+        "这些材料我能提供：企业案例、课程试点记录、学生作业、直播数据截图。成果上可以做任务包、评价量表、复盘模板和案例库。",
       note: "方法资源和非论文成果由用户确认，但真实指南和学校模板仍缺失。",
       visibleFactKeys: [
         "teacher",

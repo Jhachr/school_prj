@@ -9,11 +9,12 @@
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">流程验证 Demo</p>
+        <p class="eyebrow">第一次客户演示</p>
         <h1>科研立项引导助手</h1>
+        <p class="topbar-subtitle">用一个直播电商教师案例，现场校准“从模糊想法到可申报课题”的 8 阶段流程。</p>
       </div>
       <div class="topbar-actions">
-        <p class="runtime-note">正式版本将在成熟 Harness 中运行科研立项 Skill</p>
+        <p class="runtime-note">重点看对话流程、阶段判断和阶段成果。</p>
         <button id="resetButton" class="button secondary" type="button">重置</button>
       </div>
     </header>
@@ -41,19 +42,12 @@
       <section class="inspector-panel" aria-labelledby="inspectorTitle">
         <div class="panel-heading">
           <div>
-            <p class="eyebrow">业务契约视图</p>
-            <h2 id="inspectorTitle">状态、来源与产物</h2>
+            <p class="eyebrow">阶段判断</p>
+            <h2 id="inspectorTitle">当前阶段为什么这样推进</h2>
           </div>
         </div>
 
-        <nav class="tabs" aria-label="查看内容">
-          <button class="tab active" type="button" data-tab="status">阶段状态</button>
-          <button class="tab" type="button" data-tab="confirmed">已确认</button>
-          <button class="tab" type="button" data-tab="missing">缺失项</button>
-          <button class="tab" type="button" data-tab="outputs">最终产物</button>
-        </nav>
-
-        <div id="tabContent" class="tab-content"></div>
+        <div id="guideContent" class="guide-content"></div>
       </section>
     </main>
 
