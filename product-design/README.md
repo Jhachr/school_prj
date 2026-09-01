@@ -12,9 +12,9 @@
 4. `01-novice-teacher-user-flow.md`：业务源，定义客户视角 8 个阶段和 10 个内部状态映射。
 5. `04-customer-materials-request.md`：真实材料、评审标准、文献检索来源和优秀案例的资料责任清单。
 6. `06-demo-output-samples.md`：空白模板和直播电商 B 级输出样例。
-7. `09-customer-facing-process-spec.md`：第一次流程验证 Demo 的客户说明版，后续可归档。
-8. `00-first-demo-delivery-plan.md`：第一次客户演示交付计划，后续可归档。
-9. `07-customer-confirmation-checklist.md`：第一次 Demo 会议确认清单模板，后续可归档或删除。
+7. `archive/09-customer-facing-process-spec.md`：第一次流程验证 Demo 的客户说明版，已归档。
+8. `archive/00-first-demo-delivery-plan.md`：第一次客户演示交付计划，已归档。
+9. `archive/07-customer-confirmation-checklist.md`：第一次 Demo 会议确认清单模板，已归档。
 
 ## 关联 Demo
 

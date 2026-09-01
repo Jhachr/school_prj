@@ -110,15 +110,32 @@
 3. 工具能力通过适配层接入，避免把飞书、Trae、豆包、Codex、Claude 等平台能力直接写进核心规则。
 4. 客户可维护内容和工程适配代码分离。客户侧可以维护 Markdown，技术侧维护工具和集成。
 
+## 开源借鉴后的低成本优化策略
+
+结合本地 `academic-research-skills` 的设计，当前产品不应直接复制其完整多代理、CI、复杂 schema 和工具链。更适合首版落地的是借鉴其“质量结构”，用 Markdown 规则和模板完成轻量实现：
+
+| 优化方向 | 首版落地 | 暂不引入 |
+|---|---|---|
+| 人机协作定位 | 明确老师拥有事实、选择和最终判断；Skill 负责结构化、追问、解释和质检。 | 复杂协作深度评分模型。 |
+| 阶段式 Pipeline | 8 个业务阶段 + 10 个内部状态 + `SLIM`、`FULL`、`MANDATORY` 三类 checkpoint。 | 完整状态机服务和自动调度器。 |
+| Material Passport | 用轻量表格或 JSON 记录 source、claim、decision、artifact、quality、health ledger。 | 完整 Schema 9、digest 校验和跨文档一致性审计。 |
+| 苏格拉底式引导 | 使用 State -> Challenge -> Reflect 追问，让老师先表态再修正。 | 独立 Socratic agent 和长轮次评分。 |
+| 对话健康度监控 | 每个阶段切换时检查被动接受、过早收敛、来源漂移、过度生成和问题疲劳。 | 实时观察员服务和自动学习算法。 |
+
+这轮优化后的 1.0 判断标准是：即使没有运行时数据库，开发者也能根据 Skill 文件稳定执行“先确认、再生成、可追溯、可回退”的工作方式。
+
 ## 推荐 Skill 包结构
 
 ```text
 skills/research-proposal-coach/
 ├── SKILL.md
 ├── rules/
+│   ├── human-ai-collaboration.md
 │   ├── stage-contract.md
+│   ├── material-passport.md
 │   ├── quality-rubric.md
 │   ├── source-policy.md
+│   ├── dialogue-health.md
 │   ├── guidance-principles.md
 │   └── reviewer-standards.md
 ├── modules/
@@ -136,6 +153,7 @@ skills/research-proposal-coach/
 │   ├── literature-review-proposal-section.md
 │   ├── proposal-field-mapping.md
 │   ├── missing-items.md
+│   ├── material-passport.md
 │   └── quality-report.md
 ├── examples/
 │   └── live-commerce-b-grade.md

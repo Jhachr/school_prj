@@ -13,7 +13,8 @@
 │   └── summaries/  # 基于原始材料整理出的需求总结、洞察和行动项
 ├── product-design/ # 用户流程、demo 脚本、质量标准和客户对齐材料
 ├── demo/           # 第一次客户沟通使用的纯前端流程验证 Demo
-└── skills/         # 最终交付给客户使用的 Skill；当前先保留空目录
+├── docs/           # 开发计划和过程文档
+└── skills/         # 最终交付给客户使用的 Skill 包
 ```
 
 ## 内容边界
@@ -35,7 +36,7 @@ YYYY-MM-DD-topic.md
 
 用于沉淀项目的核心交付物，也就是未来交付给客户使用的科研助手 Skill。
 
-当前阶段先保留目录，不初始化任何 Skill 文件。等客户需求和使用场景更清晰后，再创建具体 Skill。
+当前已进入 Skill 开发阶段，首个 Skill 包位于 `skills/research-proposal-coach/`。它把 0820 客户沟通后的“科研导师/学伴式引导”沉淀为入口指令、阶段契约、质量规则、来源状态、模块 playbook、输出模板和评测维护材料。
 
 ### product-design
 
