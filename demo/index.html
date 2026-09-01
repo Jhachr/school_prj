@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>科研立项引导助手流程验证 Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">第一次客户演示</p>
+        <h1>科研立项引导助手</h1>
+        <p class="topbar-subtitle">用一个直播电商教师案例，现场校准“从模糊想法到可申报课题”的 8 阶段流程。</p>
+      </div>
+      <div class="topbar-actions">
+        <p class="runtime-note">重点看对话流程、阶段判断和阶段成果。</p>
+        <button id="resetButton" class="button secondary" type="button">重置</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="conversation-panel" aria-labelledby="conversationTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">直播电商案例</p>
+            <h2 id="conversationTitle">从“AI+教育”到可申报课题</h2>
+          </div>
+          <span id="gradeBadge" class="grade-badge grade-c">C</span>
+        </div>
+
+        <ol id="stageRail" class="stage-rail" aria-label="业务阶段"></ol>
+
+        <div id="conversationLog" class="conversation-log" aria-live="polite"></div>
+
+        <div class="step-controls">
+          <button id="prevButton" class="button secondary" type="button">上一步</button>
+          <button id="nextButton" class="button primary" type="button">下一步</button>
+        </div>
+      </section>
+
+      <section class="inspector-panel" aria-labelledby="inspectorTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">阶段判断</p>
+            <h2 id="inspectorTitle">当前阶段为什么这样推进</h2>
+          </div>
+        </div>
+
+        <div id="guideContent" class="guide-content"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.mjs"></script>
+  </body>
+</html>

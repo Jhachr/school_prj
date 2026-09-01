@@ -1,0 +1,225 @@
+import { evaluateGrade, SOURCE_LABELS } from "./state.mjs";
+
+function entry(label, fact) {
+  return {
+    label,
+    value: fact.value,
+    sourceType: fact.sourceType,
+    sourceLabel: fact.sourceLabel,
+    badge: SOURCE_LABELS[fact.sourceType],
+  };
+}
+
+export function buildDemoOutputs(fixture) {
+  return buildStepSnapshot(fixture, fixture.dialogueSteps.length - 1).outputs;
+}
+
+export function buildStepSnapshot(fixture, stepIndex) {
+  const boundedIndex = Math.max(
+    0,
+    Math.min(stepIndex, fixture.dialogueSteps.length - 1),
+  );
+  const step = fixture.dialogueSteps[boundedIndex];
+  const quality = evaluateGrade(step.gradeInput);
+  const visibleFacts = new Set(step.visibleFactKeys ?? []);
+  const canShowOutputs = Boolean(step.showOutputs);
+
+  return {
+    step,
+    quality,
+    confirmedFacts: buildConfirmedFacts(fixture, visibleFacts),
+    outputs: buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs),
+  };
+}
+
+function buildConfirmedFacts(fixture, visibleFacts) {
+  return [
+    ["教师画像", "teacher"],
+    ["课程场景", "courses"],
+    ["真实问题", "realProblem"],
+    ["核心研究问题", "researchQuestion"],
+    ["专业依据", "officialMajor"],
+    ["实训条件", "officialPractice"],
+    ["政策/指南依据", "evidence"],
+  ]
+    .filter(([, key]) => visibleFacts.has(key))
+    .map(([label, key]) => entry(label, fixture.facts[key]));
+}
+
+function buildOutputsForStep(fixture, quality, visibleFacts, canShowOutputs) {
+  if (!canShowOutputs || !quality.allowedOutputs.includes("topic_card")) {
+    return {
+      topicCard: null,
+      literatureReviewDraft: null,
+      proposalMapping: [],
+      missingItems: [],
+      quality,
+      proposalDraft: null,
+    };
+  }
+
+  const { facts } = fixture;
+
+  const topicCard = {
+    title: entry("课题名称", facts.topicName),
+    teacher: entry("教师画像", facts.teacher),
+    courses: entry("课程场景", facts.courses),
+    realProblem: entry("真实问题", facts.realProblem),
+    officialMajor: entry("专业依据", facts.officialMajor),
+    officialPractice: entry("实训条件", facts.officialPractice),
+    researchQuestion: entry("核心研究问题", facts.researchQuestion),
+    evidence: entry("政策/指南依据", facts.evidence),
+    literatureFrontier: entry("前沿研究依据", facts.literatureFrontier),
+    value: {
+      label: "申报价值",
+      value:
+        "服务网络营销与直播电商专业建设，推动直播运营岗位任务进入课程实训，形成可复用任务包、评价量表和复盘模板。",
+      sourceType: "ai_suggestion",
+      sourceLabel: "系统建议，需科研处确认",
+      badge: SOURCE_LABELS.ai_suggestion,
+    },
+    risks: [
+      {
+        value: "学校本期申报指南尚未接入，课题方向还需要按真实指南复核。",
+        sourceType: "demo_fixture",
+        sourceLabel: "示例依据；正式版本将替换为学校真实申报指南",
+      },
+      {
+        value: "当前文献综述草稿使用示例文献线索，正式版本需要替换为真实检索结果。",
+        sourceType: "demo_fixture",
+        sourceLabel: "示例依据；正式版本将替换为真实文献检索结果",
+      },
+      {
+        value: "学校真实申报书模板尚未提供，字段只能使用通用结构。",
+        sourceType: "missing",
+        sourceLabel: "第二版真实材料 Demo 前需补充",
+      },
+    ],
+  };
+
+  const proposalMapping = [
+    {
+      field: "课题名称",
+      content: facts.topicName.value,
+      sourceType: "ai_suggestion",
+      status: "待教师最终确认",
+    },
+    {
+      field: "研究背景",
+      content:
+        "网络营销与直播电商专业实训教学中，学生存在直播任务全流程能力不足的问题，尤其在选品、人群分析、脚本策划和数据复盘方面较弱。",
+      sourceType: "user_confirmed",
+      status: "可填",
+    },
+    {
+      field: "研究目标",
+      content:
+        "构建岗位任务导向的新媒体直播运营实训任务体系，形成数据复盘评价量表和课堂实施方案，提升学生直播策划、执行和复盘能力。",
+      sourceType: "ai_suggestion",
+      status: "可填，需教师复核",
+    },
+    {
+      field: "研究方法",
+      content:
+        "文献与政策分析、企业案例分析、行动研究、课堂观察、学生作业分析、直播数据复盘、学生反馈调查。",
+      sourceType: "ai_suggestion",
+      status: "可填，需补充样本和周期",
+    },
+    {
+      field: "预期成果",
+      content:
+        "论文、直播电商岗位任务案例库、新媒体直播运营实训任务包、直播数据复盘评价量表、直播项目复盘模板、课堂实施方案。",
+      sourceType: "user_confirmed",
+      status: "可填",
+    },
+    {
+      field: "研究现状",
+      content: `${facts.literatureFrontier.value} 正式版本会替换为真实检索记录，并保留可追溯引用。`,
+      sourceType: "demo_fixture",
+      status: "待真实材料替换",
+    },
+    {
+      field: "申报书模板适配",
+      content: facts.template.value,
+      sourceType: "missing",
+      status: "待补充",
+    },
+  ].map((item) => ({ ...item, badge: SOURCE_LABELS[item.sourceType] }));
+
+  const missingItems = [
+    {
+      id: "school_template",
+      item: "学校真实申报书模板",
+      why: "决定字段结构和后续导出格式。",
+      owner: "科研处/项目联系人",
+      milestone: "第二版真实材料 Demo 前",
+      sourceType: "missing",
+    },
+    {
+      id: "application_guide",
+      item: "本期申报指南或征集通知",
+      why: "决定课题方向是否贴合学校本期导向。",
+      owner: "科研处",
+      milestone: "第二版真实材料 Demo 前",
+      sourceType: "missing",
+    },
+    {
+      id: "excellent_examples",
+      item: "1-3 份优秀申报书样例",
+      why: "提炼学校认可的结构、表达和质量标准。",
+      owner: "科研处/优秀教师",
+      milestone: "第二版真实材料 Demo 前",
+      sourceType: "missing",
+    },
+    {
+      id: "review_rules",
+      item: "评审标准或常见退回意见",
+      why: "完善质量检查规则和追问策略。",
+      owner: "科研处/评审专家",
+      milestone: "第二版真实材料 Demo 前或会后补充",
+      sourceType: "missing",
+    },
+  ].map((item) => ({ ...item, badge: SOURCE_LABELS[item.sourceType] }));
+
+  const qualityReport = {
+    grade: quality.grade,
+    label: quality.label,
+    reasons: quality.reasons,
+    allowedOutputs: quality.allowedOutputs,
+    nextAction: quality.nextAction,
+  };
+
+  const literatureReviewDraft = {
+    title: "文献综述草稿",
+    sourceType: "demo_fixture",
+    sourceLabel: "示例依据；正式版本将替换为真实文献检索结果",
+    sections: [
+      {
+        heading: "研究现状",
+        content:
+          "直播电商相关教学改革可围绕产教融合任务转化、直播运营岗位能力、数据化复盘评价和课堂实训资源建设展开。",
+      },
+      {
+        heading: "已有研究不足",
+        content:
+          "已有研究容易停留在平台工具应用或话术训练层面，对直播前策划、直播中执行、直播后数据复盘的全流程评价支撑不足。",
+      },
+      {
+        heading: "本课题切入点",
+        content:
+          "本课题将企业直播运营岗位任务转化为课程实训任务，并形成数据复盘评价量表、任务包和复盘模板。",
+      },
+    ],
+  };
+
+  return {
+    topicCard,
+    literatureReviewDraft,
+    proposalMapping,
+    missingItems,
+    quality: qualityReport,
+    proposalDraft: quality.allowedOutputs.includes("proposal_draft")
+      ? "申报书结构化内容草稿需在 A 级条件满足后生成。"
+      : null,
+  };
+}
