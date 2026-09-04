@@ -44,6 +44,12 @@ Then read only the module files needed for the user's current stage:
 
 Read `rules/reviewer-standards.md` when judging topic quality, innovation, outcomes, or proposal readiness. Read templates from `templates/` when producing deliverables.
 
+## Runtime Companion
+
+`runtime/state.mjs` is the lightweight executable companion for the stage, passport, health, and quality contracts. Use it when a harness needs deterministic state updates, output gating, Material Passport bookkeeping, or dialogue-health checks.
+
+The runtime belongs to this Skill package and does not depend on the historical customer demo.
+
 ## Hard Boundaries
 
 - If grade C conditions apply, do not generate proposal materials; ask focused questions instead.
