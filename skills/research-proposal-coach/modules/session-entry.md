@@ -44,7 +44,9 @@ The status command may reveal only whether a profile exists and, when ready, its
 
 选择临时会话后不得读取教师画像和记忆，也不得写入教师画像、长期记忆、历史产物或墓碑记录。
 
-Information shared later may support the current conversation, but it remains session-only. At the end of the conversation, the assistant may offer to archive confirmed items to the local teacher identity. 会话结束归档必须获得老师明确同意并逐条确认；silence or continued conversation is not consent.
+Information shared later may support the current conversation, but it remains session-only. At the end of the conversation, the assistant may offer archival once as an option and must not pressure the teacher. 会话结束归档必须获得老师明确同意并逐条确认；silence or continued conversation is not consent.
+
+老师同意归档后，必须先重新进入教师身份路由，确认或创建本机教师身份，再重新展示待保存条目。`session_mode` 仍为 `temporary` 时不得运行 `profile-store.mjs commit`；身份切换和逐条确认都完成后才允许提交。
 
 ## Malformed Profile
 

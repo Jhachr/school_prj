@@ -30,6 +30,8 @@ test('temporary route prohibits profile reads and durable writes after routing',
   const entry = await read('modules/session-entry.md');
   assert.match(entry, /选择临时会话后[^\n]*(不读取|不得读取)[^\n]*(不写入|不得写入)/);
   assert.match(entry, /会话结束[^\n]*归档[^\n]*明确同意/);
+  assert.match(entry, /同意归档[^\n]*(重新进入|切换到)[^\n]*教师身份/);
+  assert.match(entry, /temporary[^\n]*(不得|不能)[^\n]*commit/i);
 });
 
 test('memory policy requires candidates, explicit confirmation, and user controls', async () => {

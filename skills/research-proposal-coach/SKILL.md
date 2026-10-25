@@ -16,9 +16,10 @@ Before reading detailed teacher history or entering an ordinary coaching module:
 3. Use the status result to complete the identity route: first-use consent, returning-teacher confirmation, temporary mode, or malformed-profile recovery.
 4. Enter ordinary coaching only after `session_mode` is `teacher` or `temporary`.
 5. During coaching, collect memory candidates in session state without writing them.
-6. At a useful module boundary or session end, show `templates/session-memory-review.md`; run `profile-store.mjs commit` only for items the teacher explicitly confirms.
+6. In teacher mode, show `templates/session-memory-review.md` at a useful module boundary or session end; run `profile-store.mjs commit` only for items the teacher explicitly confirms.
 
 In teacher mode, detailed history may be read only after identity confirmation. In temporary mode, do not read or write the durable teacher profile, memories, or history.
+Temporary-session facts stay session-only. The assistant may offer archival once at session end, but acceptance must restart the teacher-identity route before any durable commit; never run `commit` while `session_mode` is `temporary`.
 
 ## Operating Stance
 

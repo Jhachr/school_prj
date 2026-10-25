@@ -53,7 +53,7 @@ History is a proposal, not a current fact. Identity selection does not confirm e
 
 ## Temporary Sessions
 
-After the teacher chooses temporary mode, do not read or write the durable profile or memories. Current-session facts may be used only in that conversation. Offer archival at the end only as an option, and require explicit item-level confirmation before writing.
+After the teacher chooses temporary mode, do not read or write the durable profile or memories. Current-session facts may be used only in that conversation. Offer archival once at the end only as an option, without pressure. If the teacher accepts, restart the teacher-identity route and repeat item-level confirmation; never call `commit` while `session_mode` is `temporary`.
 
 ## User Controls
 

@@ -57,4 +57,29 @@ The existing Skill can reason locally about each conversation, but it has no det
 
 ## Forward-Test Result
 
-Pending implementation. Re-run the same three prompts without supplying expected behavior.
+Date: 2026-10-25
+
+An independent evaluator re-ran the same three prompts after reading only the installed Skill entry and files it routed to. The evaluator did not read this report, the design, implementation plan, or tests, and did not modify the repository.
+
+### Scenario 1 Result
+
+- The Skill asks the single required question “检测到本机的李老师档案，是否以李老师身份继续？” before reading detailed history or recommending from it.
+- A rushed “按你记得的” request does not bypass the route or silently confirm historical facts.
+- After identity confirmation, reused facts remain `suggested_from_history（根据历史推荐）` until the teacher confirms, corrects, ignores, or deletes them.
+
+### Scenario 2 Result
+
+- The Skill enters `temporary（临时会话）`, keeps `active_identity` empty, and does not read or write durable profile data.
+- New research experience may support the current conversation or remain an in-session candidate, but it is not durable memory without item-level consent.
+- The evaluator found a wording tension between ordinary end-of-module memory review and the optional end-of-session archive offer. The instructions were tightened: temporary sessions are not pressured, and an accepted archive offer must restart the teacher-identity route before any `commit`; `commit` is forbidden while the mode remains `temporary`.
+
+### Scenario 3 Result
+
+- The explicit current correction “跨境电商” becomes `user_confirmed（本次已确认）` for the current session.
+- The former “市场营销” value becomes `superseded（已被新信息替代）` and can no longer drive recommendations.
+- Dependent topic options, search plans, evidence matrices, arguments, or drafts are marked stale for review.
+- “直接继续” permits current-session progress but does not authorize a silent durable write; saving the correction still requires item-level confirmation and a successful CLI result.
+
+### Outcome
+
+The previous RED gaps now have deterministic behavior: identity is explicitly routed, temporary sessions are isolated from durable data, and current corrections supersede history without silently rewriting the local profile. No unresolved loophole remains in the three tested scenarios.
