@@ -4,3 +4,4 @@
 *.log
 demo/.cache/
 .superpowers/
+.worktrees/
