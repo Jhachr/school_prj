@@ -112,6 +112,22 @@ test('generated run artifacts cannot be cited as manual evidence', async () => {
   });
 });
 
+test('manual evidence path must belong to the cited record provenance', async () => {
+  await withRun(async ({ run }) => {
+    await writeFile(join(run, 'raw', 'unrelated.md'), '另一份材料中的片段\n', 'utf8');
+    const claimsPath = join(run, 'claims.jsonl');
+    const claims = parseJsonl(await readFile(claimsPath, 'utf8'));
+    claims[1].evidence[0].location = 'raw/unrelated.md#page=1';
+    claims[1].evidence[0].excerpt = '另一份材料中的片段';
+    await writeFile(claimsPath, `${claims.map(JSON.stringify).join('\n')}\n`, 'utf8');
+
+    const result = await checkLiteratureRun({ inputDir: run });
+
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join('\n'), /not declared by record manual:M1 provenance/);
+  });
+});
+
 test('CLI emits JSON and exits non-zero for broken associations', async () => {
   await withRun(async ({ run }) => {
     await writeFile(join(run, 'review.md'), '# 综述\n\n未知论点。[C88]\n', 'utf8');

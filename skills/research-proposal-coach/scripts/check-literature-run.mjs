@@ -81,7 +81,7 @@ export async function checkLiteratureRun({ inputDir } = {}) {
           errors.push(`${label} excerpt not found in abstract`);
         }
       } else {
-        await checkSavedTextEvidence({ root, location, excerpt, label, errors });
+        await checkSavedTextEvidence({ root, record, location, excerpt, label, errors });
       }
     }
   }
@@ -117,7 +117,7 @@ export async function checkLiteratureRun({ inputDir } = {}) {
   };
 }
 
-async function checkSavedTextEvidence({ root, location, excerpt, label, errors }) {
+async function checkSavedTextEvidence({ root, record, location, excerpt, label, errors }) {
   const hashIndex = location.indexOf('#');
   const relativePath = hashIndex === -1 ? location : location.slice(0, hashIndex);
   const locationDetail = hashIndex === -1 ? '' : location.slice(hashIndex + 1);
@@ -135,6 +135,13 @@ async function checkSavedTextEvidence({ root, location, excerpt, label, errors }
     errors.push(`${label} manual evidence must point inside raw/: ${location}`);
     return;
   }
+  const provenancePaths = new Set((Array.isArray(record.provenance) ? record.provenance : [])
+    .map((item) => normalizedRawRefPath(root, item?.raw_ref))
+    .filter(Boolean));
+  if (!provenancePaths.has(pathFromRoot)) {
+    errors.push(`${label} path ${relativePath} is not declared by record ${record.record_id} provenance`);
+    return;
+  }
   let content;
   try {
     content = await readFile(evidencePath, 'utf8');
@@ -145,6 +152,13 @@ async function checkSavedTextEvidence({ root, location, excerpt, label, errors }
   if (!containsExcerpt(content, excerpt)) {
     errors.push(`${label} excerpt not found in ${relativePath}`);
   }
+}
+
+function normalizedRawRefPath(root, rawRef) {
+  if (typeof rawRef !== 'string' || !rawRef.trim()) return null;
+  const path = rawRef.split('#', 1)[0];
+  if (!path || isAbsolute(path)) return null;
+  return relative(root, resolve(root, path));
 }
 
 function containsExcerpt(content, excerpt) {
