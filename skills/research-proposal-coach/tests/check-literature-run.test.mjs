@@ -128,6 +128,26 @@ test('manual evidence path must belong to the cited record provenance', async ()
   });
 });
 
+test('shared OpenAlex JSONL cannot substitute for abstract or saved readable text', async () => {
+  await withRun(async ({ run }) => {
+    await writeFile(
+      join(run, 'raw', 'openalex.jsonl'),
+      '{"work":"W1","text":"第一条没有证据"}\n{"work":"W2","text":"片段只在第二条记录"}\n',
+      'utf8',
+    );
+    const claimsPath = join(run, 'claims.jsonl');
+    const claims = parseJsonl(await readFile(claimsPath, 'utf8'));
+    claims[0].evidence[0].location = 'raw/openalex.jsonl#L1';
+    claims[0].evidence[0].excerpt = '片段只在第二条记录';
+    await writeFile(claimsPath, `${claims.map(JSON.stringify).join('\n')}\n`, 'utf8');
+
+    const result = await checkLiteratureRun({ inputDir: run });
+
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join('\n'), /must be a saved Markdown or text file/);
+  });
+});
+
 test('CLI emits JSON and exits non-zero for broken associations', async () => {
   await withRun(async ({ run }) => {
     await writeFile(join(run, 'review.md'), '# 综述\n\n未知论点。[C88]\n', 'utf8');

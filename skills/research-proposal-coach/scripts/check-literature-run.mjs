@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { readFile } from 'node:fs/promises';
-import { isAbsolute, relative, resolve, sep } from 'node:path';
+import { extname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export async function checkLiteratureRun({ inputDir } = {}) {
@@ -133,6 +133,10 @@ async function checkSavedTextEvidence({ root, record, location, excerpt, label, 
   }
   if (!pathFromRoot.startsWith(`raw${sep}`)) {
     errors.push(`${label} manual evidence must point inside raw/: ${location}`);
+    return;
+  }
+  if (!['.md', '.txt'].includes(extname(pathFromRoot).toLowerCase())) {
+    errors.push(`${label} manual evidence must be a saved Markdown or text file: ${location}`);
     return;
   }
   const provenancePaths = new Set((Array.isArray(record.provenance) ? record.provenance : [])
