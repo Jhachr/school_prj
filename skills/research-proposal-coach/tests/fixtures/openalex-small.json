@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "count": 3,
+    "page": 1,
+    "per_page": 20
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W1001",
+      "doi": "https://doi.org/10.1000/ABC.1",
+      "title": "岗位任务驱动的项目化教学研究",
+      "publication_year": 2024,
+      "authorships": [
+        { "author": { "display_name": "李明" } },
+        { "author": { "display_name": "Zhang San" } }
+      ],
+      "primary_location": {
+        "landing_page_url": "https://example.org/papers/W1001"
+      },
+      "abstract_inverted_index": {
+        "岗位任务": [0],
+        "能够": [1],
+        "改善": [2],
+        "项目学习": [3]
+      }
+    },
+    {
+      "id": "https://openalex.org/W1002",
+      "doi": null,
+      "title": "Workplace tasks in vocational project learning",
+      "publication_year": 2023,
+      "authorships": [
+        { "author": { "display_name": "Alex Chen" } }
+      ],
+      "primary_location": {
+        "landing_page_url": "https://example.org/papers/W1002"
+      },
+      "abstract_inverted_index": null
+    },
+    {
+      "id": "https://openalex.org/W1003",
+      "doi": "doi:10.1000/abc.1",
+      "title": "岗位任务驱动的项目化教学研究",
+      "publication_year": 2024,
+      "authorships": [
+        { "author": { "display_name": "李明" } }
+      ],
+      "primary_location": {
+        "landing_page_url": "https://repository.example.edu/W1003"
+      },
+      "abstract_inverted_index": null
+    }
+  ]
+}
