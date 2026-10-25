@@ -81,22 +81,39 @@ export function normalizeTitle(value) {
 
 export function mergeExactRecords(inputRecords) {
   if (!Array.isArray(inputRecords)) throw new Error('records must be an array');
-  const records = [];
-  let exactOverlapCount = 0;
+  const validated = inputRecords.map((record) => validateRecord(structuredClone(record)));
+  const parents = validated.map((_, index) => index);
 
-  for (const rawRecord of inputRecords) {
-    const incoming = validateRecord(structuredClone(rawRecord));
-    const existing = records.find((candidate) => exactIdentity(candidate, incoming));
-    if (!existing) {
-      records.push(incoming);
-      continue;
+  for (let left = 0; left < validated.length; left += 1) {
+    for (let right = left + 1; right < validated.length; right += 1) {
+      if (exactIdentity(validated[left], validated[right])) union(parents, left, right);
     }
-    exactOverlapCount += 1;
-    mergeInto(existing, incoming);
   }
 
+  const groups = new Map();
+  for (const [index, record] of validated.entries()) {
+    const root = findRoot(parents, index);
+    if (!groups.has(root)) groups.set(root, []);
+    groups.get(root).push(record);
+  }
+
+  const records = [...groups.values()].map(([target, ...duplicates]) => {
+    for (const duplicate of duplicates) mergeInto(target, duplicate);
+    return target;
+  });
   records.sort((left, right) => left.record_id.localeCompare(right.record_id));
-  return { records, exact_overlap_count: exactOverlapCount };
+  return { records, exact_overlap_count: validated.length - records.length };
+}
+
+function findRoot(parents, index) {
+  if (parents[index] !== index) parents[index] = findRoot(parents, parents[index]);
+  return parents[index];
+}
+
+function union(parents, left, right) {
+  const leftRoot = findRoot(parents, left);
+  const rightRoot = findRoot(parents, right);
+  if (leftRoot !== rightRoot) parents[rightRoot] = leftRoot;
 }
 
 function exactIdentity(left, right) {

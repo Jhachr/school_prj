@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { appendFile, mkdir, readFile, writeFile } from 'node:fs/promises';
-import { resolve, join } from 'node:path';
+import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { mapOpenAlexWork, mergeExactRecords } from './lib/literature-records.mjs';
@@ -39,6 +39,7 @@ export async function searchLiterature({
   validateRequest(request);
   if (typeof fetchImpl !== 'function') throw new Error('fetch implementation is required');
   const destination = resolve(requiredText(outputDir, 'outputDir'));
+  await mkdir(dirname(destination), { recursive: true });
   await mkdir(destination);
   await mkdir(join(destination, 'raw'));
   await writeJson(join(destination, 'request.json'), request);
@@ -148,64 +149,22 @@ async function requestOpenAlex({
 }) {
   let lastError = null;
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), timeoutMs);
-    let response;
-    try {
-      response = await fetchImpl(requestUrl, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'User-Agent': 'research-proposal-coach/1.0 literature-search',
-          ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
-        },
-        signal: controller.signal,
-      });
-    } catch (error) {
-      clearTimeout(timeout);
-      lastError = {
-        code: error?.name === 'AbortError' ? 'timeout' : 'network_error',
-        message: networkErrorMessage(error),
-      };
+    const result = await performOpenAlexAttempt({ requestUrl, fetchImpl, apiKey, timeoutMs });
+    if (result.kind === 'success') return { ok: true, attempts: attempt, body: result.body };
+    if (result.kind === 'fatal') {
+      return { ok: false, attempts: attempt, error: result.error };
+    }
+    lastError = result.error;
+    if (result.kind === 'transport') {
       if (attempt === maxAttempts) return { ok: false, attempts: attempt, error: lastError };
       await sleep(boundedDelay(retryBaseMs, attempt, maxRetryDelayMs));
       continue;
     }
-    clearTimeout(timeout);
-
-    if (response.ok) {
-      let body;
-      try {
-        body = await response.json();
-      } catch {
-        return {
-          ok: false,
-          attempts: attempt,
-          error: { code: 'invalid_json', message: 'OpenAlex returned invalid JSON' },
-        };
-      }
-      if (!body || !Array.isArray(body.results)) {
-        return {
-          ok: false,
-          attempts: attempt,
-          error: { code: 'invalid_response', message: 'OpenAlex response has no results array' },
-        };
-      }
-      return { ok: true, attempts: attempt, body };
-    }
-
-    const retryable = response.status === 429 || response.status >= 500;
-    const responseMessage = await safeResponseMessage(response);
-    lastError = {
-      code: response.status === 429 ? 'rate_limited' : `http_${response.status}`,
-      message: responseMessage,
-      status: response.status,
-    };
-    if (!retryable || attempt === maxAttempts) {
+    if (!result.retryable || attempt === maxAttempts) {
       return { ok: false, attempts: attempt, error: lastError };
     }
 
-    const retryAfterMs = parseRetryAfter(response.headers.get('Retry-After'));
+    const retryAfterMs = parseRetryAfter(result.retryAfter);
     if (retryAfterMs !== null && retryAfterMs > maxRetryDelayMs) {
       return {
         ok: false,
@@ -213,13 +172,73 @@ async function requestOpenAlex({
         error: {
           code: 'retry_after_exceeds_budget',
           message: `Retry-After ${retryAfterMs}ms exceeds ${maxRetryDelayMs}ms budget`,
-          status: response.status,
+          status: result.error.status,
         },
       };
     }
     await sleep(retryAfterMs ?? boundedDelay(retryBaseMs, attempt, maxRetryDelayMs));
   }
   return { ok: false, attempts: maxAttempts, error: lastError };
+}
+
+async function performOpenAlexAttempt({ requestUrl, fetchImpl, apiKey, timeoutMs }) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetchImpl(requestUrl, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'User-Agent': 'research-proposal-coach/1.0 literature-search',
+        ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
+      },
+      signal: controller.signal,
+    });
+
+    if (response.ok) {
+      let body;
+      try {
+        body = await response.json();
+      } catch (error) {
+        if (error instanceof SyntaxError && !controller.signal.aborted) {
+          return {
+            kind: 'fatal',
+            error: { code: 'invalid_json', message: 'OpenAlex returned invalid JSON' },
+          };
+        }
+        throw error;
+      }
+      if (!body || !Array.isArray(body.results)) {
+        return {
+          kind: 'fatal',
+          error: { code: 'invalid_response', message: 'OpenAlex response has no results array' },
+        };
+      }
+      return { kind: 'success', body };
+    }
+
+    const responseMessage = await responseMessageText(response);
+    return {
+      kind: 'http',
+      retryable: response.status === 429 || response.status >= 500,
+      retryAfter: response.headers.get('Retry-After'),
+      error: {
+        code: response.status === 429 ? 'rate_limited' : `http_${response.status}`,
+        message: responseMessage,
+        status: response.status,
+      },
+    };
+  } catch (error) {
+    return {
+      kind: 'transport',
+      error: {
+        code: controller.signal.aborted || error?.name === 'AbortError' ? 'timeout' : 'network_error',
+        message: networkErrorMessage(error),
+      },
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 function validateRequest(request) {
@@ -285,13 +304,9 @@ function parseRetryAfter(value) {
   return Math.max(0, date.valueOf() - Date.now());
 }
 
-async function safeResponseMessage(response) {
-  try {
-    const text = await response.text();
-    return text.slice(0, 500) || `OpenAlex returned HTTP ${response.status}`;
-  } catch {
-    return `OpenAlex returned HTTP ${response.status}`;
-  }
+async function responseMessageText(response) {
+  const text = await response.text();
+  return text.slice(0, 500) || `OpenAlex returned HTTP ${response.status}`;
 }
 
 function renderRunSummary(summary) {

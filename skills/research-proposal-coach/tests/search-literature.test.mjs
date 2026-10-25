@@ -44,6 +44,30 @@ test('buildOpenAlexUrl uses current first-page parameters without embedding cred
   assert.equal(url.searchParams.has('cursor'), false);
 });
 
+test('a fresh literature/runs parent path is created while the final run stays new', async () => {
+  await withTempOutput(async ({ root }) => {
+    const output = join(root, 'literature', 'runs', 'run-1');
+    const summary = await searchLiterature({
+      request: request(),
+      outputDir: output,
+      fetchImpl: async () => jsonResponse({ meta: { count: 0 }, results: [] }),
+      now: () => NOW,
+      sleep: async () => {},
+    });
+
+    assert.equal(summary.status, 'complete');
+    await access(join(output, 'request.json'));
+    await assert.rejects(
+      searchLiterature({
+        request: request(),
+        outputDir: output,
+        fetchImpl: async () => jsonResponse({ meta: { count: 0 }, results: [] }),
+      }),
+      /EEXIST/,
+    );
+  });
+});
+
 test('successful and zero-result queries are saved distinctly without network access', async () => {
   await withTempOutput(async ({ output }) => {
     const calls = [];
@@ -118,6 +142,67 @@ test('network failures retry three times and preserve the underlying diagnostic'
     assert.equal(summary.status, 'failed');
     assert.equal(summary.query_results[0].error.code, 'network_error');
     assert.match(summary.query_results[0].error.message, /ENOTFOUND/);
+  });
+});
+
+test('transient response-body failures are retried within the same attempt budget', async () => {
+  await withTempOutput(async ({ output }) => {
+    let attempts = 0;
+    const summary = await searchLiterature({
+      request: request(),
+      outputDir: output,
+      fetchImpl: async () => {
+        attempts += 1;
+        return {
+          ok: true,
+          json: async () => {
+            if (attempts < 3) throw new TypeError('terminated');
+            return { meta: { count: 0 }, results: [] };
+          },
+        };
+      },
+      now: () => NOW,
+      sleep: async () => {},
+    });
+
+    assert.equal(attempts, 3);
+    assert.equal(summary.status, 'complete');
+    assert.equal(summary.query_results[0].attempts, 3);
+  });
+});
+
+test('the request timeout remains active while reading the response body', async () => {
+  await withTempOutput(async ({ output }) => {
+    let attempts = 0;
+    const summary = await searchLiterature({
+      request: request(),
+      outputDir: output,
+      fetchImpl: async (_url, { signal }) => {
+        attempts += 1;
+        return {
+          ok: true,
+          json: () => new Promise((resolvePromise, reject) => {
+            const fallback = setTimeout(
+              () => reject(new SyntaxError('body read was not aborted')),
+              40,
+            );
+            signal.addEventListener('abort', () => {
+              clearTimeout(fallback);
+              const error = new Error('body read aborted');
+              error.name = 'AbortError';
+              reject(error);
+            }, { once: true });
+          }),
+        };
+      },
+      now: () => NOW,
+      sleep: async () => {},
+      timeoutMs: 5,
+    });
+
+    assert.equal(attempts, 3);
+    assert.equal(summary.status, 'failed');
+    assert.equal(summary.query_results[0].error.code, 'timeout');
   });
 });
 

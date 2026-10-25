@@ -131,6 +131,10 @@ async function checkSavedTextEvidence({ root, location, excerpt, label, errors }
     errors.push(`${label} has unsafe evidence path ${location}`);
     return;
   }
+  if (!pathFromRoot.startsWith(`raw${sep}`)) {
+    errors.push(`${label} manual evidence must point inside raw/: ${location}`);
+    return;
+  }
   let content;
   try {
     content = await readFile(evidencePath, 'utf8');

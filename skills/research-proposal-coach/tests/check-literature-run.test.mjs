@@ -98,6 +98,20 @@ test('manual text evidence must use a safe relative path and a real excerpt', as
   });
 });
 
+test('generated run artifacts cannot be cited as manual evidence', async () => {
+  await withRun(async ({ run }) => {
+    const claimsPath = join(run, 'claims.jsonl');
+    const claims = parseJsonl(await readFile(claimsPath, 'utf8'));
+    claims[1].evidence[0].location = 'claims.jsonl#claim=C02';
+    await writeFile(claimsPath, `${claims.map(JSON.stringify).join('\n')}\n`, 'utf8');
+
+    const result = await checkLiteratureRun({ inputDir: run });
+
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join('\n'), /must point inside raw\//);
+  });
+});
+
 test('CLI emits JSON and exits non-zero for broken associations', async () => {
   await withRun(async ({ run }) => {
     await writeFile(join(run, 'review.md'), '# 综述\n\n未知论点。[C88]\n', 'utf8');

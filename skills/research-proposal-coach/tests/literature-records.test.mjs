@@ -102,3 +102,37 @@ test('conflicting metadata on one exact identity is surfaced instead of overwrit
   assert.match(result.records[0].verification_notes.join('\n'), /title conflict/);
   assert.match(result.records[0].verification_notes.join('\n'), /year conflict/);
 });
+
+test('a bridge record closes exact source-ID and DOI identity transitively', () => {
+  const doiRecord = mapOpenAlexWork(fixture.results[0], context('Q1'));
+  const sourceOnly = {
+    ...structuredClone(doiRecord),
+    record_id: 'openalex:W9000',
+    doi: null,
+    provenance: [{
+      ...doiRecord.provenance[0],
+      source_record_id: 'W9000',
+      query_id: 'Q2',
+      raw_ref: 'raw/openalex.jsonl#L2',
+    }],
+  };
+  const bridge = {
+    ...structuredClone(doiRecord),
+    record_id: 'openalex:W9000',
+    provenance: [{
+      ...doiRecord.provenance[0],
+      source_record_id: 'W9000',
+      query_id: 'Q3',
+      raw_ref: 'raw/openalex.jsonl#L3',
+    }],
+  };
+
+  const result = mergeExactRecords([doiRecord, sourceOnly, bridge]);
+
+  assert.equal(result.records.length, 1);
+  assert.equal(result.exact_overlap_count, 2);
+  assert.deepEqual(
+    result.records[0].provenance.map((item) => item.query_id).sort(),
+    ['Q1', 'Q2', 'Q3'],
+  );
+});
