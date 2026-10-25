@@ -1,552 +1,210 @@
-# Literature Search And Evidence-Grounded Review Implementation Plan
+# 文献检索与可追溯综述：首版精简实施计划
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+>
+> 面向执行者：按下列 5 个里程碑顺序实施，可使用 `superpowers-zh:executing-plans` 跟踪进度。以一个案例贯穿，不预建多代理或通用工作流框架。本次交付仅为计划迭代。
 
-**Goal:** Add real public-source retrieval, conservative record processing, evidence tracking, topic research scans, and citation-grounded long-form literature reviews without treating missing public data as proof that research does not exist.
+**目标：** 围绕一位真实教师确认的工作问题，完成一次真实文献检索，产出关键结论可追溯、证据局限明确的文献综述初稿，并获得教师反馈。
 
-**Architecture:** Separate source adapters from a stable normalized-record contract. OpenAlex performs discovery; Crossref verifies and supplements publishing metadata. Deterministic Node.js scripts save raw responses, normalized JSONL, duplicate relationships, verification results, and run summaries. The Skill performs research judgment and prose synthesis only from saved evidence records and the claim ledger.
+**架构：**
+一个 OpenAlex 检索入口负责请求、保存响应和生成候选文献；现有 Skill 负责问题澄清、筛选、证据提取与写作；一个小型检查脚本验证引用和证据的关联。材料护照引用本次文献记录，不重复维护全文版本。
 
-**Tech Stack:** Node.js built-in `fetch`, Node.js standard library, JSON/JSONL, Markdown, `node:test`, fixed offline API fixtures
+**技术栈：**
+Node.js，内置 `fetch`、文件系统与 `node:test`；JSON/JSONL、Markdown；已有 Harness 的文件读取和写作能力。
 
----
+本计划收敛用户提供的《Literature Search And Evidence-Grounded Review Implementation Plan》首版实施范围；原计划其余能力按文末触发条件再评估。
 
-**Required implementation skills:** Use `superpowers:test-driven-development` for every adapter/processor change and `superpowers:writing-skills` for the topic-scan and literature-review instruction changes. Behavioral forward tests are required alongside deterministic fixture tests.
+## 1. 本次迭代的决定
 
-## Preconditions And Fixed Contracts
+表格
 
-- Complete the teacher profile plan first so a topic scan can consume a confirmed current-session profile snapshot.
-- Live public APIs are never called by the default unit test suite. Unit and integration tests use fixed fixtures.
-- All scripts are dependency-free and accept `--input` and `--output` paths. Machine-readable results go to files/stdout; diagnostics go to stderr.
-- All public and future institutional adapters must produce the same normalized record contract.
-- The two fixed teacher-facing content artifacts are `选题研究扫描` and `文献综述长稿`.
-- A generic `申报书文献综述` is not generated. Proposal compression belongs to `proposal_mapping` and requires a verified real template, field, structure, and word limit.
-- Strictness controls how strongly a record may support a claim; it must not delete plausible literature early.
+| 原计划 | 首版处理 | 具体变化 |
+| --- | --- | --- |
+| Task 1：状态和记录契约 | 简化保留 | 只定义本次处理需要的字段；沿用来源规则，不建立独立双语状态库，不锁死对象键顺序。 |
+| Task 2：HTTP 与 JSONL | 通用运行库｜合并 | 超时、有限重试、错误记录放在检索入口；文件处理按本次小样本实现，不单独开发通用运行库。 |
+| Task 3：OpenAlex 发现 | 保留并前移验证 | 先用本次教师问题检查真实结果；首版只取每组查询第一页，不开发完整遍历历史。 |
+| Task 4：Crossref 查询 | 后移 | 首版不批量文献元数据全部候选；拟引用记录有疑点时人工核对原始页面或老师材料，保留未核验状态。 |
+| Task 5：归一化和去重 | 缩小 | 只做 DOI、来源 ID 的精确耦合；中文安全归一化；不做模糊相似度和自动版本关系。 |
+| Task 6：元数据分级做摘要 | 后移自动化 | 保留未核验、冲突、排除的含义与使用边界；先由 Skill 记录做摘要，不开发多字段评分引擎。 |
+| Task 7：记录片段和证据索引 | 保守缩小 | 保存输入、响应、失败保留已完成数据。重建新条目，不实现阶段状态机或 `--resume`。 |
+| Task 8：选题研究归档 | 合入现有模块 | 在 `topic-discovery.md` 增加检索步骤；尚未选题时才产出扫描，不新增独立扫描模块。 |
+| Task 9：综述与论点账本 | 最小模块 | 记录关键论点、原文片段和位置；取消独立 evidence matrix，避免重复维护。 |
+| Task 10：Skill 接线 | 最小修改 | 仅接入检索、证据写作和交付检查；保持已有阶段模型，不新增状态体系。 |
+| Task 11：联网调测 | 前移并合并 | 使用同一个检索入口进行小样本检查；不新增独立端测程序。 |
 
-## Task 1: Define Bilingual Statuses And The Normalized Record Contract
+教师画像只要求足以判断本次问题的当前确认摘要，不把另一份完整画像像开发计划作为工程前置条件。缺少关键场景时继续追问，已有事实可以复用。
 
-**Files:**
+## 2. 贯穿案例与验收输入
 
-- Create: `skills/research-proposal-coach/scripts/lib/literature-statuses.mjs`
-- Create: `skills/research-proposal-coach/scripts/lib/record-contract.mjs`
-- Create: `skills/research-proposal-coach/rules/literature-evidence-policy.md`
-- Create: `skills/research-proposal-coach/tests/record-contract.test.mjs`
+案例最少需要教师确认：岗位或课程、具体工作场景、观察到的问题、目前处理方法、可用材料或资源。尚不知道的字段如实记录。
 
-- [ ] Write failing tests for the normalized record keys and status enums.
+仓库 `evals/2026-10-25-skill-mock/` 已明确标注为合成教师评测；可用于开发回归，不可据此宣称完成真实教师试点。若真实教师输入尚未取得，先完成工程验证，并将真实试点标记为未执行。
 
-```js
-const record = normalizeRecord(fixture, context);
-assert.deepEqual(Object.keys(record), [
-  'schema_version', 'record_id', 'source', 'source_record_id', 'source_ids',
-  'title', 'authors', 'year', 'doi', 'venue', 'abstract', 'keywords',
-  'url', 'open_access_url', 'matched_queries', 'retrieved_at',
-  'screening_status', 'verification_status', 'evidence_level', 'relations'
-]);
-assert.equal(record.screening_status, 'uncertain');
-assert.equal(record.verification_status, 'unresolved');
-assert.equal(record.evidence_level, 'candidate');
+同一个教师问题依次回答三个综述子问题：已有研究怎样解释或处理这个问题；有哪些做法及支持或限制证据；对本教师的场景能提供什么启发、还不能推出什么。
+
+## 3. 最小文件与数据约定
+
+### 代码与回归测试
+
+表格
+
+| 文件 | 职责 |
+| --- | --- |
+| `skills/research-proposal-coach/scripts/search-literature.mjs` | OpenAlex 请求、有限重试、响应落盘。调用归一化并输出检索摘要。 |
+| `skills/research-proposal-coach/scripts/lib/literature-records.mjs` | 字段映射、Unicode 标题处理、DOI 归一化和精确耦合。 |
+| `skills/research-proposal-coach/scripts/check-literature-run.mjs` | 检查论点、记录、原文片段与证据标识的关联。 |
+| `skills/research-proposal-coach/tests/search-literature.test.mjs` | 固定响应、失败与有限重试。 |
+| `skills/research-proposal-coach/tests/literature-records.test.mjs` | 中文、缺字段、精确重复与来源保留。 |
+| `skills/research-proposal-coach/tests/check-literature-run.test.mjs` | 引用及证据关联的正反例。 |
+| `skills/research-proposal-coach/tests/fixtures/openalex-small.json` | 小型固定 API 响应，离线测试使用；测试数据不进入真实运行。 |
+
+现有模块与模板：`SKILL.md`、`modules/topic-discovery.md`、`modules/literature-review.md`、`rules/source-policy.md`、`rules/material-passport.md`、`templates/material-passport.md`、`templates/literature-review-longform.md`。只在这些文件加入本闭环需要的规则；不要求新模板或额外静态契约。
+
+#### 每次运行的文件
+
 ```
-
-- [ ] Require these exact internal values and user-facing labels:
-
-  - relevance: `included（已纳入）`, `uncertain（待判断）`, `excluded（已排除）`, `superseded（已有更完整版本）`;
-  - identity: `verified（已核验）`, `unresolved（暂未核验）`, `conflicted（信息冲突）`, `rejected（已排除）`;
-  - evidence: `candidate（候选线索）`, `metadata_verified（元数据已核验）`, `abstract_supported（摘要支持）`, `fulltext_supported（全文支持）`;
-  - retrieval limitation: `research_gap（可能的研究空白）`, `source_coverage_gap（数据源覆盖不足）`, `query_gap（检索式可能不足）`, `access_gap（缺少摘要或全文）`.
-
-- [ ] Run the test and confirm it fails because the modules do not exist.
-
-Run: `node --test skills/research-proposal-coach/tests/record-contract.test.mjs`
-
-Expected: FAIL with `ERR_MODULE_NOT_FOUND`.
-
-- [ ] Implement frozen status maps and helper functions `assertStatus()`, `displayStatus()`, `normalizeDoi()`, `normalizeTitle()`, and `createNormalizedRecord()`.
-
-```js
-export const VERIFICATION_STATUS = Object.freeze({
-  verified: 'verified（已核验）',
-  unresolved: 'unresolved（暂未核验）',
-  conflicted: 'conflicted（信息冲突）',
-  rejected: 'rejected（已排除）'
-});
-```
-
-- [ ] Encode in `literature-evidence-policy.md` that the four dimensions are independent and that every English status shown to a teacher must carry its Chinese meaning plus a plain-language consequence on first use.
-
-- [ ] Add validation tests for missing required fields, bad URL types, invalid years, duplicate query IDs, invalid statuses, and DOI normalization.
-
-- [ ] Run the focused test.
-
-Run: `node --test skills/research-proposal-coach/tests/record-contract.test.mjs`
-
-Expected: PASS.
-
-- [ ] Commit the contract.
-
-```bash
-git add skills/research-proposal-coach/scripts/lib skills/research-proposal-coach/rules/literature-evidence-policy.md skills/research-proposal-coach/tests/record-contract.test.mjs
-git commit -m "feat: define literature record and evidence statuses"
-```
-
-## Task 2: Build The Shared HTTP And JSONL Runtime
-
-**Files:**
-
-- Create: `skills/research-proposal-coach/scripts/lib/http-client.mjs`
-- Create: `skills/research-proposal-coach/scripts/lib/jsonl.mjs`
-- Create: `skills/research-proposal-coach/tests/http-client.test.mjs`
-- Create: `skills/research-proposal-coach/tests/jsonl.test.mjs`
-
-- [ ] Write failing tests for retry behavior, rate-limit handling, partial failures, JSONL line diagnostics, and atomic output.
-
-The HTTP result must use this shape instead of throwing away provenance:
-
-```json
-{
-  "ok": false,
-  "status": 429,
-  "attempts": 3,
-  "retrieved_at": "2026-10-25T00:00:00.000Z",
-  "request_url": "https://api.openalex.org/works",
-  "error": { "code": "rate_limited", "message": "..." }
-}
-```
-
-- [ ] Confirm the tests fail before implementation.
-
-Run: `node --test skills/research-proposal-coach/tests/http-client.test.mjs skills/research-proposal-coach/tests/jsonl.test.mjs`
-
-Expected: FAIL with missing modules.
-
-- [ ] Implement `requestJson()` with injectable `fetchImpl`, bounded exponential backoff, `Retry-After` support, request timeout, user-agent identification, and a maximum-attempt cap. Retry 429 and 5xx; do not retry ordinary 4xx errors.
-
-- [ ] Implement streaming-safe JSONL read/write helpers. Each parse error must report line number and leave the input unchanged. Output must be written atomically.
-
-- [ ] Add a test proving a failed API request produces a structured error record and never fabricates an empty successful result.
-
-- [ ] Run the focused tests.
-
-Run: `node --test skills/research-proposal-coach/tests/http-client.test.mjs skills/research-proposal-coach/tests/jsonl.test.mjs`
-
-Expected: PASS.
-
-- [ ] Commit the runtime.
-
-```bash
-git add skills/research-proposal-coach/scripts/lib skills/research-proposal-coach/tests/http-client.test.mjs skills/research-proposal-coach/tests/jsonl.test.mjs
-git commit -m "feat: add resilient literature script runtime"
-```
-
-## Task 3: Implement The OpenAlex Discovery Adapter
-
-**Files:**
-
-- Create: `skills/research-proposal-coach/scripts/adapters/openalex.mjs`
-- Create: `skills/research-proposal-coach/scripts/search-openalex.mjs`
-- Create: `skills/research-proposal-coach/tests/fixtures/openalex-page-1.json`
-- Create: `skills/research-proposal-coach/tests/fixtures/openalex-page-2.json`
-- Create: `skills/research-proposal-coach/tests/openalex-adapter.test.mjs`
-
-- [ ] Save small, representative OpenAlex fixtures containing Chinese and English titles, DOI and non-DOI records, inverted-index abstracts, open-access URLs, multiple authors, keywords/concepts, and cursor pagination.
-
-- [ ] Write failing tests for query encoding, cursor pagination, abstract reconstruction, matched-query retention, and source provenance.
-
-```js
-const records = mapOpenAlexWorks(fixture.results, { queryId: 'Q1', retrievedAt: NOW });
-assert.equal(records[0].source, 'openalex');
-assert.deepEqual(records[0].matched_queries, ['Q1']);
-assert.match(records[0].abstract, /岗位任务/);
-```
-
-- [ ] Run the test and confirm the expected failure.
-
-Run: `node --test skills/research-proposal-coach/tests/openalex-adapter.test.mjs`
-
-Expected: FAIL with missing adapter.
-
-- [ ] Implement adapter exports `buildOpenAlexUrl()`, `reconstructAbstract()`, `mapOpenAlexWork()`, and `searchOpenAlex()`.
-
-- [ ] Implement the CLI contract:
-
-```json
-{
-  "queries": [
-    { "query_id": "Q1", "language": "zh", "text": "职业教育 项目化教学 岗位任务" },
-    { "query_id": "Q2", "language": "en", "text": "vocational education project based learning workplace task" }
-  ],
-  "filters": { "from_year": 2016, "to_year": 2026 },
-  "per_query_limit": 100
-}
-```
-
-The output preserves one raw response envelope per request, including query ID, URL, cursor, retrieval time, response metadata, records, and errors.
-
-- [ ] Add tests for a network error and one failed query among several successful queries. The CLI must keep successful queries and report `source_coverage_gap（数据源覆盖不足）` in its summary rather than fail the whole run silently.
-
-- [ ] Run the focused test.
-
-Run: `node --test skills/research-proposal-coach/tests/openalex-adapter.test.mjs`
-
-Expected: PASS.
-
-- [ ] Commit the discovery adapter.
-
-```bash
-git add skills/research-proposal-coach/scripts skills/research-proposal-coach/tests
-git commit -m "feat: retrieve literature from OpenAlex"
-```
-
-## Task 4: Implement Crossref Metadata Lookup
-
-**Files:**
-
-- Create: `skills/research-proposal-coach/scripts/adapters/crossref.mjs`
-- Create: `skills/research-proposal-coach/scripts/lookup-crossref.mjs`
-- Create: `skills/research-proposal-coach/tests/fixtures/crossref-doi.json`
-- Create: `skills/research-proposal-coach/tests/fixtures/crossref-title-search.json`
-- Create: `skills/research-proposal-coach/tests/crossref-adapter.test.mjs`
-
-- [ ] Write failing tests for exact DOI lookup, bibliographic fallback, author/year extraction, missing DOI, 404 DOI, and ambiguous title search.
-
-- [ ] Run the test and confirm it fails.
-
-Run: `node --test skills/research-proposal-coach/tests/crossref-adapter.test.mjs`
-
-Expected: FAIL with missing adapter.
-
-- [ ] Implement DOI lookup first. Use title/author/year bibliographic search only when DOI is absent, and retain all top candidates plus their match inputs rather than declaring the first result correct.
-
-- [ ] Ensure the adapter produces raw Crossref result envelopes; it must not assign `verified` itself. Verification is a separate deterministic comparison step.
-
-- [ ] Add a polite contact configuration via `CROSSREF_MAILTO` without requiring it. Never store that value in literature artifacts.
-
-- [ ] Run the focused test.
-
-Run: `node --test skills/research-proposal-coach/tests/crossref-adapter.test.mjs`
-
-Expected: PASS.
-
-- [ ] Commit the metadata adapter.
-
-```bash
-git add skills/research-proposal-coach/scripts skills/research-proposal-coach/tests
-git commit -m "feat: add Crossref metadata lookup"
-```
-
-## Task 5: Normalize And Conservatively Deduplicate Records
-
-**Files:**
-
-- Create: `skills/research-proposal-coach/scripts/normalize-records.mjs`
-- Create: `skills/research-proposal-coach/scripts/deduplicate-records.mjs`
-- Create: `skills/research-proposal-coach/scripts/lib/deduplication.mjs`
-- Create: `skills/research-proposal-coach/tests/normalize-records.test.mjs`
-- Create: `skills/research-proposal-coach/tests/deduplicate-records.test.mjs`
-
-- [ ] Write failing normalization tests that combine multiple OpenAlex query hits into one normalized record while retaining every `matched_queries` entry and raw source ID.
-
-- [ ] Write failing deduplication tests for:
-
-  - exact normalized DOI: auto-merge;
-  - exact source and source record ID: auto-merge;
-  - highly similar title plus same first author and nearby year: keep both and create `possible_duplicate（疑似重复）`;
-  - preprint/final, conference/journal, and Chinese/English versions: keep both and record a version relationship;
-  - keyword-only similarity: keep both with no merge.
-
-```js
-assert.equal(result.records.length, 2);
-assert.deepEqual(result.relationships[0], {
-  relation: 'possible_duplicate',
-  display: 'possible_duplicate（疑似重复）',
-  left_record_id: 'openalex:W1',
-  right_record_id: 'openalex:W2',
-  reasons: ['title_similarity', 'same_first_author', 'year_within_1']
-});
-```
-
-- [ ] Run the tests and confirm they fail.
-
-Run: `node --test skills/research-proposal-coach/tests/normalize-records.test.mjs skills/research-proposal-coach/tests/deduplicate-records.test.mjs`
-
-Expected: FAIL with missing modules.
-
-- [ ] Implement exact-identity merging and conservative fuzzy relationship detection. Keep the threshold and matching reasons in the emitted relationship; never delete a fuzzy match.
-
-- [ ] Make deduplication deterministic: identical input produces byte-stable JSONL ordered by `record_id`.
-
-- [ ] Run the focused tests.
-
-Run: `node --test skills/research-proposal-coach/tests/normalize-records.test.mjs skills/research-proposal-coach/tests/deduplicate-records.test.mjs`
-
-Expected: PASS.
-
-- [ ] Commit normalization and deduplication.
-
-```bash
-git add skills/research-proposal-coach/scripts skills/research-proposal-coach/tests
-git commit -m "feat: normalize and conservatively deduplicate literature"
-```
-
-## Task 6: Verify Identity Without Over-Rejecting Literature
-
-**Files:**
-
-- Create: `skills/research-proposal-coach/scripts/lib/metadata-verification.mjs`
-- Create: `skills/research-proposal-coach/scripts/verify-metadata.mjs`
-- Create: `skills/research-proposal-coach/tests/metadata-verification.test.mjs`
-
-- [ ] Write a decision-table test covering exact DOI matches, title punctuation differences, translated titles, missing author/year, DOI conflicts, 404 identifiers, and no public-source match.
-
-Expected outcomes:
-
-| Situation | Status | Evidence level |
-|---|---|---|
-| DOI and core metadata agree | `verified` | at least `metadata_verified` |
-| Public source cannot confirm | `unresolved` | stays `candidate` or existing supported level |
-| DOI points to different title/authors/year | `conflicted` | no final citation |
-| Identifier definitively does not exist or record is clearly invalid | `rejected` | no final citation |
-
-- [ ] Confirm a Chinese record without DOI or abstract remains `unresolved（暂未核验）`, not `rejected（已排除）`.
-
-- [ ] Run the test and confirm it fails.
-
-Run: `node --test skills/research-proposal-coach/tests/metadata-verification.test.mjs`
-
-Expected: FAIL with missing verifier.
-
-- [ ] Implement field-by-field comparison with normalized values and an emitted `verification_notes` array. Never collapse uncertainty into a boolean.
-
-- [ ] Require explicit reasons for `conflicted` and `rejected`. Do not infer `rejected` from missing Crossref coverage.
-
-- [ ] Run the focused test.
-
-Run: `node --test skills/research-proposal-coach/tests/metadata-verification.test.mjs`
-
-Expected: PASS.
-
-- [ ] Commit verification.
-
-```bash
-git add skills/research-proposal-coach/scripts skills/research-proposal-coach/tests/metadata-verification.test.mjs
-git commit -m "feat: verify literature metadata with graded outcomes"
-```
-
-## Task 7: Add Reproducible Run Directories And Offline Pipeline Orchestration
-
-**Files:**
-
-- Create: `skills/research-proposal-coach/scripts/lib/run-directory.mjs`
-- Create: `skills/research-proposal-coach/scripts/run-literature-pipeline.mjs`
-- Create: `skills/research-proposal-coach/tests/pipeline-offline.test.mjs`
-- Create: `skills/research-proposal-coach/tests/fixtures/search-plan.json`
-
-- [ ] Write a failing offline integration test that injects fixture-backed adapters and asserts this exact layout:
-
-```text
-literature/runs/<run-id>/
-├── search-plan.md
-├── raw/openalex.json
-├── raw/crossref.json
-├── corpus.jsonl
-├── relationships.jsonl
-├── screening.jsonl
-├── evidence-matrix.md
-├── claim-ledger.jsonl
+literature/runs/<本次唯一目录>/
+├── request.json
+├── raw/openalex.jsonl
+├── corpus.json
+├── claims.jsonl
+├── review.md
 └── run-summary.md
 ```
 
-- [ ] Require a collision-resistant run ID (`YYYYMMDD-HHmmss-<6 hex chars>`), source/query/retrieval timestamps, record counts at each stage, partial failures, and limitations in `run-summary.md`.
+- `request.json`：本次教师确认摘要及来源位置、查询 ID / 文本 / 语言、年份范围和结果上限。确认来源可以是对话轮次或已有材料路径。
+- `raw/openalex.jsonl`：每个实际请求一条响应，记录查询 ID、时间、请求条件、成功响应或失败原因；保存 URL 时去除密钥等认证参数。
+- `corpus.json`：候选文献和筛选决定的唯一存放处。
+- `claims.jsonl`：本次文献关键论点与支持片段的唯一版本。
+- `review.md`：教师阅读的综述；保留关键结论的论点标记、文内引用与参考文献。
+- `run-summary.md`：查询结果集、精确重合数、筛选数、失败、局限、检查结果和教师反馈。
 
-- [ ] Run the test and confirm it fails.
+未选题时，由 Skill 额外生成 `topic-scan.md`，展示方向比较和证据限制；教师已确认方向时跳过该文件。人工补充材料按需存入 `raw/`，不预建导入工具。
 
-Run: `node --test skills/research-proposal-coach/tests/pipeline-offline.test.mjs`
+**记录契约只包含：**
+`record_id`、`title`、`authors`、`year`、`doi`、`url`、`abstract`、`provenance`、`screening_status`、`screening_reason`、`verification_status`、`verification_notes`
 
-Expected: FAIL with missing orchestrator.
+`provenance` 为来源列表，每项包含 `source`、`source_record_id`、`query_id`、`retrieved_at`、`raw_ref`；人工材料的 `query_id` 可为空。未知年份或 DOI 保持空值，不猜测补全。
 
-- [ ] Implement orchestration with resumable stages. A later script failure leaves prior raw data intact and marks the run incomplete; rerunning with `--resume <run-id>` continues from valid saved artifacts.
+- `screening_status` 使用 `included`、`uncertain`、`excluded`；只有已纳入记录支持成稿论点。
+- `verification_status` 使用 `verified`、`unresolved`、`conflicted`、`rejected`，初始为 `unresolved`。`verified` 必须有核对来源及说明；冲突和排除必须记录原因。
+- `unresolved` 未核验，未使用，不等于论文不存在。真实返回的摘要或可溯源材料可提供有限支持，但需保留核验提示；`conflicted` / `rejected` 不进入成稿引用。
+- 只有标题的记录用于检索，不支持研究发现。记录是否有摘要不改变，不自动证明它支持某一结论。
 
-- [ ] Create empty-but-valid `screening.jsonl`, `evidence-matrix.md`, and `claim-ledger.jsonl` work files for the Skill to populate. Do not auto-generate scholarly claims in scripts.
+每条论点包含 `claim_id`、`claim`、`evidence`、`limitations`。每项 `evidence` 包含 `record_id`、`location`、`excerpt`、`support_level`。位置为 `abstract`，或指向保存材料的相对路径及页码 / 章节；支持程度逐论点判断。
 
-- [ ] Add a regression test for one failed source plus successful remaining sources. The run must finish with an incomplete/limited summary, not fabricate coverage.
+材料护照的来源、论点与产物表只登记运行路径和对应 ID；文献论点正文及证据不再复制到护照中。
 
-- [ ] Run the offline pipeline test.
+## 4. 五个实施里程碑
 
-Run: `node --test skills/research-proposal-coach/tests/pipeline-offline.test.mjs`
+### 里程碑一：用本次问题验证检索是否有用
 
-Expected: PASS.
+**涉及文件：** 检索入口、检索测试，以及本次运行的 `request.json`、`raw/openalex.jsonl`、`run-summary.md`。
 
-- [ ] Commit orchestration.
+- 从一个教师问题形成检索 2 组中文、2 组英文查询；词组来自研究对象、具体问题和可能做法，避免仅复制长题目。
+- 先用注入的固定响应写失败测试，覆盖成功、零结果、部分失败、全部失败及有限重试；再实现 `--input <request.json> --output <新运行目录>`，入口可导入、可注入 `fetchImpl`。
+- 使用 Node.js 内置功能。
+- 请求超时设 20 秒；429、5xx 和暂时网络错误最多重试 3 次（含首次），等待有上限；普通 4xx 不重试。`Retry-After` 超出本次等待预算则停止该查询，记录限流。
+- 每组最多 20 条，首版只取第一页。最多增加 2 组补偿，总计不超过 6 组查询；这是初始成本预算，不是文献充分性的判断标准。
+- 保存每组查询的成功或失败。全部失败返回非零退出码；部分失败保留结果并明确 “数据质量受限”；成功返回零与请求失败分别记录。
+- 先行离线场景错误读盘、再联网按顺序执行同一入口。API 只从环境读取，具体接入条件以当时 OpenAlex 文档为准。
+- 人工检查返回文献是否与教师问题有关、有无摘要、中文材料是否不足；在摘要中记录缺口。仅连通接口不计算本里程碑完成。
 
-```bash
-git add skills/research-proposal-coach/scripts skills/research-proposal-coach/tests
-git commit -m "feat: persist reproducible literature runs"
+如果第一次查询仍无可用材料，记录当前来源不足，接受老师提供的一种材料补充方式；用现有 Harness 把可读原文摘录保存为 Markdown，补记题名、作者、年份、出处、原件位置及页码。由 Skill 添加到同一 corpus，不建多格式自动导入器。缺少可读材料时只交付检索记录与缺口说明。
+
+**验证命令：**
+
+```
+node --test skills/research-proposal-coach/tests/search-literature.test.mjs
+node skills/research-proposal-coach/scripts/search-literature.mjs --input <本次request.json绝对路径> --output <本次新目录绝对路径>
 ```
 
-## Task 8: Add Topic Research Scan Guidance And Template
+第一条离线运行；第二条仅在有网络时显式运行，输出各查询的真实状态。
 
-**Files:**
+### 里程碑二：形成一个可筛选的小型文献集
 
-- Create: `skills/research-proposal-coach/modules/topic-research-scan.md`
-- Create: `skills/research-proposal-coach/templates/topic-research-scan.md`
-- Modify: `skills/research-proposal-coach/modules/topic-discovery.md`
-- Modify: `skills/research-proposal-coach/rules/stage-contract.md`
-- Create: `skills/research-proposal-coach/tests/topic-scan-contract.test.mjs`
-- Create: `skills/research-proposal-coach/maintenance/evals/literature-scenarios.md`
+**涉及文件：** 记录工具、记录测试、固定响应 fixture、`corpus.json`。
 
-- [ ] Before editing the Skill, run three independent baseline scenarios and save the observed failures: (1) the teacher has only a vague work problem and no citations, (2) public sources return few Chinese results and the teacher asks whether that proves a research gap, and (3) a plausible record has no DOI while the user asks to discard anything unverified. Do not give the evaluator the intended answer. This is the RED phase for the Skill behavior.
+- 先将本里程碑所做数据行为的失败测试，再映射 OpenAlex 标题、作者、年份、DOI、URL、倒排摘要和来源；同一来源记录多次命中时保留每组查询及原始响应位置。
+- DOI 去掉 URL 前缀并统一格式；标题处理保留中文及其 Unicode 文字。摘要、无 DOI 的合理记录要保留。
+- 只按检索条目 ID 或相同 DOI 做精确耦合。明显冲突的核心元数据不静默覆盖，保留冲突及来源；相似标题不自动判重。
+- Skill 根据三个筛选问题在 `corpus.json` 中记录录入、待判断或排除及简短理由；论文被检索出来不等于适合纳入。
+- 引用记录有疑点时查看原始页面或人工材料，记录核对结果；单一 API 未命中不作为 `rejected` 的依据。
+- 测试至少覆盖中文标题、带 / 不带摘要重复、多查询来源保留、无 DOI 保留、精确聚合、相似记录共存和冲突不覆盖。
 
-- [ ] Write failing static tests requiring the scan to consume a current-session profile snapshot, a real work problem, resources, multiple Chinese/English queries, saved retrieval records, and coverage limitations. These tests enforce mechanical invariants only.
-
-- [ ] Require every recommended direction to contain:
-
-  - teacher/work-scene fit;
-  - the problem it addresses;
-  - traceable literature signals;
-  - feasible data/resources;
-  - risks and unresolved evidence;
-  - the next confirmation question.
-
-- [ ] Add explicit gap classification. `research_gap（可能的研究空白）` is allowed only after query expansion, time-range review, and coverage review rule out `query_gap`, `source_coverage_gap`, and `access_gap` as better explanations.
-
-- [ ] Add a stage transition that prevents focused review work until the teacher confirms or edits one topic direction.
-
-- [ ] Run the static tests.
-
-Run: `node --test skills/research-proposal-coach/tests/topic-scan-contract.test.mjs`
-
-Expected: PASS.
-
-- [ ] Commit topic scanning.
-
-```bash
-git add skills/research-proposal-coach/modules skills/research-proposal-coach/templates skills/research-proposal-coach/rules/stage-contract.md skills/research-proposal-coach/tests/topic-scan-contract.test.mjs
-git commit -m "feat: add evidence-grounded topic research scan"
+```
+node --test skills/research-proposal-coach/tests/literature-records.test.mjs
 ```
 
-## Task 9: Upgrade The Long-Form Literature Review And Claim Ledger
+预期：固定输入下记录及来源关联稳定，测试不访问网络。
 
-**Files:**
+### 里程碑三：接入现有 Skill，按子问题提取证据并写作
 
-- Modify: `skills/research-proposal-coach/modules/literature-review.md`
-- Modify: `skills/research-proposal-coach/templates/literature-review-longform.md`
-- Create: `skills/research-proposal-coach/templates/evidence-matrix.md`
-- Create: `skills/research-proposal-coach/templates/claim-ledger.jsonl.example`
-- Create: `skills/research-proposal-coach/templates/literature-run-summary.md`
-- Modify: `skills/research-proposal-coach/templates/literature-review-proposal-section.md`
-- Create: `skills/research-proposal-coach/tests/literature-review-contract.test.mjs`
+**涉及文件：** 上述现有模块、规则和模板；`claims.jsonl`、`review.md`，需要时的 `topic-scan.md`。
 
-- [ ] Write failing contract tests requiring the long-form review to cover retrieval scope, concepts, thematic research status, methods/practices, agreement, disagreement/counterexamples, limitations, implications for the topic, public-source/full-text limitations, local cases to ask the teacher about, and traceable references.
+- 在入口加载文献列表及脚本说明；保持 “问题尚未确定 → 探索检索与方向比较 → 教师确认 → 聚焦综述” 的路线。
+- 在现有选题模块中输出方向性评估、文献信号、可用资源、风险与下一次确认问题，不新增扫描模块或内部阶段。
+- 围绕三个综述子问题，从可访问的材料中抽取关键证据。保存原文片段与位置，再写支持它的论点；原文、解释和建议分清。
+- 只对文献、比较判断、趋势、缺口、做可追溯依据记录论点 ID；过滤不逐句膨胀，综合结论可关联多条证据，适用范围不能超过证据范围。
+- 只研究存在差异、反例或结论不一致的文献；没有观察到相关证据时不为了填满模板而写。
+- 综述包含检查清单：主题研究结论、对教师场景的支持、尚不能得出的结论、参考文献和待确认问题；字数随证据量调整，不设凑字数目标。
+- 摘要要明确标注 “尚未读取全文”；人工全文支撑材料和页码，不声称实现全文自动核验。
+- “研究缺口” 写为本次范围内值得验证的线索，允许数据覆盖面、检索式和访问限制同时存在；不得用结果少推出无人研究。
+- 中段字段校验交给现有 `proposal_mapping`；本轮不自动筛选通用申报综述段落，也不承诺论文可发表。
 
-- [ ] Define the claim ledger contract:
+本里程碑用一个已保存的小样本人工走通，检查证据是否真的进入综述；不以模板关键词扫描作为行为通过的依据。
 
-```json
-{"claim_id":"C01","claim":"...","source_ids":["openalex:W1"],"support_level":"abstract_supported","evidence_locations":["abstract"],"limitations":["尚未读取全文"]}
+### 里程碑四：增加小型关联检查并做必要回归
+
+**涉及文件：** 检查脚本及其测试。
+
+- 先写正常与故意破坏关联的失败测试，再实现 `--input <运行目录>`，读取 `corpus`、`claims` 和 `review`，向 stdout 输出 JSON 检查结果；诊断写 stderr，非法输入或关联错误返回非零退出码。
+- 检查记录 ID、论点 ID、论点唯一；论点引用的记录存在、已纳入，且未标记冲突或排除；每个关键论点有原文片段及位置。
+- 检查 `abstract` 片段能在对应保存摘要中找到；人工材料片段在所指向的可读文本中找到。PDF 页码及语义支持关系由人工核对，不声称脚本自动证明。
+- 成稿使用 `[C01]` 形式关联论点 ID，参考文献行使用 `[record:<record_id>]` 标识。检查未知标识、脚本存在但成稿漏列的来源、成稿出现但不在脚本中的来源。
+- 正则必须通过：删除来源、改 ID、使用冲突记录、伪造片段、遗漏参考文献均必须失败。检查成功不代表自动证明所有语句都已被证据支持。
+- 运行全部新增离线测试和 Demo 回归。
+
+```
+node --test skills/research-proposal-coach/tests/*.test.mjs demo/tests/*.test.mjs
+node skills/research-proposal-coach/scripts/check-literature-run.mjs --input <本次运行目录绝对路径>
+git diff --check
 ```
 
-- [ ] Require every substantive sentence or paragraph in the review to map to one or more claim IDs. Only records in the saved corpus can appear in `source_ids`.
+预期：离线测试不访问网络；有效小样本检查通过；被故意破坏的样本检查失败；原 Demo 回归通过。
 
-- [ ] Enforce evidence boundaries:
+### 里程碑五：完成一次真实教师试点
 
-  - `candidate（候选线索）` expands retrieval only;
-  - `metadata_verified（元数据已核验）` proves that a study exists, not what it found;
-  - `abstract_supported（摘要支持）` permits cautious summaries within the abstract;
-  - `fulltext_supported（全文支持）` permits specific claims only with page/section/paragraph locations.
+**涉及文件：** 本次运行的综述与摘要；现有材料护照记录。
 
-- [ ] Change `literature-review-proposal-section.md` into a compatibility notice/template consumed only by `proposal_mapping`. It must refuse generic compression when no verified application template and field constraints exist.
+- 使用教师确认的真实问题走完闭环；保存教师问题与关键确认的出处，不使用合成案例冒充真实输入。
+- 对本次小样本的所有有关论点逐人工核对原文。特别检查 “提升效果”“普遍趋势”“研究空白” 和 “适合本教师” 的表述是否超过证据。
+- 将教师事实标为教师确认；把拟采取的做法和教学启示标为建议；避免用建议冒充已被研究证实的结论。
+- 向教师展示综述，确认问题是否贴合、哪些结论有帮助、哪些还需要材料、下一步愿意验证什么；原样记录反馈，不预设正面回答。
+- 如果证据足以支撑有限推论，交付带局限的初稿；如果不足以形成研究现状判断，交付检索与缺口说明，并标记 “综述闭环尚未验证”。
+- 在 `run-summary` 分别记录工程检查结果、内容抽查结果、真实教师试点状态和后续行动。真实教师未参与时只报告工程验证完成。
 
-- [ ] Run the contract tests.
+## 5. 首版完成条件
 
-Run: `node --test skills/research-proposal-coach/tests/literature-review-contract.test.mjs`
+- 一个真实教师确认的问题贯穿检索与写作，教师有机会修正方向并给出反馈。
+- 检索结果、错误和查询范围真实保存；只有线索的记录不被写成研究发现。
+- 所有关键研究结论可从综述标识追溯到脚本、文献和原始支持片段；人工逐项核对没有发现越界表述。
+- 未核验、缺摘要、无 DOI、数据源覆盖不足等情况保留和解释；无虚构参考文献。
+- 独立的筛选文件、证据矩阵、扩展全文版本没有成为重复维护负担。
+- 离线与既有回归检查通过，真实检索和真实教师反馈单独留有记录。
 
-Expected: PASS.
+>
+> 没有 “论文达到固定数量”“必须写满固定字数”“所有记录跨库核验通过” 等完成门槛。
 
-- [ ] Commit the review workflow.
+## 6. 只有出现需求才增加的能力
 
-```bash
-git add skills/research-proposal-coach/modules/literature-review.md skills/research-proposal-coach/templates skills/research-proposal-coach/tests/literature-review-contract.test.mjs
-git commit -m "feat: ground literature reviews in claim evidence"
-```
+表格
 
-## Task 10: Wire Search And Review Into The Skill
+| 实际触发条件 | 再考虑增加 |
+| --- | --- |
+| 多次出现人工核对最终引用耗时明显 | 对最终引用增加 Crossref 等元数据查询；明确各数据库覆盖边界。 |
+| 多个真实案例均显示本地中文研究覆盖不足 | 优先明确人工导出或机构可用的合法接口，再增加相应适配；不默认添加一组英文数据源。 |
+| 大量重复记录或版本关系影响判断 | 模糊候选关系与人工确认；仍不自动删除相似记录。 |
+| 真实运行失败，失败后重新请求成本显著 | 保存结果复用、缓存或阶段恢复，按遇到的问题选择一种。 |
+| 摘要反馈不能回答关键子问题 | 扩充全文读取、定位和提取，再评估是否需要检索索引。 |
 
-**Files:**
-
-- Modify: `skills/research-proposal-coach/SKILL.md`
-- Modify: `skills/research-proposal-coach/rules/source-policy.md`
-- Modify: `skills/research-proposal-coach/rules/material-passport.md`
-- Modify: `skills/research-proposal-coach/templates/material-passport.md`
-- Create: `skills/research-proposal-coach/tests/literature-skill-wiring.test.mjs`
-
-- [ ] Write failing tests requiring the Skill to load the evidence policy, topic scan module, literature module, and the public-source scripts only when literature work is in scope.
-
-- [ ] Add the two-pass route:
-
-```text
-unknown topic -> exploratory queries -> topic research scan -> teacher confirmation
-confirmed topic -> focused queries -> evidence matrix -> claim ledger -> long-form review
-```
-
-- [ ] Add source-ledger fields for adapter, exact query, filters, retrieval time, raw response path, result count, error count, and coverage limitation.
-
-- [ ] Add hard boundaries: never create references from model memory; never treat an API miss as nonexistence; never cite `conflicted` or `rejected`; never draft claims absent from the claim ledger.
-
-- [ ] Re-run the exact baseline scenarios from Task 8 with an independent evaluator and the updated Skill. Record whether it expands queries, distinguishes coverage/query/access gaps from a research gap, and retains `unresolved` records without using them for unsupported claims. Close only observed instruction gaps, then re-run until the scenarios pass.
-
-- [ ] Run the focused and full suites.
-
-Run: `node --test skills/research-proposal-coach/tests/*literature*.test.mjs skills/research-proposal-coach/tests/topic-scan-contract.test.mjs skills/research-proposal-coach/tests/record-contract.test.mjs`
-
-Expected: PASS.
-
-Run: `node --test skills/research-proposal-coach/tests/*.test.mjs demo/tests/*.test.mjs`
-
-Expected: all tests pass; existing demo remains green until the readiness migration plan intentionally updates it.
-
-- [ ] Commit Skill wiring.
-
-```bash
-git add skills/research-proposal-coach/SKILL.md skills/research-proposal-coach/rules skills/research-proposal-coach/templates/material-passport.md skills/research-proposal-coach/tests
-git commit -m "feat: integrate public literature research workflow"
-```
-
-## Task 11: Add An Explicit Online Smoke Test
-
-**Files:**
-
-- Create: `skills/research-proposal-coach/scripts/smoke-public-sources.mjs`
-- Create: `skills/research-proposal-coach/tests/smoke-command.test.mjs`
-- Modify: `skills/research-proposal-coach/maintenance/update-log.md`
-
-- [ ] Add a local contract test proving the smoke command requires explicit invocation, uses a tiny request limit, and emits structured success/failure without modifying a real teacher profile.
-
-- [ ] Implement one OpenAlex query and one Crossref DOI lookup with timeouts. Return a non-zero exit code if both fail; return success with warnings if one source succeeds and the other fails.
-
-- [ ] Document that this test is opt-in because network availability and public API behavior are not deterministic.
-
-- [ ] Run offline tests first.
-
-Run: `node --test skills/research-proposal-coach/tests/*.test.mjs`
-
-Expected: PASS without network access.
-
-- [ ] Run the online smoke test only in a network-enabled environment.
-
-Run: `node skills/research-proposal-coach/scripts/smoke-public-sources.mjs`
-
-Expected: JSON reports OpenAlex and Crossref reachability separately; no literature claims or citations are generated.
-
-- [ ] Commit the smoke test.
-
-```bash
-git add skills/research-proposal-coach/scripts/smoke-public-sources.mjs skills/research-proposal-coach/tests/smoke-command.test.mjs skills/research-proposal-coach/maintenance/update-log.md
-git commit -m "test: add opt-in public source smoke check"
-```
-
-## Completion Criteria
-
-- A vague real-world problem can produce multiple saved Chinese/English queries and a traceable topic research scan.
-- A confirmed topic can produce a focused corpus, screening record, evidence matrix, claim ledger, and long-form review.
-- Exact identities merge; probable duplicates and versions remain recoverable.
-- `unresolved（暂未核验）` is retained as uncertainty rather than treated as falsehood.
-- Every substantive review claim is bounded by actual abstract/full-text evidence.
-- Partial source failures and public-source coverage gaps are visible.
-- Adding CNKI or Wanfang later requires a new adapter, not a rewrite of downstream contracts.
+本次不建设数据库、向量库、自动爬虫、OCR、多代理调度、自动审稿系统或 Harness 替代运行时。后续能力不计入首版完成范围。
