@@ -74,6 +74,11 @@ Maintain or request this state when a multi-turn session exists:
 ```json
 {
   "session_id": "string",
+  "active_identity": null,
+  "session_mode": "unrouted",
+  "memory_consent": false,
+  "history_reuse": [],
+  "memory_candidates": [],
   "current_state": "teacher_profile",
   "teacher_profile": {},
   "raw_intent": "",
@@ -105,6 +110,7 @@ Maintain or request this state when a multi-turn session exists:
 
 Pause for teacher confirmation before treating these as facts:
 
+- Teacher or temporary session route.
 - Teacher profile summary.
 - Real work problem.
 - Selected topic direction.
