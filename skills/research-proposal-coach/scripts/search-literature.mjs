@@ -165,7 +165,7 @@ async function requestOpenAlex({
       clearTimeout(timeout);
       lastError = {
         code: error?.name === 'AbortError' ? 'timeout' : 'network_error',
-        message: error?.message || 'OpenAlex request failed',
+        message: networkErrorMessage(error),
       };
       if (attempt === maxAttempts) return { ok: false, attempts: attempt, error: lastError };
       await sleep(boundedDelay(retryBaseMs, attempt, maxRetryDelayMs));
@@ -299,6 +299,9 @@ function renderRunSummary(summary) {
   if (summary.failed_queries) limitations.push('部分查询失败，数据质量受限。');
   if (summary.zero_result_queries) limitations.push('部分查询成功但返回零条，不等于相关研究不存在。');
   if (!summary.corpus_record_count) limitations.push('当前没有可筛选候选记录，需要扩展检索式或补充合法材料。');
+  const queryRows = summary.query_results.map((item) => (
+    `| ${item.query_id} | ${item.outcome} | ${item.result_count} | ${item.attempts} | ${item.error?.code ?? ''} |`
+  )).join('\n');
   return `# 文献检索运行摘要
 
 - 运行状态：${summary.status}
@@ -312,6 +315,12 @@ function renderRunSummary(summary) {
 - 工程检查：检索入口已运行，内容筛选和论点核对尚未执行
 - 真实教师试点：未执行
 
+## 分查询结果
+
+| 查询 ID | 结果 | 返回数 | 尝试次数 | 错误代码 |
+|---|---|---:|---:|---|
+${queryRows}
+
 ## 局限
 
 ${limitations.length ? limitations.map((item) => `- ${item}`).join('\n') : '- 当前请求未观察到接口失败；仍需人工判断来源覆盖和内容相关性。'}
@@ -322,6 +331,15 @@ ${limitations.length ? limitations.map((item) => `- ${item}`).join('\n') : '- �
 - 对拟写入综述的论点保存原文片段和位置。
 - 运行关联检查后，再向真实教师展示并记录反馈。
 `;
+}
+
+function networkErrorMessage(error) {
+  const message = error?.message || 'OpenAlex request failed';
+  const causeCode = error?.cause?.code;
+  const causeMessage = error?.cause?.message;
+  if (!causeCode && !causeMessage) return message;
+  const detail = [causeCode, causeMessage].filter(Boolean).join(': ');
+  return `${message} (${detail})`;
 }
 
 async function writeJson(path, value) {

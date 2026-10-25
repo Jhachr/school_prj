@@ -90,7 +90,34 @@ test('successful and zero-result queries are saved distinctly without network ac
     assert.equal(corpus.records[0].provenance[0].query_id, 'Q1');
     await access(join(output, 'claims.jsonl'));
     await access(join(output, 'review.md'));
-    assert.match(await readFile(join(output, 'run-summary.md'), 'utf8'), /真实教师试点：未执行/);
+    const runSummary = await readFile(join(output, 'run-summary.md'), 'utf8');
+    assert.match(runSummary, /真实教师试点：未执行/);
+    assert.match(runSummary, /Q1.*success.*1/);
+    assert.match(runSummary, /Q2.*empty.*0/);
+  });
+});
+
+test('network failures retry three times and preserve the underlying diagnostic', async () => {
+  await withTempOutput(async ({ output }) => {
+    let attempts = 0;
+    const cause = Object.assign(new Error('getaddrinfo ENOTFOUND api.openalex.org'), {
+      code: 'ENOTFOUND',
+    });
+    const summary = await searchLiterature({
+      request: request(),
+      outputDir: output,
+      fetchImpl: async () => {
+        attempts += 1;
+        throw new Error('fetch failed', { cause });
+      },
+      now: () => NOW,
+      sleep: async () => {},
+    });
+
+    assert.equal(attempts, 3);
+    assert.equal(summary.status, 'failed');
+    assert.equal(summary.query_results[0].error.code, 'network_error');
+    assert.match(summary.query_results[0].error.message, /ENOTFOUND/);
   });
 });
 

@@ -21,6 +21,18 @@ test('valid run links every review claim and reference to saved evidence', async
   });
 });
 
+test('an empty placeholder run cannot be reported as traceable', async () => {
+  await withRun(async ({ run }) => {
+    await writeFile(join(run, 'claims.jsonl'), '', 'utf8');
+    await writeFile(join(run, 'review.md'), '# 文献综述初稿\n\n尚未生成。\n', 'utf8');
+
+    const result = await checkLiteratureRun({ inputDir: run });
+
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join('\n'), /at least one claim/);
+  });
+});
+
 for (const [name, mutate, expected] of [
   [
     'claim refers to a missing record',

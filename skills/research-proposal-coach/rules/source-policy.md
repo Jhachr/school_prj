@@ -27,8 +27,26 @@ For `retrieved_evidence`, record:
 - Retrieval source or database.
 - Search query.
 - Search date.
-- Included records.
+- Run directory and included record IDs.
 - Excluded or uncertain records when relevant.
+
+## Literature Record Controls
+
+Retrieval provenance and record fitness are separate judgments:
+
+| Field | Values | Rule |
+|---|---|---|
+| Screening | `included`, `uncertain`, `excluded` | Only `included` records may support review claims. |
+| Verification | `verified`, `unresolved`, `conflicted`, `rejected` | `conflicted` and `rejected` records must not be cited. |
+
+When showing verification status to a teacher, include its Chinese meaning:
+
+- `verified`（已核验）：关键信息能够匹配，并记录了核对来源。
+- `unresolved`（暂未核验）：当前公共源无法确认；不等于论文不存在。
+- `conflicted`（信息冲突）：DOI、标题、作者或年份存在冲突。
+- `rejected`（已排除）：标识明确不存在或记录明显错误。
+
+An `unresolved` record with a traceable abstract or saved readable material may support a narrowly worded claim, but the output must show the limitation. A title alone may expand a search and cannot support a research finding. Missing DOI does not by itself require exclusion.
 
 ## Conversion Rules
 
@@ -36,6 +54,7 @@ For `retrieved_evidence`, record:
 - `demo_fixture` never becomes `material_verified`.
 - Missing evidence does not block all coaching, but it blocks grade A.
 - Literature, policy, and excellent-case statements must be downgraded to `missing` when no traceable source exists.
+- A literature claim is traceable only when its claim ID points to an included, allowed record and an accessible excerpt plus location in the same literature run.
 
 ## Output Rule
 
@@ -43,4 +62,4 @@ When producing cards, mappings, reviews, or proposal drafts, include the status 
 
 ## Passport Rule
 
-For multi-turn sessions, mirror each important source and claim into the Material Passport described in `rules/material-passport.md`. The passport is the running index; this file defines the meaning of each source status.
+For multi-turn sessions, mirror each important source and claim into the Material Passport described in `rules/material-passport.md`. For literature, mirror only the run path and relevant claim and record IDs; keep claim text and excerpts in `claims.jsonl`. The passport is the running index; this file defines the meaning of each source status.

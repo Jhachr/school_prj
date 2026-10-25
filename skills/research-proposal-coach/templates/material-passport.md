@@ -15,15 +15,16 @@ Dialogue Health:
 
 ### Source Ledger
 
-| Source ID | Status | Title Or Fact | Date | Notes |
-|---|---|---|---|---|
-| S1 |  |  |  |  |
+| Source ID | Status | Title Or Fact | Date | Run / Material Location | Notes |
+|---|---|---|---|---|---|
+| S1 |  |  |  |  |  |
 
 ### Claim Ledger
 
-| Claim ID | Claim | Source IDs | Status | Risk |
+| Passport Claim ID | Claim Or External Reference | Source IDs | Status | Risk |
 |---|---|---|---|---|
 | C1 |  |  |  |  |
+| P-LIT-1 | Literature run `literature/runs/<run-id>`; claims `C01`; records `openalex:W...` | S-LIT-1 | `retrieved_evidence` |  |
 
 ### Decision Ledger
 
@@ -49,3 +50,5 @@ Dialogue Health:
 |---|---|---|---|
 |  |  |  |  |
 ```
+
+For literature claims, do not copy the claim or excerpt into this table. The run's `claims.jsonl` is the single source of that text and evidence.

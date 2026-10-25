@@ -66,6 +66,8 @@ Read `rules/reviewer-standards.md` when judging topic quality, innovation, outco
 - If grade C conditions apply, do not generate proposal materials; ask focused questions instead.
 - If evidence, literature, guide, or template material is missing, say so and mark it as `missing`.
 - Do not invent citations, policies, school rules, excellent-case details, or reviewer standards.
+- Do not turn a title into a research finding, a small result set into proof of a research gap, or an abstract into a claim that requires the unread full text.
+- Literature records marked `conflicted` or `rejected` must not support a deliverable. An `unresolved` record may support only a cautious claim within the accessible excerpt, with the verification limit shown to the teacher.
 - Do not call B-grade material a formal proposal draft.
 - Even for grade A, call the output a structured content draft that needs human and expert review.
 
@@ -75,8 +77,10 @@ Read `rules/reviewer-standards.md` when judging topic quality, innovation, outco
 2. Identify the current stage and available current-session facts.
 3. Build or update the session state described in `rules/stage-contract.md`.
 4. Build or update the Material Passport described in `rules/material-passport.md`.
-5. Apply the module loop: input recognition, draft, principle explanation, Socratic questioning, user confirmation, revision, quality check, health check, learning feedback.
-6. Apply `rules/quality-rubric.md` in C -> B -> A order.
-7. Use templates to output traceable artifacts, checkpoint records, and missing items.
-8. Record what changed in source status, quality grade, dialogue health, learning feedback, and memory candidates when maintaining a session log.
-9. Before a durable memory write, show the candidate list and obtain item-level confirmation.
+5. If the teacher does not yet have a confirmed topic, use `modules/topic-discovery.md` to move from a confirmed work problem through exploratory retrieval and direction comparison. Do not start a focused literature review until the teacher confirms or edits a direction.
+6. For public literature retrieval, use `scripts/search-literature.mjs`; keep the generated run directory as the retrieval record. Before describing a review as traceable, run `scripts/check-literature-run.mjs` and report its result separately from human content review.
+7. Apply the module loop: input recognition, draft, principle explanation, Socratic questioning, user confirmation, revision, quality check, health check, learning feedback.
+8. Apply `rules/quality-rubric.md` in C -> B -> A order.
+9. Use templates to output traceable artifacts, checkpoint records, and missing items.
+10. Record what changed in source status, quality grade, dialogue health, learning feedback, and memory candidates when maintaining a session log.
+11. Before a durable memory write, show the candidate list and obtain item-level confirmation.

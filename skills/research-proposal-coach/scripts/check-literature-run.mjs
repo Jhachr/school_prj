@@ -40,6 +40,7 @@ export async function checkLiteratureRun({ inputDir } = {}) {
 
   const claimById = new Map();
   const usedRecords = new Set();
+  if (claims.length === 0) errors.push('claims.jsonl must contain at least one claim');
   for (const claim of claims) {
     const claimId = textOrError(claim?.claim_id, 'claim_id', errors);
     if (!claimId) continue;

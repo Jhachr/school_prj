@@ -9,8 +9,8 @@ Use it for any session that spans more than one exchange or produces stage artif
 | Section | Purpose |
 |---|---|
 | Session envelope | Identify the teacher, current stage, date, and collaboration mode. |
-| Source ledger | Record user facts, customer materials, retrieved evidence, demo fixtures, and missing sources. |
-| Claim ledger | Map important proposal claims to source ids and source statuses. |
+| Source ledger | Record user facts, customer materials, literature-run references, demo fixtures, and missing sources. |
+| Claim ledger | Map important proposal claims to source ids and source statuses; for literature claims, point to the run claim ID rather than copying its text. |
 | Decision ledger | Record confirmed choices, skipped confirmations, and user overrides. |
 | Artifact ledger | Track topic cards, literature drafts, method tables, mappings, and quality reports. |
 | Quality ledger | Track grade, module status, blockers, and next actions. |
@@ -31,6 +31,14 @@ Use it for any session that spans more than one exchange or produces stage artif
       "title": "string",
       "date": "YYYY-MM-DD",
       "notes": "string"
+    },
+    {
+      "source_id": "S-LIT-1",
+      "source_status": "retrieved_evidence",
+      "title": "Literature run",
+      "date": "YYYY-MM-DD",
+      "literature_run": "literature/runs/<run-id>",
+      "notes": "OpenAlex retrieval and saved records"
     }
   ],
   "claim_ledger": [
@@ -40,6 +48,17 @@ Use it for any session that spans more than one exchange or produces stage artif
       "source_ids": ["S1"],
       "source_status": "user_confirmed",
       "risk": "low"
+    },
+    {
+      "claim_id": "P-LIT-1",
+      "source_ids": ["S-LIT-1"],
+      "source_status": "retrieved_evidence",
+      "external_reference": {
+        "literature_run": "literature/runs/<run-id>",
+        "literature_claim_ids": ["C01"],
+        "record_ids": ["openalex:W123"]
+      },
+      "risk": "medium"
     }
   ],
   "decision_ledger": [
@@ -84,6 +103,7 @@ Use it for any session that spans more than one exchange or produces stage artif
 
 - Add a source entry before using a material or retrieval result to support a claim.
 - Add a claim entry for each substantive topic, problem, literature, method, outcome, innovation, or policy statement.
+- For a literature run, store its path plus relevant claim and record IDs. Keep the literature claim text and evidence only in that run's `claims.jsonl`; do not duplicate them in the passport.
 - Convert `ai_suggestion` to `user_confirmed` only after explicit acceptance or user edits.
 - Mark downstream artifacts `stale` in the notes when the teacher changes topic, research question, method, or source basis.
 - A missing source remains visible until replaced by `material_verified` or `retrieved_evidence`.
