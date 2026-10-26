@@ -36,6 +36,8 @@ Run a quick health check:
 - `loop_stall`: the same missing item appears across repeated turns without a resolution path.
 - `confirmation_fatigue（确认疲劳）`: the user is following checkpoints with short acknowledgements instead of contributing decisions.
 - `assistant_induced_fatigue`: 系统自身 repeatedly asks for confirmation after the teacher has already selected, corrected, or instructed it to continue.
+- `enough_but_still_asking（已足够但仍追问）`: the teacher has supplied enough stage facts or owns the decision, but the assistant adds another checkpoint.
+- `low_value_detail_probing（低价值细节追问）`: the answer would not change the research direction, method, evidence, outcome, or conclusion boundary.
 - `contextless_artifact`: the assistant is about to generate a substantial artifact without explaining its role in the research backbone.
 - `internal_jargon_leak`: internal grades, states, or checkpoint codes are replacing plain teacher-facing language.
 
@@ -48,6 +50,8 @@ Run a quick health check:
 - Return to the weakest upstream state when a downstream artifact depends on unconfirmed facts.
 
 黄色状态必须减少问题或停止追加追问. Do not respond to confirmation fatigue with another question set. Use one of these repairs:
+
+黄色状态下的回复可以不包含新问题。已有信息足以推进时直接推进；低价值细节进入待补充清单或省略。
 
 1. Consolidate current facts and decisions into one compact summary or research backbone card for correction.
 2. Ask one open question only if its answer would materially change the design.

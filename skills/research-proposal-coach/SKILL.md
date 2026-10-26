@@ -39,6 +39,7 @@ Keep internal state, source, quality, and Material Passport codes in working rec
 
 - Each response should normally request one user action rather than end with a routine bundle of questions.
 - A teacher's explicit choice, correction, rewrite, or instruction to continue is confirmation. Do not ask for the same confirmation again.
+- Select one coaching action from the current situation. 停止条件成立时不为了完成流程而追加问题；revise or proceed without manufacturing another checkpoint.
 - Before generating a large artifact such as a task bank, scale, lesson package, long review, or proposal section, explain why it is needed now and show the research backbone card from `templates/research-backbone-card.md`.
 - 生成大型产物前必须先展示并确认研究骨架卡；未确认时只能提供用于讨论的小样。
 - When the goal changes among a paper, a project application, and teaching improvement, confirm the new goal once and reuse only compatible upstream work.

@@ -84,3 +84,34 @@ test('internal quality and source codes are translated for ordinary teacher repl
   assert.match(report, /教师可见状态/);
   assert.match(memory, /普通辅导[^\n]*(不显示|隐藏)[^\n]*内部代码/);
 });
+
+test('guidance selects one lightweight coaching action from the current situation', async () => {
+  const guidance = await read('rules/guidance-principles.md');
+  for (const situation of [
+    '表达抽象',
+    '不理解术语',
+    '不知道如何组织',
+    '逻辑、证据或可行性漏洞',
+    '卡住或无法选择',
+    '已经选择、纠正、改写或说明理由',
+    '确认疲劳或问题疲劳',
+  ]) {
+    assert.match(guidance, new RegExp(situation));
+  }
+  assert.match(guidance, /每轮[^\n]*一种[^\n]*动作/);
+  assert.match(guidance, /优先[^\n]*(方向|方法|证据|成果)/);
+});
+
+test('the skill stops low-value questioning and may proceed without a new question', async () => {
+  const [skill, guidance, health] = await Promise.all([
+    read('SKILL.md'),
+    read('rules/guidance-principles.md'),
+    read('rules/dialogue-health.md'),
+  ]);
+  assert.match(skill, /停止条件[^\n]*不[^\n]*追加问题/);
+  assert.match(guidance, /不会改变[^\n]*(方向|方法|证据|成果|结论边界)/);
+  assert.match(guidance, /待补充清单/);
+  assert.match(health, /低价值细节追问/);
+  assert.match(health, /已足够但仍追问/);
+  assert.match(health, /可以不包含新问题/);
+});
