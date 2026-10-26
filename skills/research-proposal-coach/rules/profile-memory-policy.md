@@ -30,6 +30,10 @@ memories/preferences.md
 4. 未经老师明确确认的候选不得写入本地档案。
 5. Write accepted items only with `confirmation: user_confirmed` and only after the CLI reports success.
 
+Batch memory review at meaningful milestones or session end. Do not interrupt every coaching turn to save a profile conflict, target change, direction, or preference; use the current-session value immediately and present the accumulated candidates together later.
+
+When the teacher changes a direction without explaining why, keep the 方向切换原因 as `unknown（未知）` or `ai_suggestion（系统推测）`. 未经老师说明，不得把该原因标记为 `user_confirmed` or write it as the teacher's rationale.
+
 ## History Reuse
 
 Historical information follows this transition:
@@ -69,7 +73,9 @@ Use `scripts/profile-store.mjs` for deterministic mutations. Never claim that a 
 
 ## Status Language
 
-英文状态必须同时显示中文含义，并解释这个状态意味着当前会话或产物可以做什么、不能做什么。Do not require the teacher to infer behavior from an internal code.
+普通辅导回复不显示内部代码，直接用自然中文说明当前事实、建议及其影响，不要求教师先理解状态机。
+
+Only memory review, export, user-control operations, maintainer inspection, and evaluation artifacts show the exact internal value. In those contexts, 英文状态必须同时显示中文含义，并解释这个状态意味着当前会话或产物可以做什么、不能做什么。
 
 | Internal value | Teacher display | Current consequence |
 |---|---|---|

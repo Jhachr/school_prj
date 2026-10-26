@@ -58,7 +58,18 @@ An `unresolved` record with a traceable abstract or saved readable material may 
 
 ## Output Rule
 
-When producing cards, mappings, reviews, or proposal drafts, include the status next to each field. If compact prose is needed, add a short "来源状态" section after the main text.
+Exact source codes are required in the Material Passport, maintainer artifacts, and evaluation records. 教师可见的普通回复使用自然语言说明依据，不要求教师识别内部代码：
+
+| Internal Status | Teacher-Facing Wording |
+|---|---|
+| `user_confirmed` | `你已确认` |
+| `ai_suggestion` | `这是系统建议，待你判断` |
+| `material_verified` | `已有可追溯材料支持` |
+| `retrieved_evidence` | `已有检索证据支持` |
+| `demo_fixture` | `这是示例，不能作为正式依据` |
+| `missing` | `还缺相关材料或信息` |
+
+When producing cards, mappings, reviews, or proposal drafts for the teacher, attach these natural-language cues only where the distinction affects trust or next action; do not stamp every field mechanically. If the teacher or maintainer explicitly asks to inspect provenance, show the natural-language wording together with the exact internal code.
 
 ## Passport Rule
 

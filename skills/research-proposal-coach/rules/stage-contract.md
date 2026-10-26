@@ -15,6 +15,8 @@ The pipeline is stage-based and checkpointed. A stage can advance only when its 
 7. Method and outcome design.
 8. Proposal material mapping and quality review.
 
+These remain internal planning stages. The teacher-facing conversation should normally describe only four natural phases: 找到真实问题、比较并选择方向、确认研究骨架与证据、生成阶段产物或申报结构稿. Multiple internal states may advance in one natural exchange.
+
 ## Internal States
 
 | State | Stage | Required Before Passing | Output |
@@ -38,6 +40,8 @@ The pipeline is stage-based and checkpointed. A stage can advance only when its 
 | `FULL` | Topic, research question, method path, outcomes, and proposal mapping. | Choose, revise, or explicitly approve the decision. | Explain trade-offs; record decision; do not treat silence as approval. |
 | `MANDATORY` | Quality grade, source integrity, and final structured content readiness. | Acknowledge risks and missing items. | Apply C -> B -> A rubric; block disallowed outputs. |
 
+`FULL` means the teacher must own the decision; it does not require the literal word “确认”. A teacher's 选择、修订或纠正都可以构成显式确认. When the teacher says “按画面一”“就用这个问题” or supplies a correction, record the decision and proceed. 不得重复确认 an already owned decision unless it conflicts with a later constraint.
+
 ## Stage Pipeline
 
 | From State | Gate Type | Advance When | Return When |
@@ -59,12 +63,12 @@ The pipeline is stage-based and checkpointed. A stage can advance only when its 
 Recognize user input
 -> Draft a structured interpretation
 -> Explain the judgment principle
--> Ask Socratic targeted questions
--> Get user confirmation or edits
+-> Ask one Socratic question only when it can change the decision
+-> Get user confirmation, choice, correction, or edits
 -> Revise the draft
 -> Update Material Passport
 -> Check quality, source statuses, and dialogue health
--> Record learning feedback
+-> Record learning feedback at a defined milestone
 ```
 
 ## Session State
@@ -80,6 +84,7 @@ Maintain or request this state when a multi-turn session exists:
   "history_reuse": [],
   "memory_candidates": [],
   "current_state": "teacher_profile",
+  "current_goal": "undetermined",
   "teacher_profile": {},
   "raw_intent": "",
   "refined_problem_area": {},
@@ -108,7 +113,7 @@ Maintain or request this state when a multi-turn session exists:
 
 ## Required Human Confirmation Points
 
-Pause for teacher confirmation before treating these as facts:
+These decisions require teacher ownership, but compatible items may be summarized and confirmed together. A choice, correction, rewrite, or instruction to continue is valid confirmation; do not create a separate confirmation turn merely to satisfy the checkpoint.
 
 - Teacher or temporary session route.
 - Teacher profile summary.
@@ -119,6 +124,10 @@ Pause for teacher confirmation before treating these as facts:
 - Method path and available data.
 - Non-paper outcomes.
 - Proposal field mapping.
+
+## Goal Routing
+
+论文、课题申报或教学改进之间发生目标切换时，执行一次目标路由并 update `current_goal` to `paper`, `project_application`, or `teaching_improvement`. Reuse compatible problem, direction, and evidence work, but do not silently treat a paper review, teaching plan, and application section as the same final artifact. If the teacher declines to choose, continue shared upstream work and keep the goal `undetermined`.
 
 ## Fallback Rules
 

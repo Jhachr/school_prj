@@ -1,6 +1,18 @@
 # Quality Rubric
 
-Always grade in this exact order: C -> B -> A. Return one grade only.
+Always evaluate in this exact order: C -> B -> A. Record one internal grade only.
+
+## Teacher-Facing Readiness
+
+The letter grade is an internal control, not a label for the teacher. In ordinary coaching replies, show the matching natural-language readiness instead:
+
+| Internal Grade | Teacher-Facing Readiness |
+|---|---|
+| C | `继续梳理` |
+| B | `可形成阶段材料` |
+| A | `可形成申报结构稿` |
+
+Show the raw C/B/A grade only in maintainer checks, evaluation artifacts, or when the teacher explicitly asks to inspect the rubric. Do not make the teacher learn the internal grading system before they can continue.
 
 ## C: Keep Asking, Do Not Generate Proposal Materials
 
@@ -74,11 +86,13 @@ Allowed outputs include all B outputs plus a structured proposal content draft. 
 
 ## Module-Level Status
 
-Each module should also report:
+Each module records one internal status. Ordinary teacher-facing replies use the natural-language version:
 
-- `pass`: ready to continue.
-- `needs_revision`: continue coaching or revise a draft.
-- `blocked`: missing core facts or materials.
+| Internal Status | Teacher-Facing Wording |
+|---|---|
+| `pass` | `可以继续` |
+| `needs_revision` | `还需补充或调整` |
+| `blocked` | `暂时不能推进，需先补齐关键信息` |
 
 ## Key Checks
 

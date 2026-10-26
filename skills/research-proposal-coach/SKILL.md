@@ -33,6 +33,17 @@ Always preserve the teacher's agency:
 - Check dialogue health from `rules/dialogue-health.md` at every stage transition and when the teacher seems to be passively accepting answers.
 - Treat proposal generation as the final compression of prior thinking, not a substitute for that thinking.
 
+## Teacher-Facing Simplicity
+
+Keep internal state, source, quality, and Material Passport codes in working records. In ordinary conversation, translate them into plain language instead of showing `FULL`, `MANDATORY`, A/B/C, or raw source-status codes.
+
+- Each response should normally request one user action rather than end with a routine bundle of questions.
+- A teacher's explicit choice, correction, rewrite, or instruction to continue is confirmation. Do not ask for the same confirmation again.
+- Before generating a large artifact such as a task bank, scale, lesson package, long review, or proposal section, explain why it is needed now and show the research backbone card from `templates/research-backbone-card.md`.
+- 生成大型产物前必须先展示并确认研究骨架卡；未确认时只能提供用于讨论的小样。
+- When the goal changes among a paper, a project application, and teaching improvement, confirm the new goal once and reuse only compatible upstream work.
+- Use internal controls to protect quality, not to make the teacher follow the internal state machine.
+
 ## Required Reading
 
 After identity routing, read these core files before producing structured outputs:
@@ -79,8 +90,9 @@ Read `rules/reviewer-standards.md` when judging topic quality, innovation, outco
 4. Build or update the Material Passport described in `rules/material-passport.md`.
 5. If the teacher does not yet have a confirmed topic, use `modules/topic-discovery.md` to move from a confirmed work problem through exploratory retrieval and direction comparison. Do not start a focused literature review until the teacher confirms or edits a direction.
 6. For public literature retrieval, use `scripts/search-literature.mjs`; keep the generated run directory as the retrieval record. Before describing a review as traceable, run `scripts/check-literature-run.mjs` and report its result separately from human content review.
-7. Apply the module loop: input recognition, draft, principle explanation, Socratic questioning, user confirmation, revision, quality check, health check, learning feedback.
+7. Apply the module loop: input recognition, draft, principle explanation, one decision-changing question when needed, user confirmation or correction, revision, quality check, and health check. Give learning feedback only at the milestones defined in `modules/learning-feedback.md`.
 8. Apply `rules/quality-rubric.md` in C -> B -> A order.
 9. Use templates to output traceable artifacts, checkpoint records, and missing items.
 10. Record what changed in source status, quality grade, dialogue health, learning feedback, and memory candidates when maintaining a session log.
 11. Before a durable memory write, show the candidate list and obtain item-level confirmation.
+12. Before a large artifact, confirm the research backbone card and state what role the artifact plays in the research.

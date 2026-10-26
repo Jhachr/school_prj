@@ -18,19 +18,24 @@ The status command may reveal only whether a profile exists and, when ready, its
 
 | Store result | Route | Required action |
 |---|---|---|
-| `profile missing` | First use | Explain local storage, request consent, collect minimum fields, show a summary, and initialize only after confirmation. |
+| `profile missing` | First use | Ask one low-friction route question: start a temporary session now or create a local profile now. |
 | `profile ready` | Returning use | Ask “是否以 X 老师身份继续？” before reading or applying detailed history. |
 | Teacher declines the ready identity | `temporary（临时会话）` | Continue without durable profile or memory access. |
 | `profile malformed` | Recovery | Preserve the file, enter `只读模式`, and explain the diagnostic/recovery path. |
 
 ## First Use
 
-1. Explain that the profile will be stored locally under `RESEARCH_COACH_HOME`, is not divided by workspace or topic, and can later be viewed, exported, corrected, or deleted.
-2. Ask for `memory_consent`. A refusal starts a temporary session and creates no profile.
-3. Collect only display name, department/professional field, role/responsibility, one course/work scene, and recent priority or research basis.
-4. Show the proposed profile and ask the teacher to correct or confirm it.
-5. Only after explicit confirmation, run `profile-store.mjs init` with `session_mode: teacher` and the confirmed JSON payload.
-6. Treat initialization as successful only when the CLI returns a success result.
+首次使用只问一个路由问题，不先索取五项资料：
+
+> 可以先临时聊，方向清楚后再决定是否保存；也可以现在建立教师档案。你想先临时聊，还是现在建档？
+
+Recommend `先临时聊` as the fastest, lowest-burden route. Present the two routes as a closed choice and do not combine the route question with research-background questions.
+
+- If the teacher chooses temporary mode, set `memory_consent: false` and `session_mode: temporary`, then enter ordinary coaching immediately. Do not read or write durable profile data.
+- If the teacher chooses to create a profile now, briefly explain that it is stored locally under `RESEARCH_COACH_HOME`, is not divided by workspace or topic, and can later be viewed, exported, corrected, or deleted.
+- For profile creation, request `memory_consent`, then 一次性收集 display name, department/professional field, role/responsibility, one course/work scene, and recent priority or research basis in one compact prose prompt. Do not split these fields across consecutive menus.
+- Show one compact proposed profile. A correction or “按这个建档” counts as confirmation; do not ask for a second confirmation.
+- Only after confirmation, run `profile-store.mjs init` with `session_mode: teacher` and the confirmed JSON payload. Treat initialization as successful only when the CLI returns success.
 
 ## Returning Use
 

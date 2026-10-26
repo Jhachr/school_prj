@@ -40,6 +40,15 @@ Copy this template for each real or synthetic evaluation case.
 
 ## Expected Dialogue Health
 
+## Expected Interaction Shape
+
+- Question type: `开放描述` / `封闭路由` / `半开放决策` / `信息核对`
+- One visible next action:
+- Does the user's current message already count as confirmation:
+- Duplicate-confirmation check:
+- Research-backbone dependency before an artifact:
+- Assistant-created fatigue signals:
+
 ## Reviewer Notes
 
 ## Actual Result Summary
@@ -47,6 +56,14 @@ Copy this template for each real or synthetic evaluation case.
 ## Actual Passport Or Traceability Gaps
 
 ## Actual Health Gaps
+
+## Actual Interaction Gaps
+
+- Question/input-format mismatch:
+- More than one visible next action:
+- Duplicate confirmation:
+- Contextless artifact:
+- Assistant-created fatigue:
 
 ## Actual Profile Or Memory Gaps
 
