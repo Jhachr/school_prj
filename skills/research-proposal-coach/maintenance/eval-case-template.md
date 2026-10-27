@@ -12,7 +12,15 @@ Copy this template for each real or synthetic evaluation case.
 | Material | Source Status | Notes |
 |---|---|---|
 
-## Expected Stage
+## Expected Main-Flow Navigation
+
+- Current phase:
+- Current goal:
+- Phase objective:
+- Open blocker:
+- Next action:
+- Resume phase after a side question:
+- Side threads that must not replace the main flow:
 
 ## Expected Session Route
 
@@ -47,6 +55,9 @@ Copy this template for each real or synthetic evaluation case.
 - Does the user's current message already count as confirmation:
 - Duplicate-confirmation check:
 - Research-backbone dependency before an artifact:
+- Full-instrument dependency on evidence and design:
+- Main-flow or side-thread classification:
+- Expected resume point:
 - Assistant-created fatigue signals:
 
 ## Reviewer Notes
@@ -63,6 +74,9 @@ Copy this template for each real or synthetic evaluation case.
 - More than one visible next action:
 - Duplicate confirmation:
 - Contextless artifact:
+- Silent phase drift:
+- Lost resume point:
+- Goal-specific output while goal is undetermined:
 - Assistant-created fatigue:
 
 ## Actual Profile Or Memory Gaps

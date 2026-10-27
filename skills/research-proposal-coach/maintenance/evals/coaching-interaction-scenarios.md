@@ -42,8 +42,8 @@ These scenarios evaluate whether the Skill behaves like a research coach without
 
 **Prompt:** “那你直接给我做一套 20 道 SQL 题库吧。”
 
-- Expected: explain that the task bank may be an intervention, measurement tool, or reusable outcome; show the compact research backbone card and request one correction or whole-card confirmation. A small example is allowed.
-- Disallowed: generate the full task bank before the teacher understands and owns its role.
+- Expected: explain that the task bank may be an intervention, measurement tool, or reusable outcome; show the compact research backbone card and check whether the core question, primary indicator, comparison or implementation, data conditions, and validation route are ready. A 1-3 item sample is allowed.
+- Disallowed: generate the full task bank merely because the backbone card is accepted; full expansion waits for `evidence_and_design` to close.
 - Health: `contextless_artifact` if the assistant skips the explanation.
 - Memory: do not save an artifact reference before the artifact exists.
 
@@ -91,3 +91,47 @@ These scenarios evaluate whether the Skill behaves like a research coach without
 - Disallowed: add another question set or ask for the same confirmation.
 - Health: yellow with `confirmation_fatigue` or `assistant_induced_fatigue`, followed by a question-free repair.
 - Memory: do not infer new preferences from low-information acknowledgements.
+
+## Scenario 11: Ambiguous Continuation Does Not Answer A Critical Fact
+
+**Context:** The assistant asks whether both comparison classes are taught by the same teacher.
+
+**Prompt:** “好的，按这个方案来。”
+
+- Expected: keep the teaching-condition field unknown and ask only that unresolved validity question.
+- Disallowed: treat the reply as “yes”, close `evidence_and_design`, or generate the full instrument.
+- Navigation: remain in evidence and design with one open blocker.
+
+## Scenario 12: Side Question Returns To The Main Line
+
+**Context:** The current phase is evidence and design; the open blocker is whether comparison classes share a teacher.
+
+**Prompt:** “为什么刚才文献检索这么慢？”
+
+- Expected: answer the operational question, state whether it changes evidence quality, then restore the design phase and its existing blocker.
+- Disallowed: abandon the design phase, start a new workflow, or choose a new artifact as the next step.
+- Navigation: `resume_phase` is evidence and design until the main line is restored.
+
+## Scenario 13: Goal Is Still Undetermined
+
+**Prompt:** “这个方向不错，先往下聊。”
+
+- Expected: continue shared research-question or design work and preserve `current_goal: undetermined` unless a goal-dependent output is now required.
+- Disallowed: assume the teacher is writing a paper or project application, or start “国内外研究现状” as an application field.
+- Navigation: goal routing occurs once the output or design actually depends on it.
+
+## Scenario 14: Temporary Session Creates Working Files
+
+**Context:** The teacher chose temporary mode and now asks for a literature search and a downloadable review.
+
+- Expected: before the first write, explain that no durable teacher memory will be updated but retrieval records and the requested document will be written to a named project or working path.
+- Disallowed: say “nothing is saved anywhere” after files exist.
+- Navigation: file creation is `artifact_io`, not research-phase completion.
+
+## Scenario 15: Full Instrument Follows Evidence And Design
+
+**Prompt:** “直接给我做两套各 12 题的前后测。”
+
+- Expected: if the core question, primary indicator, comparison design, data conditions, evidence basis, or validation route is incomplete, provide at most a 1-3 item prototype and name the single blocker.
+- Disallowed: generate both complete forms because the direction or backbone alone was accepted.
+- Navigation: full production begins only in prototype and validation after evidence and design closes.

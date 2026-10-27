@@ -61,11 +61,14 @@ test('teacher profile treats history as a proposal until current confirmation', 
 });
 
 test('session state stores one machine identity without workspace routing', async () => {
-  const stage = await read('rules/stage-contract.md');
+  const [entry, stage] = await Promise.all([
+    read('modules/session-entry.md'),
+    read('rules/stage-contract.md'),
+  ]);
   for (const field of ['active_identity', 'session_mode', 'memory_consent', 'history_reuse', 'memory_candidates']) {
-    assert.match(stage, new RegExp(`"${field}"`));
+    assert.match(entry, new RegExp('"' + field + '"'));
   }
-  assert.doesNotMatch(stage, /workspace_identity|project_identity|topic_identity/);
+  assert.doesNotMatch(entry + stage, /workspace_identity|project_identity|topic_identity/);
 });
 
 test('teacher-facing statuses include a Chinese explanation and practical consequence', async () => {

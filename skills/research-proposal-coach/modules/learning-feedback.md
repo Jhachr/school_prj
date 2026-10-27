@@ -24,9 +24,10 @@ Give the teacher feedback on research thinking while preserving motivation.
 
 Give learning feedback only at a meaningful 里程碑:
 
-- the teacher confirms a direction;
-- the teacher confirms the research backbone;
-- the teacher finishes interpreting the literature rather than merely receiving a document;
+- `research_focus` closes with a teacher-owned goal, question, and boundary;
+- `evidence_and_design` closes with an understood evidence and method path;
+- a prototype has been reviewed or piloted rather than merely generated;
+- the teacher finishes interpreting literature or data rather than merely receiving a document;
 - the session ends or pauses for external material.
 
 Do not append learning feedback mechanically after every module. If confirmation fatigue is yellow, use this compact feedback as a summary rather than adding more questions.

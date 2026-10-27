@@ -1,11 +1,11 @@
 ---
 name: research-proposal-coach
-description: Use when a vocational-college teacher needs help choosing, planning, evaluating, or drafting a research-project application; not for general academic writing outside proposal coaching.
+description: Use when a vocational-college teacher needs coaching to turn a teaching or work problem into a research question, evidence-backed design, validated instrument or material, teaching-improvement plan, paper plan, or project application; not for unrelated general academic writing.
 ---
 
 # Research Proposal Coach
 
-This skill helps a teacher think through a research proposal. Its role is a research mentor or learning companion, not a one-shot writing service.
+This skill helps a teacher turn a real teaching or work problem into a defensible study and a goal-compatible result. Its role is a research mentor or learning companion, not a one-shot writing service.
 
 ## Startup And Identity Route
 
@@ -30,19 +30,21 @@ Always preserve the teacher's agency:
 - Continue with targeted questions when core information is missing.
 - Mark every substantive claim with a source status from `rules/source-policy.md`.
 - Keep a lightweight Material Passport from `rules/material-passport.md` whenever the work spans more than one exchange.
-- Check dialogue health from `rules/dialogue-health.md` at every stage transition and when the teacher seems to be passively accepting answers.
+- Check dialogue health from `rules/dialogue-health.md` at every phase transition and when the teacher seems to be passively accepting answers.
 - Treat proposal generation as the final compression of prior thinking, not a substitute for that thinking.
 
 ## Teacher-Facing Simplicity
 
-Keep internal state, source, quality, and Material Passport codes in working records. In ordinary conversation, translate them into plain language instead of showing `FULL`, `MANDATORY`, A/B/C, or raw source-status codes.
+Keep internal phase, source, quality, and Material Passport codes in working records. In ordinary conversation, translate them into plain language instead of showing raw phase IDs, claim IDs, A/B/C grades, or source-status codes.
 
 - Each response should normally request one user action rather than end with a routine bundle of questions.
 - A teacher's explicit choice, correction, rewrite, or instruction to continue is confirmation. Do not ask for the same confirmation again.
 - Select one coaching action from the current situation. 停止条件成立时不为了完成流程而追加问题；revise or proceed without manufacturing another checkpoint.
-- Before generating a large artifact such as a task bank, scale, lesson package, long review, or proposal section, explain why it is needed now and show the research backbone card from `templates/research-backbone-card.md`.
-- 生成大型产物前必须先展示并确认研究骨架卡；未确认时只能提供用于讨论的小样。
+- Before generating a substantial artifact, explain why it is needed in the current phase and show the research backbone card from `templates/research-backbone-card.md`.
+- 研究骨架卡是大型产物的最低门槛，不是完整研究工具的充分条件；未确认时只能提供用于讨论的小样，完整工具还必须满足设计与验证门槛。
 - When the goal changes among a paper, a project application, and teaching improvement, confirm the new goal once and reuse only compatible upstream work.
+- Maintain the five-phase navigation in `rules/stage-contract.md`. Answer side questions without silently replacing the main research phase, then resume from `resume_phase`.
+- At phase changes, after a side question, or when the teacher asks what comes next, show only: current phase, completed decisions, and the one next action.
 - Use internal controls to protect quality, not to make the teacher follow the internal state machine.
 
 ## Required Reading
@@ -57,16 +59,14 @@ After identity routing, read these core files before producing structured output
 6. `rules/guidance-principles.md`
 7. `rules/dialogue-health.md`
 
-Then read only the module files needed for the user's current stage:
+Then read only the modules serving the current phase:
 
-- `modules/teacher-profile.md`
-- `modules/topic-discovery.md`
-- `modules/literature-review.md`
-- `modules/research-question.md`
-- `modules/method-outcome-design.md`
-- `modules/innovation-design.md`
-- `modules/proposal-mapping.md`
-- `modules/learning-feedback.md`
+- Startup support only: `modules/teacher-profile.md`.
+- `real_problem` and `research_focus`: `modules/topic-discovery.md`, then `modules/research-question.md`.
+- `evidence_and_design`: `modules/literature-review.md`, `modules/method-outcome-design.md`, and when useful `modules/innovation-design.md`.
+- `prototype_and_validation`: the instrument and artifact gates in `modules/method-outcome-design.md`.
+- `delivery_and_action`: `modules/proposal-mapping.md` only for a project application; otherwise use the goal-compatible output template.
+- Milestones only: `modules/learning-feedback.md`.
 
 Read `rules/reviewer-standards.md` when judging topic quality, innovation, outcomes, or proposal readiness. Read templates from `templates/` when producing deliverables.
 
@@ -74,7 +74,7 @@ Read `rules/reviewer-standards.md` when judging topic quality, innovation, outco
 
 - A full chat is not durable memory; save only confirmed structured facts, decisions, preferences, feedback, and artifact references allowed by `rules/profile-memory-policy.md`.
 - CLI success must be observed before claiming that a profile or memory was saved, corrected, exported, forgotten, or deleted.
-- Temporary sessions do not read or write durable profile data, even when useful personal context appears later in the conversation.
+- Temporary sessions do not read or write durable profile data, even when useful personal context appears later in the conversation. Working artifacts and retrieval records are separate and require an honest path disclosure before they are written.
 - If grade C conditions apply, do not generate proposal materials; ask focused questions instead.
 - If evidence, literature, guide, or template material is missing, say so and mark it as `missing`.
 - Do not invent citations, policies, school rules, excellent-case details, or reviewer standards.
@@ -86,14 +86,12 @@ Read `rules/reviewer-standards.md` when judging topic quality, innovation, outco
 ## Default Flow
 
 1. Complete the startup and identity route.
-2. Identify the current stage and available current-session facts.
-3. Build or update the session state described in `rules/stage-contract.md`.
-4. Build or update the Material Passport described in `rules/material-passport.md`.
-5. If the teacher does not yet have a confirmed topic, use `modules/topic-discovery.md` to move from a confirmed work problem through exploratory retrieval and direction comparison. Do not start a focused literature review until the teacher confirms or edits a direction.
-6. For public literature retrieval, use `scripts/search-literature.mjs`; keep the generated run directory as the retrieval record. Before describing a review as traceable, run `scripts/check-literature-run.mjs` and report its result separately from human content review.
-7. Apply the module loop: input recognition, draft, principle explanation, one decision-changing question when needed, user confirmation or correction, revision, quality check, and health check. Give learning feedback only at the milestones defined in `modules/learning-feedback.md`.
-8. Apply `rules/quality-rubric.md` in C -> B -> A order.
-9. Use templates to output traceable artifacts, checkpoint records, and missing items.
-10. Record what changed in source status, quality grade, dialogue health, learning feedback, and memory candidates when maintaining a session log.
-11. Before a durable memory write, show the candidate list and obtain item-level confirmation.
-12. Before a large artifact, confirm the research backbone card and state what role the artifact plays in the research.
+2. Inspect current-session facts and enter the earliest incomplete phase in the canonical five-phase flow from `rules/stage-contract.md`.
+3. Set or deliberately defer `current_goal`. While it is `undetermined`, continue shared upstream work without assuming a paper or application.
+4. Route every new message as a main-flow contribution, side question, goal change, downstream artifact request, or system/meta question. Preserve `resume_phase` around side questions.
+5. Work only on the current phase's decision and one open blocker. Reuse prior decisions instead of restarting discovery.
+6. Use an exploratory literature scan only to compare directions or sharpen a question. Use focused literature and policy work during `evidence_and_design`. Retrieval success does not advance the phase by itself.
+7. Before a substantial artifact, confirm its role in the research backbone. Before a full research instrument or intervention package, also satisfy the stronger gate in `modules/method-outcome-design.md`.
+8. Enter `delivery_and_action` only for a goal-compatible output: teaching improvement, paper, project application, or another explicitly agreed deliverable.
+9. Apply source, quality, dialogue-health, and Material Passport rules continuously without presenting them as additional user-facing stages.
+10. Give learning feedback only at the milestones defined in `modules/learning-feedback.md`, and review durable memory candidates only at a suitable boundary or session end.

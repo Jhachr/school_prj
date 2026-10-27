@@ -2,13 +2,13 @@
 
 The Material Passport is a lightweight provenance ledger for a proposal session. It prevents the skill from losing track of what came from the teacher, what came from verified materials, what came from retrieval, and what is only an assistant suggestion.
 
-Use it for any session that spans more than one exchange or produces stage artifacts.
+Use it for any session that spans more than one exchange or produces phase artifacts.
 
 ## Required Sections
 
 | Section | Purpose |
 |---|---|
-| Session envelope | Identify the teacher, current stage, date, and collaboration mode. |
+| Session envelope | Identify the teacher, current phase, current goal, resume point, date, and collaboration mode. |
 | Source ledger | Record user facts, customer materials, literature-run references, demo fixtures, and missing sources. |
 | Claim ledger | Map important proposal claims to source ids and source statuses; for literature claims, point to the run claim ID rather than copying its text. |
 | Decision ledger | Record confirmed choices, skipped confirmations, and user overrides. |
@@ -22,7 +22,9 @@ Use it for any session that spans more than one exchange or produces stage artif
 {
   "passport_id": "string",
   "session_id": "string",
-  "current_state": "teacher_profile",
+  "current_phase": "real_problem",
+  "current_goal": "undetermined",
+  "resume_phase": null,
   "collaboration_mode": "explore",
   "source_ledger": [
     {
@@ -64,7 +66,7 @@ Use it for any session that spans more than one exchange or produces stage artif
   "decision_ledger": [
     {
       "decision_id": "D1",
-      "state": "topic_confirmation",
+      "phase": "research_focus",
       "decision": "string",
       "confirmed_by_user": false,
       "notes": "string"
@@ -81,7 +83,7 @@ Use it for any session that spans more than one exchange or produces stage artif
   ],
   "quality_ledger": [
     {
-      "state": "quality_checking",
+      "phase": "delivery_and_action",
       "grade": "B",
       "module_status": "needs_revision",
       "blockers": ["real literature retrieval missing"],
@@ -90,7 +92,7 @@ Use it for any session that spans more than one exchange or produces stage artif
   ],
   "health_ledger": [
     {
-      "state": "topic_confirmation",
+      "phase": "research_focus",
       "status": "yellow",
       "signals": ["teacher accepted topic without example"],
       "intervention": "asked for one concrete teaching scenario"
@@ -105,6 +107,8 @@ Use it for any session that spans more than one exchange or produces stage artif
 - Add a claim entry for each substantive topic, problem, literature, method, outcome, innovation, or policy statement.
 - For a literature run, store its path plus relevant claim and record IDs. Keep the literature claim text and evidence only in that run's `claims.jsonl`; do not duplicate them in the passport.
 - Convert `ai_suggestion` to `user_confirmed` only after explicit acceptance or user edits.
+- Record decisions against the canonical five phases from `rules/stage-contract.md`; do not recreate the retired 8-stage or 10-state pipeline in the passport.
+- When answering a side question, preserve `current_phase` and record `resume_phase` until the main line is restored.
 - Mark downstream artifacts `stale` in the notes when the teacher changes topic, research question, method, or source basis.
 - A missing source remains visible until replaced by `material_verified` or `retrieved_evidence`.
 - Do not use the passport to skip final human review.

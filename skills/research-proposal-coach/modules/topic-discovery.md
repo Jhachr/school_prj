@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Turn vague intent into a confirmed work problem, use a small public-literature scan to expose plausible directions, and help the teacher confirm one direction before focused review.
+Support `real_problem` and the direction-comparison part of `research_focus`. Turn vague intent into a confirmed work problem, and use a small exploratory scan only when it helps expose plausible directions.
 
 ## Required Inputs
 
-- Teacher profile.
+- Current teacher context or temporary-session facts.
 - Initial intent.
 - Course, student, work, or institutional scene.
 - Observable problem or pain.
@@ -23,7 +23,7 @@ Turn vague intent into a confirmed work problem, use a small public-literature s
 7. Generate 2-3 directions. In the teacher-facing version, describe each as a concrete class or work scene first: what the teacher changes, what the learner or work object does, what evidence can be collected, and the implementation cost or risk. Put the research label in parentheses only after the scene is understandable. Keep traceable literature signals in the supporting record rather than leading with record IDs.
 8. Ask the teacher to select, reject, combine, or rewrite the directions, with an explicit `组合/改写` path. A selection such as “按画面一试试” confirms the direction and must not trigger a second confirmation request.
 9. Optionally ask for one short reason: “你更看重它解决的问题，还是它比较容易实施？” This reason is useful but non-blocking. If the teacher skips it, record `decision_reason: unknown`; do not infer a teacher rationale.
-10. Only the confirmed direction proceeds to `modules/literature-review.md`; otherwise refine the problem or queries.
+10. A confirmed direction stays in `research_focus` until the goal, answerable core question, and conclusion boundary are set or deliberately deferred. Focused literature belongs in `evidence_and_design`; otherwise refine the problem or exploratory queries.
 
 ## Topic Evaluation Pointers
 
@@ -60,7 +60,7 @@ Coverage and limits:
 | 3 |  |  | `[record:...]` |  |  |  |
 ```
 
-Save this as `topic-scan.md` only while the topic remains unconfirmed. If the teacher already has a confirmed direction, skip the scan and start focused retrieval or review.
+Save this as `topic-scan.md` only while the direction remains unconfirmed. If the teacher already has a confirmed direction, skip comparison and continue the incomplete `research_focus` decision before starting focused retrieval.
 
 ## Fallback
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Help the teacher understand what the accessible literature can and cannot say about a confirmed problem, then produce a claim-level traceable review draft.
+Support `evidence_and_design`: help the teacher understand what accessible literature can and cannot say about a confirmed question, use it to test the proposed indicators and method, and produce a claim-level traceable review draft when needed.
 
 ## Required Inputs
 
@@ -25,6 +25,8 @@ Help the teacher understand what the accessible literature can and cannot say ab
 10. Run `scripts/check-literature-run.mjs --input <run-directory>` before calling the draft traceable. Then manually review whether the excerpts actually support the claims; script success does not prove semantic support.
 11. Ask whether the teacher knows closer school, industry, or course materials, and use the review to revise research questions, methods, outcomes, and innovation points.
 
+Literature retrieval and review are support actions, not a separate main-flow phase. After answering a literature side question, return to the prior `resume_phase` unless the evidence explicitly changes the question or design.
+
 ## Pass Conditions
 
 - Every included key claim has a claim ID, at least one allowed record, an accessible excerpt and location, and stated limitations.
@@ -34,7 +36,7 @@ Help the teacher understand what the accessible literature can and cannot say ab
 
 ## Output
 
-Produce `review.md` using `templates/literature-review-longform.md`, with length determined by available evidence rather than a fixed word count. Do not automatically generate a generic proposal-form literature section in this module. Compression happens later only against a real application template and must reuse the checked claims rather than regenerate facts or citations.
+Produce `review.md` using `templates/literature-review-longform.md`, with length determined by available evidence rather than a fixed word count. Claim and record IDs belong in the evidence file or appendix; ordinary teacher-facing summaries use natural-language citations and must not say “C04 shows” or expose similar internal IDs. Do not automatically generate a generic proposal-form literature section in this module. Compression happens later only against a real application template and must reuse the checked claims rather than regenerate facts or citations.
 
 ## Fallback
 

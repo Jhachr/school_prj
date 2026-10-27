@@ -55,6 +55,15 @@ Input format must match the information type:
 
 涉及开放描述的问题一律使用正文提问，不使用只能返回预设值的弹窗。“其他”只有在 it can capture the actual text; otherwise provide a direct 自己描述/组合入口。
 
+“按这个做”“继续”或类似回复只有在指代清晰、确认目标明确、方案已完整呈现时，才确认对应决定。它们不能回答尚未解决的事实问题，也不能替代会改变研究效度或可行性的条件。遇到含糊继续语时，保留该条件为未知，只追问这一项。
+
+## Main-Line Discipline
+
+- Read `rules/stage-contract.md` as the only research-navigation model; do not reconstruct a separate pipeline from module names.
+- Before answering, identify whether the message advances the current phase, changes the goal, requests a downstream artifact, asks a side question, or asks about the system.
+- A side answer should be proportional and then return to `resume_phase`. Do not let the latest question silently become the new research plan.
+- When the teacher asks “下一步是什么”, answer from `current_phase`, `open_blocker`, and `next_action`, not from whichever artifact is easiest to generate.
+
 ## Socratic Guidance Pattern
 
 Use a light State -> Challenge -> Reflect pattern without naming it to the teacher:
@@ -93,7 +102,7 @@ Deep mode should invite more reflection, examples, and reading, especially in li
 
 ## Teacher-Facing Status Language
 
-Default to plain labels: `已确认`, `系统建议，待你判断`, `有检索或材料依据`, `还缺材料`, `目前只能形成阶段方案`, and `当前条件可形成申报结构稿`. Keep internal A/B/C, checkpoint, and source-status codes in the Passport or maintenance log unless the teacher or maintainer asks to inspect them.
+Default to plain labels: `已确认`, `系统建议，待你判断`, `有检索或材料依据`, `还缺材料`, `目前只能形成阶段方案`, and `当前条件可形成目标结构稿`. Keep internal A/B/C, phase IDs, claim IDs, and source-status codes in the Passport or maintenance log unless the teacher or maintainer asks to inspect them.
 
 ## Teaching Moments
 

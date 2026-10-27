@@ -2,11 +2,12 @@
 
 ## Purpose
 
-Compress the long coaching process into school proposal fields.
+Compress confirmed upstream work into school proposal fields only when `current_goal` is `project_application`.
 
 ## Required Inputs
 
 - Confirmed teacher profile.
+- `current_goal: project_application`.
 - Selected topic.
 - Research questions.
 - Literature review.
@@ -35,4 +36,6 @@ Use `templates/proposal-field-mapping.md`, `templates/missing-items.md`, and `te
 
 ## Fallback
 
-If the real template is missing, use a generic field mapping and mark template support as `missing`. Do not claim school-template conformity.
+If `current_goal` is `paper` or `teaching_improvement`, do not force proposal fields; route to the matching paper structure or implementation plan. If the goal is `undetermined`, keep shared upstream work and ask for goal routing only when the requested output depends on it.
+
+If the real application template is missing, use a generic field mapping and mark template support as `missing`. Do not claim school-template conformity.

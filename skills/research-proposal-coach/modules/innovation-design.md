@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Derive realistic innovation points from the teacher's context, evidence, methods, and outcomes.
+Support `evidence_and_design` by deriving modest, defensible contributions from the teacher's context, evidence, methods, and intended outcomes. Innovation is not a separate phase and is not mandatory for every teaching-improvement goal.
 
 ## Required Inputs
 
@@ -18,7 +18,7 @@ Derive realistic innovation points from the teacher's context, evidence, methods
 3. Draft 2-3 innovation points.
 4. Explain the support behind each point.
 5. Downgrade unsupported claims.
-6. Ask the teacher which points feel true and defensible.
+6. Keep only points the teacher can defend from evidence or local practice; ask for a choice only when alternatives would materially change the study or target output.
 
 ## Pass Conditions
 
@@ -37,3 +37,5 @@ Derive realistic innovation points from the teacher's context, evidence, methods
 ## Fallback
 
 If evidence is missing, use modest wording such as "拟探索" and mark literature comparison as `missing`.
+
+Do not let an innovation-writing request move `current_phase` or replace the open blocker. After a side request, return to `resume_phase`.

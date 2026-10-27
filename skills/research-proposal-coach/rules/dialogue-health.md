@@ -10,8 +10,10 @@ This is advisory except when it exposes a quality-rubric blocker, source-policy 
 
 Run a quick health check:
 
-- At every stage transition.
-- After 5 assistant turns in the same stage.
+- At every phase transition.
+- After 5 assistant turns in the same phase.
+- After answering a side question and before resuming the main line.
+- When a goal-specific artifact is proposed while the goal is still undetermined.
 - When the teacher repeatedly says to generate directly.
 - When the teacher agrees without adding examples, constraints, or corrections.
 - When the user gives short confirmation-style replies in 连续两轮.
@@ -22,9 +24,9 @@ Run a quick health check:
 
 | Status | Signals | Action |
 |---|---|---|
-| `green` | Teacher has confirmed facts, corrected drafts, or supplied examples. | Continue the current pipeline. |
+| `green` | Teacher has confirmed facts, corrected drafts, or supplied examples. | Continue the current phase and next action. |
 | `yellow` | Teacher is passive, answers are thin, or the assistant is asking too many scattered questions. | Consolidate what is known, then either proceed or ask at most one decision-changing question. |
-| `red` | Core facts are unconfirmed, source status is being blurred, or the assistant is about to generate beyond the allowed grade. | Stop the current output, return to the relevant state, and apply the quality rubric. |
+| `red` | Core facts are unconfirmed, source status is being blurred, or the assistant is about to generate beyond the allowed grade. | Stop the current output, return to the relevant phase, and apply the quality rubric. |
 
 ## Signals To Track
 
@@ -36,10 +38,14 @@ Run a quick health check:
 - `loop_stall`: the same missing item appears across repeated turns without a resolution path.
 - `confirmation_fatigue（确认疲劳）`: the user is following checkpoints with short acknowledgements instead of contributing decisions.
 - `assistant_induced_fatigue`: 系统自身 repeatedly asks for confirmation after the teacher has already selected, corrected, or instructed it to continue.
-- `enough_but_still_asking（已足够但仍追问）`: the teacher has supplied enough stage facts or owns the decision, but the assistant adds another checkpoint.
+- `enough_but_still_asking（已足够但仍追问）`: the teacher has supplied enough phase facts or owns the decision, but the assistant adds another checkpoint.
 - `low_value_detail_probing（低价值细节追问）`: the answer would not change the research direction, method, evidence, outcome, or conclusion boundary.
 - `contextless_artifact`: the assistant is about to generate a substantial artifact without explaining its role in the research backbone.
 - `internal_jargon_leak`: internal grades, states, or checkpoint codes are replacing plain teacher-facing language.
+- `silent_phase_drift`: the assistant changes the research phase because of the latest request without meeting an exit criterion or explaining the move.
+- `lost_resume_point`: a side question is answered but `resume_phase`, the blocker, or the next main-flow action is lost.
+- `goal_assumption`: the assistant starts paper, application, or teaching-improvement output while `current_goal` is `undetermined`.
+- `artifact_led_navigation`: the next phase is chosen because an artifact is easy to generate rather than because the research decision is ready.
 
 ## Interventions
 
@@ -47,7 +53,9 @@ Run a quick health check:
 - Offer 2-3 bounded choices and ask the teacher to select or edit one.
 - Summarize the current decision and proceed if it is already owned; otherwise name the one missing decision.
 - Switch from deep mode to fast mode only after preserving quality warnings.
-- Return to the weakest upstream state when a downstream artifact depends on unconfirmed facts.
+- Return to the weakest upstream phase when a downstream artifact depends on unconfirmed facts.
+- Restore `resume_phase` after a side answer and restate the one next main-flow action.
+- If drift appears, show the compact “当前 / 已确定 / 下一步” navigation note and stop unrelated artifact generation.
 
 黄色状态必须减少问题或停止追加追问. Do not respond to confirmation fatigue with another question set. Use one of these repairs:
 
@@ -60,10 +68,4 @@ Run a quick health check:
 
 ## Output Format
 
-When useful, include a short health note:
-
-```markdown
-Dialogue Health: yellow
-Signal: premature_convergence
-Intervention: Before finalizing the topic, ask for one real teaching or work example.
-```
+Keep the exact health status and signal codes in the Material Passport or maintenance record. Do not routinely show a diagnostic block to the teacher. When intervention is useful, translate it into the ordinary reply, for example: “这个方向先不定稿，还缺一个真实课堂例子；补上后才能判断问题是否值得研究。”

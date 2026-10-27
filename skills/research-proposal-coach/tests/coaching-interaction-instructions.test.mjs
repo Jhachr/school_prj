@@ -39,14 +39,16 @@ test('dialogue health detects assistant-created confirmation fatigue', async () 
   assert.match(health, /黄色[^\n]*(减少|停止)[^\n]*(问题|追问)/);
 });
 
-test('large artifacts require a confirmed research backbone card', async () => {
+test('large artifacts require a backbone and full instruments require evidence and design', async () => {
   const [skill, method, template] = await Promise.all([
     read('SKILL.md'),
     read('modules/method-outcome-design.md'),
     read('templates/research-backbone-card.md'),
   ]);
-  assert.match(skill, /大型产物[^\n]*研究骨架卡/);
+  assert.match(skill, /研究骨架卡[^\n]*大型产物/);
   assert.match(method, /研究骨架卡/);
+  assert.match(method, /Full Research Instrument Gate/);
+  assert.match(method, /evidence_and_design/);
   for (const field of ['真实问题', '核心问题', '改变措施', '判断证据', '预期成果', '结论边界']) {
     assert.match(template, new RegExp(field));
   }
@@ -77,7 +79,7 @@ test('internal quality and source codes are translated for ordinary teacher repl
     read('templates/quality-report.md'),
     read('rules/profile-memory-policy.md'),
   ]);
-  for (const label of ['继续梳理', '可形成阶段材料', '可形成申报结构稿']) {
+  for (const label of ['继续梳理', '可形成阶段材料', '可形成目标结构稿']) {
     assert.match(quality, new RegExp(label));
   }
   assert.match(source, /教师可见[^\n]*自然语言/);

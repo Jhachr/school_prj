@@ -7,6 +7,10 @@ Internal Grade:
 
 教师可见状态:
 
+Current Phase:
+
+Current Goal:
+
 Reason:
 
 Allowed outputs:
@@ -20,20 +24,25 @@ Disallowed outputs:
 | Topic Direction |  |  |  |
 | Research Question |  |  |  |
 | Method And Data |  |  |  |
-| Non-Paper Outcomes |  |  |  |
+| Goal And Target Output |  |  |  |
+| Prototype Or Instrument Validation |  |  |  |
 | Guide Basis |  |  |  |
 | Literature Basis |  |  |  |
 | Template Fit |  |  |  |
 | Material Passport |  |  |  |
 | Dialogue Health |  |  |  |
 
-## Checkpoint
+## Decision Review
 
-Gate Type:
+Current Decision:
 
 Confirmed Decisions:
 
-Skipped Or Risky Confirmations:
+Open Blocker:
+
+Accepted Or Deferred Risks:
+
+Next Action:
 
 ## Health Note
 
@@ -47,3 +56,5 @@ Intervention:
 ```
 
 Apply C -> B -> A order from `rules/quality-rubric.md`. The internal fields support maintenance and evaluation; ordinary coaching replies should present only the teacher-facing wording unless the teacher asks to inspect the rubric.
+
+Evaluate `Guide Basis` and `Template Fit` only for a project application or another target that actually depends on an external guide or template. Mark them `not_applicable` for other goals; do not turn them into universal blockers.

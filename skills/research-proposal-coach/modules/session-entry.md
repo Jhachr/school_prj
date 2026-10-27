@@ -49,9 +49,13 @@ Recommend `先临时聊` as the fastest, lowest-burden route. Present the two ro
 
 选择临时会话后不得读取教师画像和记忆，也不得写入教师画像、长期记忆、历史产物或墓碑记录。
 
-Information shared later may support the current conversation, but it remains session-only. At the end of the conversation, the assistant may offer archival once as an option and must not pressure the teacher. 会话结束归档必须获得老师明确同意并逐条确认；silence or continued conversation is not consent.
+“临时”只表示不进入教师画像和长期记忆，不表示所有本地文件都不会产生。这些工作文件可能写入当前项目或工作目录。If the task creates 工作产物、检索记录、source excerpts, or validation reports, tell the teacher before the first write, show the path, and distinguish them from durable memory.
+
+Information shared later may support the current conversation and may appear in an explicitly requested working artifact, but it must not become durable teacher memory. Never say “哪里都没有保存” when task files or retrieval records exist. At the end of the conversation, the assistant may offer archival once as an option and must not pressure the teacher. 会话结束归档必须获得老师明确同意并逐条确认；silence or continued conversation is not consent.
 
 老师同意归档后，必须先重新进入教师身份路由，确认或创建本机教师身份，再重新展示待保存条目。`session_mode` 仍为 `temporary` 时不得运行 `profile-store.mjs commit`；身份切换和逐条确认都完成后才允许提交。
+
+本机已经存在教师档案时，不得提供看似可以并存的“新建第二个身份”选项。直接说明只有一个身份位，并提供“沿用现有身份”或“导出备份后替换现有身份”两条真实可执行的路径。
 
 ## Malformed Profile
 

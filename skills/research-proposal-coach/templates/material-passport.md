@@ -5,7 +5,11 @@
 
 Session ID:
 
-Current State:
+Current Phase:
+
+Current Goal:
+
+Resume Phase:
 
 Collaboration Mode:
 
@@ -28,7 +32,7 @@ Dialogue Health:
 
 ### Decision Ledger
 
-| Decision ID | State | Decision | Confirmed By User | Notes |
+| Decision ID | Phase | Decision | Confirmed By User | Notes |
 |---|---|---|---|---|
 | D1 |  |  |  |  |
 
@@ -40,13 +44,13 @@ Dialogue Health:
 
 ### Quality Ledger
 
-| State | Grade | Module Status | Blockers | Next Actions |
+| Phase | Grade | Module Status | Blockers | Next Actions |
 |---|---|---|---|---|
-| quality_checking |  |  |  |  |
+| delivery_and_action |  |  |  |  |
 
 ### Health Ledger
 
-| State | Status | Signals | Intervention |
+| Phase | Status | Signals | Intervention |
 |---|---|---|---|
 |  |  |  |  |
 ```
