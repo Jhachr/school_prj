@@ -38,6 +38,28 @@ YYYY-MM-DD-topic.md
 
 当前已进入 Skill 开发阶段，首个 Skill 包位于 `skills/research-proposal-coach/`。它把 0820 客户沟通后的“科研导师/学伴式引导”沉淀为入口指令、阶段契约、质量规则、来源状态、模块 playbook、输出模板和评测维护材料。
 
+#### 命令行安装 research-proposal-coach
+
+安装到 Trae CN：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jhachr/school_prj/main/scripts/install-research-proposal-coach.sh | sh -s -- --target trae
+```
+
+安装到 Codex：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jhachr/school_prj/main/scripts/install-research-proposal-coach.sh | sh -s -- --target codex
+```
+
+脚本使用 Git sparse checkout，只下载 `skills/research-proposal-coach/`。它不会覆盖已经存在的同名 Skill；需要更新时，应先备份或移走旧目录再重新安装。
+
+也可以指定其他安装根目录：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jhachr/school_prj/main/scripts/install-research-proposal-coach.sh | sh -s -- --dest /path/to/skills
+```
+
 ### product-design
 
 用于保存产品设计和 demo 设计材料。
