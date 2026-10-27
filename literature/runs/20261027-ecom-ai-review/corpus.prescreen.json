@@ -1,0 +1,2023 @@
+{
+  "schema_version": "literature-corpus-v1",
+  "generated_at": "2026-10-27T14:45:40.988Z",
+  "exact_overlap_count": 3,
+  "records": [
+    {
+      "record_id": "openalex:W4384464487",
+      "title": "Students’ voices on generative AI: perceptions, benefits, and challenges in higher education",
+      "authors": [
+        "Cecilia Ka Yuk Chan",
+        "Wenjie Hu"
+      ],
+      "year": 2023,
+      "doi": "10.1186/s41239-023-00411-8",
+      "url": "https://doi.org/10.1186/s41239-023-00411-8",
+      "abstract": "Abstract This study explores university students’ perceptions of generative AI (GenAI) technologies, such as ChatGPT, in higher education, focusing on familiarity, their willingness to engage, potential benefits and challenges, and effective integration. A survey of 399 undergraduate and postgraduate students from various disciplines in Hong Kong revealed a generally positive attitude towards GenAI in teaching and learning. Students recognized the potential for personalized learning support, writing and brainstorming assistance, and research and analysis capabilities. However, concerns about accuracy, privacy, ethical issues, and the impact on personal development, career prospects, and societal values were also expressed. According to John Biggs’ 3P model, student perceptions significantly influence learning approaches and outcomes. By understanding students’ perceptions, educators and policymakers can tailor GenAI technologies to address needs and concerns while promoting effective learning outcomes. Insights from this study can inform policy development around the integration of GenAI technologies into higher education. By understanding students’ perceptions and addressing their concerns, policymakers can create well-informed guidelines and strategies for the responsible and effective implementation of GenAI tools, ultimately enhancing teaching and learning experiences in higher education.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4384464487",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4386098991",
+      "title": "Challenges and Opportunities of Generative AI for Higher Education as Explained by ChatGPT",
+      "authors": [
+        "Rosario Michel‐Villarreal",
+        "Eliseo Luis Vilalta-perdomo",
+        "David Ernesto Salinas-Navarro",
+        "Ricardo Thierry-Aguilera",
+        "Flor Silvestre Gerardou"
+      ],
+      "year": 2023,
+      "doi": "10.3390/educsci13090856",
+      "url": "https://doi.org/10.3390/educsci13090856",
+      "abstract": "ChatGPT is revolutionizing the field of higher education by leveraging deep learning models to generate human-like content. However, its integration into academic settings raises concerns regarding academic integrity, plagiarism detection, and the potential impact on critical thinking skills. This article presents a study that adopts a thing ethnography approach to understand ChatGPT’s perspective on the challenges and opportunities it represents for higher education. The research explores the potential benefits and limitations of ChatGPT, as well as mitigation strategies for addressing the identified challenges. Findings emphasize the urgent need for clear policies, guidelines, and frameworks to responsibly integrate ChatGPT in higher education. It also highlights the need for empirical research to understand user experiences and perceptions. The findings provide insights that can guide future research efforts in understanding the implications of ChatGPT and similar Artificial Intelligence (AI) systems in higher education. The study concludes by highlighting the importance of thing ethnography as an innovative approach for engaging with intelligent AI systems and calls for further research to explore best practices and strategies in utilizing Generative AI for educational purposes.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4386098991",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4388108480",
+      "title": "Detection of GPT-4 Generated Text in Higher Education: Combining Academic Judgement and Software to Identify Generative AI Tool Misuse",
+      "authors": [
+        "Mike Perkins",
+        "Jasper Roe",
+        "Darius Postma",
+        "James McGaughran",
+        "Don Hickerson"
+      ],
+      "year": 2023,
+      "doi": "10.1007/s10805-023-09492-6",
+      "url": "https://doi.org/10.1007/s10805-023-09492-6",
+      "abstract": "This study explores the capability of academic staff assisted by the Turnitin Artificial Intelligence (AI) detection tool to identify the use of AI-generated content in university assessments. 22 different experimental submissions were produced using Open AI’s ChatGPT tool, with prompting techniques used to reduce the likelihood of AI detectors identifying AI-generated content. These submissions were marked by 15 academic staff members alongside genuine student submissions. Although the AI detection tool identified 91% of the experimental submissions as containing AI-generated content, only 54.8% of the content was identified as AI-generated, underscoring the challenges of detecting AI content when advanced prompting techniques are used. When academic staff members marked the experimental submissions, only 54.5% were reported to the academic misconduct process, emphasising the need for greater awareness of how the results of AI detectors may be interpreted. Similar performance in grades was obtained between student submissions and AI-generated content (AI mean grade: 52.3, Student mean grade: 54.4), showing the capabilities of AI tools in producing human-like responses in real-life assessment situations. Recommendations include adjusting the overall strategies for assessing university students in light of the availability of new Generative AI tools. This may include reducing the overall reliance on assessments where AI tools may be used to mimic human writing, or by using AI-inclusive assessments. Comprehensive training must be provided for both academic staff and students so that academic integrity may be preserved.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4388108480",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4392658848",
+      "title": "Generative AI in Higher Education",
+      "authors": [
+        "Cecilia Ka Yuk Chan",
+        "Tom Colloton"
+      ],
+      "year": 2024,
+      "doi": "10.4324/9781003459026",
+      "url": "https://doi.org/10.4324/9781003459026",
+      "abstract": "Chan and Colloton’s book is one of the first to provide a comprehensive examination of the use and impact of ChatGPT and Generative AI (GenAI) in higher education. Since November 2022, every conversation in higher education has involved ChatGPT and its impact on all aspects of teaching and learning. The book explores the necessity of AI literacy tailored to professional contexts, assess the strengths and weaknesses of incorporating ChatGPT in curriculum design, and delve into the transformation of assessment methods in the GenAI era. The authors introduce the Six Assessment Redesign Pivotal Strategies (SARPS) and an AI Assessment Integration Framework, encouraging a learner-centric assessment model. The necessity for well-crafted AI educational policies is explored, as well as a blueprint for policy formulation in academic institutions. Technical enthusiasts are catered to with a deep dive into the mechanics behind GenAI, from the history of neural networks to the latest advances and applications of GenAI technologies. With an eye on the future of AI in education, this book will appeal to educators, students and scholars interested in the wider societal implications and the transformative role of GenAI in pedagogy and research.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4392658848",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4393138990",
+      "title": "AI and its implications for research in higher education: a critical dialogue",
+      "authors": [
+        "Russell J. Butson",
+        "Rachel Spronken‐Smith"
+      ],
+      "year": 2024,
+      "doi": "10.1080/07294360.2023.2280200",
+      "url": "https://doi.org/10.1080/07294360.2023.2280200",
+      "abstract": "This article weighs in on the developing discourse on AI's role in higher education research through a structured dialogue between two diametrically opposed academics.Utilising a dialectical framework, the discourse transcends surface-level debates to grapple with ethical, methodological, and epistemological questions that are often overlooked, but are paramount to the field's integrity.Russell advocates for AI as an indispensable tool for academic research, while Rachel raises critical questions about AI's potential to undermine the very essence of academic inquiry.Through this disputation, the article reveals the complex tensions between efficiency and ethical concerns, between innovation and integrity.Rather than offer facile solutions, it exposes the intricate challenges and invites the reader to consider the broader implications for academic research practice.The article serves as a catalyst for a more rigorous, nuanced dialogue, aiming to shift the discourse from the technological to the ethical and epistemological.It is an imperative read for anyone committed to understanding the transformational potential and pitfalls of AI in higher education research.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4393138990",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4393149408",
+      "title": "Drivers of generative AI adoption in higher education through the lens of the Theory of Planned Behaviour",
+      "authors": [
+        "Stanislav Hristov Ivanov",
+        "Mohammad S.A. Soliman",
+        "Aarni Tuomi",
+        "Nasser Alhamar Alkathiri",
+        "Alamir N. Al-Alawi"
+      ],
+      "year": 2024,
+      "doi": "10.1016/j.techsoc.2024.102521",
+      "url": "https://doi.org/10.1016/j.techsoc.2024.102521",
+      "abstract": "Drawing on the Theory of Planned Behaviour (TPB), this study investigates the relationship between the perceived benefits, strengths, weaknesses, and risks of generative AI (GenAI) tools and the fundamental factors of the TPB model (i.e., attitude, subjective norms, and perceived behavioural control). The study also investigates the structural association between the TPB variables and intention to use GenAI tools, and how the latter might affect the actual usage of GenAI tools in higher education. The paper adopts a quantitative approach, relying on an anonymous self-administered online questionnaire to gather primary data from 130 lecturers and 168 students in higher education institutions (HEIs) in several countries, and PLS-SEM for data analysis. The results indicate that although lecturers' and students' perceptions of the risks and weaknesses of GenAI tools differ, the perceived strengths and advantages of GenAI technologies have a significant and positive impact on their attitudes, subjective norms, and perceived behavioural control. The TPB core variables positively and significantly impact lecturers' and students’ intentions to use GenAI tools, which in turn significantly and positively impact their adoption of such tools. This paper advances theory by outlining the factors shaping the adoption of GenAI technologies in HEIs. It provides stakeholders with a variety of managerial and policy implications for how to formulate suitable rules and regulations to utilise the advantages of these tools while mitigating the impacts of their disadvantages. Limitations and future research opportunities are also outlined.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4393149408",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4399287634",
+      "title": "Analysing the Impact of Generative AI in Arts Education: A Cross-Disciplinary Perspective of Educators and Students in Higher Education",
+      "authors": [
+        "Sara Sáez Velasco",
+        "Mario Alaguero",
+        "Vanesa Delgado Benito",
+        "Sonia Rodríguez Cano"
+      ],
+      "year": 2024,
+      "doi": "10.3390/informatics11020037",
+      "url": "https://doi.org/10.3390/informatics11020037",
+      "abstract": "Generative AI refers specifically to a class of Artificial Intelligence models that use existing data to create new content that reflects the underlying patterns of real-world data. This contribution presents a study that aims to show what the current perception of arts educators and students of arts education is with regard to generative Artificial Intelligence. It is a qualitative research study using focus groups as a data collection technique in order to obtain an overview of the participating subjects. The research design consists of two phases: (1) generation of illustrations from prompts by students, professionals and a generative AI tool; and (2) focus groups with students (N = 5) and educators (N = 5) of artistic education. In general, the perception of educators and students coincides in the usefulness of generative AI as a tool to support the generation of illustrations. However, they agree that the human factor cannot be replaced by generative AI. The results obtained allow us to conclude that generative AI can be used as a motivating educational strategy for arts education.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4399287634",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4399948582",
+      "title": "Perceptions and usage of AI chatbots among students in higher education across genders, academic levels and fields of study",
+      "authors": [
+        "Christian Stöhr",
+        "Amy Wanyu Ou",
+        "Hans Malmström"
+      ],
+      "year": 2024,
+      "doi": "10.1016/j.caeai.2024.100259",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2666920X24000626/pdf",
+      "abstract": "AI chatbots have ignited discussions and controversies about their impact on teaching and learning practices in higher education. This study explores students’ adoption and perceptions of ChatGPT and other AI chatbots in higher education. Based on survey data from a large sample (n=5,894) across Swedish universities, the study employs descriptive statistical methods to analyze usage, attitudes, and concerns, and inferential statistics to identify relations between attitudes and usage and background variables (gender, academic level, and field of study). The results reveal broad awareness and use of ChatGPT among students, but not of other AI chatbots. More than half of the students expressed positive attitudes towards the use of chatbots in education, but almost as many expressed concerns about future use. Statistically significant differences were found across all examined grouping variables, particularly between genders and fields of study. Female students and students from the humanities and medicine consistently expressed more negative attitudes and concerns about AI's role in learning and assessment, while males and technology and engineering students showed higher usage and optimism. These findings not only validate the continued relevance of student backgrounds as a determinant of technology adoption but also expose several challenges and considerations surrounding AI and chatbot usage in education. The study supports the development of local solutions to AI in education tailored to student attributes and needs, and it provides insights for developers, educators, and policymakers.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4399948582",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4401899222",
+      "title": "Generative AI in higher education: Perspectives of students, educators and administrators",
+      "authors": [
+        "Sangeetha Kutty",
+        "Ritesh Chugh",
+        "Pethigamage Perera",
+        "Arjun Neupane",
+        "Meena Jha",
+        "Lily Li",
+        "Wijendra Gunathilake",
+        "Nimeshia Chamini Perera"
+      ],
+      "year": 2024,
+      "doi": "10.37074/jalt.2024.7.2.27",
+      "url": "https://doi.org/10.37074/jalt.2024.7.2.27",
+      "abstract": "With Generative AI’s (GenAI) rapid development and the ability to generate sophisticated human-like text, it has evolved as a powerful technology in various domains. However, its application in the education domain was initially met with resistance due to concerns about disrupting traditional learning and assessment methods, raising questions about academic integrity, and provoking ethical dilemmas related to data privacy and bias. Many schools, higher educational institutions, and governments initially chose to ban the use of GenAI tools due to the disruptions they caused to learning and teaching practices, only to rescind their bans later. This study conducts a literature review to investigate GenAI tools from the perspectives of key stakeholders in the educational domain—students, educators, and administrators—highlighting their benefits while identifying challenges and limitations. The review found several benefits of using GenAI, such as personalised learning, immediate support, language support, and reduced administrative workload. This paper also provides usage guidelines for stakeholders and outlines future research areas to support GenAI adoption in higher education. Our findings indicate that most studies involving students had a positive view of using GenAI. There is a noticeable gap in research focusing on administrators, highlighting the need for further investigation.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4401899222",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4403282595",
+      "title": "Evaluating AI Educational Interventions: Impact on Student Satisfaction and Performance in Higher Education Islamic Studies",
+      "authors": [
+        "Sami Ghazzai Alsulami"
+      ],
+      "year": 2024,
+      "doi": "10.57239/pjlss-2024-22.2.00564",
+      "url": "https://doi.org/10.57239/pjlss-2024-22.2.00564",
+      "abstract": "The objective of this study is document empirical evidence with respect to the impact of AI success factors on student performance.The study employs a sample of 246 students at the college of Quran and college of Noble Hadith and Islamic studies at the Islamic University of Madinah.The study adopts the information systems success model as its theoretical framework where the success factors of system quality and information quality are hypothesized to drive positively student performance via the intermediate variables of student evaluation of system usefulness and student satisfaction.The study is uniquely tailored to the Islamic University of Madinah, focusing on the AI-powered Quran reader head (Maqraa), which incorporates multiple readers and dialects.The Islamic University of Madinah operates a massive AI-powered Quran reader head (Maqraa).Such reader head employs intelligence-enabled tools to the study of Quran comprising recitation with both multiple readers and multiple dialects.The study results show that system quality and information quality drive both student evaluation of system usefulness and student satisfaction of the system.Moreover, the study reports that student evaluation of system usefulness and student satisfaction with the system tend to jointly explain student academic performance.The use of adjusted R squared values (41.6% and 43.5%) to measure the explanatory power of the model demonstrates the statistical significance and robustness of the findings.The study results further empirically support the ISSM claim that the interdependence between student evaluation of system usefulness and student satisfaction of the system is non-trivial with positive and well-pronounced impact on student performance.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4403282595",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4403637141",
+      "title": "Addressing student non-compliance in AI use declarations: implications for academic integrity and assessment in higher education",
+      "authors": [
+        "Chahna Gonsalves"
+      ],
+      "year": 2024,
+      "doi": "10.1080/02602938.2024.2415654",
+      "url": "https://doi.org/10.1080/02602938.2024.2415654",
+      "abstract": "This study examines the factors driving student non-compliance with AI use declarations in academic assessments at King’s Business School, where 74% of students failed to declare AI usage despite declaration being a requirement of a mandatory coursework coversheet. Utilising the Theory of Planned Behaviour (TPB) as a framework, the research combines service evaluation survey data and semi-structured interviews to explore how attitudes, subjective norms, and perceived behavioural control influence compliance. Findings reveal that fear of academic repercussions, ambiguous guidelines, inconsistent enforcement, and peer influence are key barriers to AI use declaration. These factors complicate the declaration process, undermine transparency, and challenge academic integrity. The study extends the TPB model by highlighting the ethical and practical dilemmas posed by generative AI, which blur traditional norms of academic integrity. This research offers critical insights for policymakers, suggesting that clear, consistent, and trust-based policies are crucial in fostering ethical AI use. The findings underscore the importance of transparent communication and supportive institutional cultures to improve compliance. Ultimately, this study informs policy development by evaluating the effectiveness of declaration mechanisms and providing actionable recommendations to promote a culture of academic integrity in the evolving landscape of AI technologies.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4403637141",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4404001844",
+      "title": "The Impact of Generative AI on Student Engagement and Ethics in Higher Education",
+      "authors": [
+        "Ahmed Al Zaidy"
+      ],
+      "year": 2024,
+      "doi": "10.70715/jitcai.2024.v1.i1.004",
+      "url": "https://doi.org/10.70715/jitcai.2024.v1.i1.004",
+      "abstract": "The rapid adoption of Artificial Intelligence (AI) in higher education is reshaping students’ learning experiences, with tools such as ChatGPT, Grammarly, and Microsoft Copilot becoming integral to academic work. This study, informed by data from the Digital Education Council Global AI Student Survey 2024, examines the impact of AI on students, focusing on usage patterns, trust in AI-generated content, ethical awareness, and expectations for institutional support. Findings indicate that 86% of students use AI for various academic tasks, with a majority expressing concerns about trust, fairness, and over-reliance on AI. While students value AI’s benefits, only 5% are fully aware of institutional guidelines on AI use, and 72% desire more AI literacy courses, reflecting a significant need for comprehensive support in navigating AI responsibly. The study underscores the importance of clear ethical guidelines, faculty training, and student involvement in AI policy formation to foster responsible AI use and preserve academic integrity. These insights offer valuable guidance for educators and policymakers seeking to integrate AI ethically and effectively into higher education.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4404001844",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4405787859",
+      "title": "面向计算机专业的可信人工智能教学设计",
+      "authors": [
+        "亚 王"
+      ],
+      "year": 2024,
+      "doi": "10.33142/fme.v5i3.13080",
+      "url": "https://doi.org/10.33142/fme.v5i3.13080",
+      "abstract": "我国当前正处于人工智能技术快速发展的关键时期，这一技术正在深刻地改变着我们的生活和工作方式。作为计算机专业的学生，我们需要深入了解我国当前人工智能发展的现状和面临的挑战。我国人工智能技术已经取得了一系列重大进展，涵盖了从理论研究到技术应用的各个方面。然而，我国人工智能发展也面临着一系列挑战，如人才短缺、技术标准不足、数据安全和隐私保护等问题。同时，人工智能技术的不断普及和应用也带来了一系列伦理、法律和社会问题，亟待解决和规范。因此，我们需要深入了解人工智能技术的发展趋势和面临的挑战，积极参与到人工智能技术的研究和应用中，推动人工智能技术的可持续发展，为构建数字化、智能化的社会作出贡献。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4405787859",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4406199489",
+      "title": "Generative AI in Higher Education: Balancing Innovation and Integrity",
+      "authors": [
+        "Nigel Francis",
+        "Sue Jones",
+        "David P. Smith"
+      ],
+      "year": 2025,
+      "doi": "10.3389/bjbs.2024.14048",
+      "url": "https://doi.org/10.3389/bjbs.2024.14048",
+      "abstract": "Generative Artificial Intelligence (GenAI) is rapidly transforming the landscape of higher education, offering novel opportunities for personalised learning and innovative assessment methods. This paper explores the dual-edged nature of GenAI's integration into educational practices, focusing on both its potential to enhance student engagement and learning outcomes and the significant challenges it poses to academic integrity and equity. Through a comprehensive review of current literature, we examine the implications of GenAI on assessment practices, highlighting the need for robust ethical frameworks to guide its use. Our analysis is framed within pedagogical theories, including social constructivism and competency-based learning, highlighting the importance of balancing human expertise and AI capabilities. We also address broader ethical concerns associated with GenAI, such as the risks of bias, the digital divide, and the environmental impact of AI technologies. This paper argues that while GenAI can provide substantial benefits in terms of automation and efficiency, its integration must be managed with care to avoid undermining the authenticity of student work and exacerbating existing inequalities. Finally, we propose a set of recommendations for educational institutions, including developing GenAI literacy programmes, revising assessment designs to incorporate critical thinking and creativity, and establishing transparent policies that ensure fairness and accountability in GenAI use. By fostering a responsible approach to GenAI, higher education can harness its potential while safeguarding the core values of academic integrity and inclusive education.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4406199489",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4407594156",
+      "title": "AI-Based Early Prediction and Intervention for Student Academic Performance in Higher Education",
+      "authors": [
+        "Maram Khamis Al-Muharrami",
+        "Fatema Said Al-Sharqi",
+        "Al-Zahraa Khalid Al-Rumhi",
+        "Shamsa Said Al-Mamari",
+        "Ijaz Muhammad Khan"
+      ],
+      "year": 2025,
+      "doi": "10.5121/ijaia.2025.16101",
+      "url": "https://doi.org/10.5121/ijaia.2025.16101",
+      "abstract": "Accurately identifying at-risk students in higher education is crucial for timely interventions. This study presents an AI-based solution for predicting student performance using machine learning classifiers. A dataset of 208 student records from the past two years was preprocessed, and key predictors such as midterm grades, previous semester GPA, and cumulative GPA were selected using information gain evaluation. Multiple classifiers, including Support Vector Machine (SVM), Decision Tree, Naive Bayes, Artificial Neural Networks (ANN), and k-Nearest Neighbors (k-NN), were evaluated through 10-fold crossvalidation. SVM demonstrated the highest performance with an accuracy of 85.1% and an F2 score of 94.0%, effectively identifying students scoring below 65% (GPA < 2.0). The model was implemented in a desktop application for educators, providing both class-level and individual-level predictions. This userfriendly tool enables instructors to monitor performance, predict outcomes, and implement timely interventions to support struggling students. The study highlights the effectiveness of machine learning in enhancing academic performance monitoring and offers a scalable approach for AI-driven educational tools.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4407594156",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4408041915",
+      "title": "Critical Analysis of the Impact of AI in Higher Education and Its Consequences on Students",
+      "authors": [
+        "Sheren Shafei"
+      ],
+      "year": 2025,
+      "doi": "10.52783/jisem.v10i12s.1943",
+      "url": "https://doi.org/10.52783/jisem.v10i12s.1943",
+      "abstract": "Introduction: The introduction of Artificial Intelligence (AI) in the education sector has sparked a lot of controversy opinions regarding its effectiveness in shaping student learning process and systematic mental growth. While AI has immense potential to transform learning experiences by providing personalised learning, immediate feedback, and access to enormous information, but fears have also been aired that overreliance on artificial intelligence will stifle the problem-solving and critical thinking capabilities of students by providing pre-programmed answers instead of encouraging independent thoughts. Objectives: The purpose of this paper is to rigorously explore the impacts of AI on higher education, with an inspection of how it impacts learning processes, intellectual growth, and the further expectations from students, academics and universities. This research aims to develop AI tools and programs through mixed approaches for the higher education environment that function as collaborative partners rather than just tools. The goal is to establish guiding principles and frameworks for a creative AI practice, incorporating computational tools, benchmarking of successful experiments, and their future applications. The current focus is on presenting early-stage research findings. Methods: Given this research focus on impact of AI in higher education, overviewing several studies, the backgrounds, and research findings achieved through exploratory research to gain a deeper understanding of a topic, develop practical guidelines, and develop more focused research questions for future investigation. Results: By investigating different studies, the examined strategies can be consolidated to address the promise of ethical AI implementation in education and in a manner to enhance and sustain cognitive capabilities among students and other stakeholders while offsetting risks associated with over-reliance and degrading of the human capacity. Conclusions: By embracing AI's potential while upholding core educational values, institutions can ensure AI enhances the learning experience. Successful implementation requires a balanced approach, developing adaptable and culturally sensitive AI tools while investing in teacher training for effective human-AI collaboration. This thoughtful approach considers students' diverse backgrounds and learning preferences, along with the vital role of educators, maintaining human agency, critical thinking, and ethical considerations as central to education. AI in higher education offers significant potential benefits, but responsible integration is key to maximising its positive impact. This approach ensures AI serves educational purposes effectively.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4408041915",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4409947039",
+      "title": "人工智能赋能下程序设计类课程教学模式创新",
+      "authors": [
+        "琴 徐",
+        "宇龙 乔",
+        "梓杏 吴",
+        "迁 张"
+      ],
+      "year": 2025,
+      "doi": "10.70693/cjst.v1i1.870",
+      "url": "https://doi.org/10.70693/cjst.v1i1.870",
+      "abstract": "本研究探讨了人工智能（AI）技术在程序设计课程教学中的应用及其创新路径。随着生成式AI的快速发展，程序设计教育面临深刻变革。通过对现有研究的综合分析，发现AI技术可有效赋能程序设计教学的多个维度，包括教学内容更新、教学方法创新和学习评价优化。研究表明，将AI融入程序设计教学可提高学生的学习动机和学习效果，促进高阶思维能力培养。基于“人机协作”理念，本研究提出了AI赋能程序设计教学的整合框架，涵盖课前预习、课堂互动、课后巩固和项目实践四个环节，并强调了任务驱动和个性化学习的重要性。同时，针对可能出现的技术依赖与思维能力弱化风险，提出相应的防控措施和平衡策略，确保学生的综合能力和基础技能得到充分发展。本研究为程序设计课程教学改革提供了理论依据和实践指导，对培养适应智能时代的创新型编程人才具有重要意义。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4409947039",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        },
+        {
+          "source": "openalex",
+          "source_record_id": "W4409947039",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4411302546",
+      "title": "人工智能赋能高等教育教学：应用图景、生态变革与伦理治理",
+      "authors": [
+        "姚毓忠"
+      ],
+      "year": 2025,
+      "doi": "10.6914/tpss.070305",
+      "url": "https://doi.org/10.6914/tpss.070305",
+      "abstract": "人工智能正以前所未有的深度重塑高等教育教学生态。从个性化学习、智能评估、交互式教学到内容生成和学生支持服务，AI已成为教学创新的重要引擎。本文系统梳理AI在教学各环节的典型应用场景，分析其对教学范式、师生角色、学习评价与教育公平的深层影响，揭示AI在推动能力导向教学、促进教育公平中的潜力。同时，文章也批判性反思了学术诚信、数据安全、算法偏见和数字鸿沟等风险，并提出国家与高校应构建以伦理为先、系统协同的AI战略规划。结论指出，AI赋能高教必须坚持“以人为本”，在技术跃迁中守护教育的核心价值。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4411302546",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        },
+        {
+          "source": "openalex",
+          "source_record_id": "W4411302546",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4411834504",
+      "title": "人工智能对医学科研范式的重构",
+      "authors": [
+        "承实 高",
+        "元骏 程"
+      ],
+      "year": 2025,
+      "doi": "10.61189/669152licoid",
+      "url": "https://doi.org/10.61189/669152licoid",
+      "abstract": "21世纪以来，人工智能（artificial intelligence，AI）正在以前所未有的深度介入医学科研，推动其从“假设—验证”范式向“数据驱动—生成式”的认知结构跃迁。借助深度学习与生成式预训练模型，AI不仅正在文献综述、图像识别、临床试验设计、药物开发等方面重塑科研流程，更对医学研究的哲学基础、可解释性、科研伦理与评价机制提出了挑战。本文系统分析了AI在医学科研中从工具到协作者、从加速器到范式建构者的多重角色变迁，提出“可信、透明、可控”的AI框架应成为未来科研范式重构的制度基石。通过梳理AI介入下的典型案例与趋势，强调人机协同将成为医学知识生产的新常态，并呼吁构建跨学科共识机制，以确保医学科研的科学性、伦理性与创新性的协同进化。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4411834504",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4413296364",
+      "title": "财务机器人对中职会计专业教学的影响及对策探究",
+      "authors": [
+        "莫萍",
+        "谭鉴波"
+      ],
+      "year": 2025,
+      "doi": "10.62836/jer.v3n8.0613",
+      "url": "https://doi.org/10.62836/jer.v3n8.0613",
+      "abstract": "莫萍，谭鉴波 广西玉林市第一职业中等专业学校，广西玉林 摘要：数智化时代，财务机器人的出现冲击着中职会计教学，基础核算岗位人员面临被替代风险，中职学校应当主动应对变革，以数智化需求为导向重构人才培养目标，实施教学模式改革，将“1+X财务机器人应用职业技能等级证书”标准有机融合课程体系。通过增设智能财税、RPA流程自动化、人工智能及大数据等前沿课程，加强师资队伍建设，系统提升教师数字化教学能力。经此改革，学生可掌握智能会计工具，增强从业适应性与就业竞争力。中职会计专业唯有推进系统化改革，方能培养出“智能+会计”复合型人才，实现专业的可持续发展。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4413296364",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4414582105",
+      "title": "Rethinking Education in the Age of Generative AI: Cognitive Offloading, Assessment Reform, and Institutional Adaptation",
+      "authors": [
+        "Nikhil Jain",
+        "M. C. Kiran"
+      ],
+      "year": 2025,
+      "doi": "10.35542/osf.io/zakwe_v1",
+      "url": "https://doi.org/10.35542/osf.io/zakwe_v1",
+      "abstract": "As generative AI tools reshape how students think, write, and solve problems, education systemsare faced with a pivotal choice: restrict or reform. This conceptual paper argues for reformthrough three interconnected lenses—pedagogical transformation, curriculum redesign, andinstitutional adaptation, grounded in the theories of cognitive offloading and critical pedagogy.Drawing on both historical parallels and contemporary research, we demonstrate that generativeAI, when thoughtfully integrated, can support rather than undermine learning, creativity, andstudent agency. The paper critiques policy responses centered on bans and academic integrity,and instead proposes inclusive, ethical, and process-centered uses of AI in the classroom. Keyrecommendations include embedding critical AI literacy across curricula, redesigningassessments to reward intellectual effort, and supporting educators through policy innovation andprofessional development. We conclude by outlining future research directions to betterunderstand how generative AI is reshaping cognitive development, student learning, and theinstitutional structures of education.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4414582105",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4414710909",
+      "title": "Critical Integration of Generative AI in Higher Education: Cognitive, Pedagogical and Ethical Perspectives",
+      "authors": [
+        "Elycheikh Ahmedtelba",
+        "Milošević Svetlana",
+        "Polina Magda"
+      ],
+      "year": 2024,
+      "doi": "10.34257/ljrhssvol25is13pg1",
+      "url": "https://doi.org/10.34257/ljrhssvol25is13pg1",
+      "abstract": "Generative AI is rapidly transforming higher education by reshaping cognitive processes, learning behaviors, assessment practices and instructional approaches. This study examines the impact of AI on student learning through a combination of multi-institutional evidence and a quasi-experimental assessment in an undergraduate writing course. Three central dimensions are analyzed: cognitive offloading, critical versus naïve adoption of AI, and emerging learning patterns including normalization, confirmation bias and the erosion of scaffolding. Findings reveal that AI tools can enhance grammar accuracy, research efficiency, and factual recall, while also posing risks to creativity, critical thinking, independent revision and metacognitive engagement. The study highlights the importance of structured, critically mediated integration of AI into curricula to maximize learning benefits, uphold academic integrity and support long-term skill development",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4414710909",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4414791584",
+      "title": "Rethinking Education in the Age of Generative AI: Cognitive Offloading, Assessment Reform, and Institutional Adaptation",
+      "authors": [
+        "Nikhil Jain",
+        "Meghana Kiran"
+      ],
+      "year": 2025,
+      "doi": "10.35542/osf.io/zakwe_v2",
+      "url": "https://doi.org/10.35542/osf.io/zakwe_v2",
+      "abstract": "As generative AI tools reshape how students think, write, and solve problems, education systemsare faced with a pivotal choice: restrict or reform. This conceptual paper argues for reformthrough three interconnected lenses—pedagogical transformation, curriculum redesign, andinstitutional adaptation, grounded in the theories of cognitive offloading and critical pedagogy.Drawing on both historical parallels and contemporary research, we demonstrate that generativeAI, when thoughtfully integrated, can support rather than undermine learning, creativity, andstudent agency. The paper critiques policy responses centered on bans and academic integrity,and instead proposes inclusive, ethical, and process-centered uses of AI in the classroom. Keyrecommendations include embedding critical AI literacy across curricula, redesigningassessments to reward intellectual effort, and supporting educators through policy innovation andprofessional development. We conclude by outlining future research directions to betterunderstand how generative AI is reshaping cognitive development, student learning, and theinstitutional structures of education.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4414791584",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4415373608",
+      "title": "人工智能时代高校学生思政工作的双重变革：学生科管理与一线辅导员实践的融合与前瞻",
+      "authors": [
+        "兰金辉",
+        "邱文君"
+      ],
+      "year": 2025,
+      "doi": "10.63887/ssrp.2025.1.7.47",
+      "url": "https://doi.org/10.63887/ssrp.2025.1.7.47",
+      "abstract": "随着人工智能（AI）技术，特别是生成式AI的深度发展与普及，高等教育领域正迎来一场深刻的范式革命。本文立足于高校学生科负责人与带班辅导员的双重工作视角，旨在探讨人工智能如何系统性地赋能并重塑学生管理与思想政治教育工作。文章首先剖析了当前学生工作在宏观管理（学生科）与微观实践（辅导员）两个层面面临的现实困境与挑战。其次，深入论证了人工智能作为变革催化剂，在提升管理效率、实现精准育人方面的巨大潜力，并展示了其在行政管理、教学支持、心理健康等领域的具体应用路径。最后，文章从技术伦理、数据安全及教育者角色重塑等维度进行了高阶反思，展望了未来“智慧学工”的发展方向，旨在为新时代高校学生思政工作的创新发展提供理论参考与实践指引。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4415373608",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4415820388",
+      "title": "Assessing Students' Satisfaction with AI Tools in Higher Education",
+      "authors": [
+        "Siti Haslini Zakaria",
+        "Nik Nur Amiza Nik Ismail",
+        "Mardhiyah Ismail",
+        "Nurul Hafiza Ismail",
+        "Fadila Normahia Abd Manaf"
+      ],
+      "year": 2025,
+      "doi": "10.47772/ijriss.2025.910000022",
+      "url": "https://doi.org/10.47772/ijriss.2025.910000022",
+      "abstract": "Nowadays, AI-powered applications are increasingly integrated into academic fields, and numerous studies have discussed the acceptance of this technology among higher education students. With AI worldwide establishment, empirical research remains necessary to evaluate user satisfaction, effectiveness, and long-term sustainability. Since cultural, social, and economic factors influence how AI is implemented in education, the level of acceptance of AI tools among students also may vary from one country to another. This study aims to explore university students' satisfaction with AI tools in the context of higher education in Malaysia, specifically in Kelantan. This study examines how satisfied students are with AI technologies used for their learning, with an emphasis on emotional well-being, content quality, and perceived utility of the tools. Using a cross-sectional approach, 105 undergraduate students from various faculties at Universiti Teknologi MARA (UiTM) Kelantan were selected to participate in the study. Students were given a self-administered questionnaire using Google Forms to obtain the data. Simple random sampling was used in the study, and the data analysis was conducted using Multiple Linear Regression (MLR). The findings showed that the only significant variables influencing students' satisfaction with AI tools in their education are emotional well-being and perceived utility, while the quality of the content is not statistically significant. The findings show that how students feel when using AI tools together with their perception of the tool’s benefit is crucial despite the content itself. The results indicate that, to drive user satisfaction and long-term usage of this technology, developers may prioritize usability, perceived benefits, and emotional engagement rather than solely enhancing algorithmic reliability or refining instructional content.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4415820388",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4415907838",
+      "title": "促进初中学生思维发展的英语阅读教学活动探究",
+      "authors": [
+        "刘晓艳"
+      ],
+      "year": 2025,
+      "doi": "10.63887/je.2025.1.8.22",
+      "url": "https://doi.org/10.63887/je.2025.1.8.22",
+      "abstract": "本文聚焦初中生英语阅读教学与思维发展关系，系统分析当前初中学生英语阅读中逻辑性、批判性和创造性思维薄弱的现状，揭示教学中重语言知识轻思维训练、阅读材料单一、任务设计缺乏梯度等制约因素。基于核心素养理念，提出构建以思维发展为导向的教学模式，倡导整合记叙文、说明文、议论文等多元文本资源，设计由浅层理解到深层分析的层级化阅读任务。通过小组合作探究、问题链引导、辩论式讨论等活动激发思维碰撞，结合思维导图技术帮助学生梳理信息结构、建构知识网络。实践表明，该模式有效提升学生信息整合、推理判断与批判评价能力，显著促进逻辑思维与高阶思维发展。本文为深化初中英语阅读教学改革、提升学生综合思维品质、培育适应未来发展的创新型人才提供理论支持与实践路径。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4415907838",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4416058512",
+      "title": "人工智能技术下的高职跨境电商专业课程改革探究",
+      "authors": [
+        "任燕"
+      ],
+      "year": 2025,
+      "doi": "10.63887/etr.2025.1.6.57",
+      "url": "https://doi.org/10.63887/etr.2025.1.6.57",
+      "abstract": "本文针对人工智能技术驱动下跨境电商行业的变革需求，结合国家教育数字化战略导向，探究高职跨境电商专业课程改革路径。通过分析了现有课程体系与企业实际需求的脱节问题，进而提出以人工智能深度融入课程内容、教学与评价全过程的改革模式，构建“N+X+AI-in-CBEC”模块化课程体系，建立动态更新机制与产教融合生态，为高职跨境电商专业高质量发展提供理论参考与实践路径。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4416058512",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4416058530",
+      "title": "基于“产教融合”理念的Photoshop教学改革与实践探索",
+      "authors": [
+        "李晓凡",
+        "李默"
+      ],
+      "year": 2025,
+      "doi": "10.63887/etr.2025.1.6.52",
+      "url": "https://doi.org/10.63887/etr.2025.1.6.52",
+      "abstract": "Adobe Photoshop作为平面设计、广播电视编导、数字媒体等领域的核心工具，其课程教学质量直接关乎设计人才的职业竞争力。当前，国内多数院校的Photoshop课程仍普遍存在教学方法陈旧、教学内容与行业实践脱节、忽视学生个体差异等问题，导致教学成效不佳，学生缺乏创新能力的问题较为突出。本文以“产教融合”为核心理念，对Photoshop的教学进行了系统性改革与实践。改革确立了三大目标：精准对接岗位需求、全面提升学生综合职业素养、有机融入课程思政元素。通过创新实施“三段式”课堂教学模式、深化多元教学方法融合、建立过程性与终结性相结合的多元评价体系、加强教学资源与环境建设，形成了一套可操作的改革方案。实践表明，本改革有效激发了学生的学习主动性与创造性，显著提升了学生的技术能力、设计思维与团队协作精神，为培养契合行业需求的复合型、创新型设计人才提供了经过验证的有效路径。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4416058530",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4416717095",
+      "title": "The SAGE framework for developing critical thinking and responsible generative AI use in cybersecurity education",
+      "authors": [
+        "Mahmoud Elkhodr",
+        "Ergun Gide"
+      ],
+      "year": 2025,
+      "doi": "10.1007/s44217-025-00935-3",
+      "url": "https://doi.org/10.1007/s44217-025-00935-3",
+      "abstract": "The rapid advancement of Generative Artificial Intelligence (GenAI) has introduced new opportunities for transforming higher education, particularly in fields requiring critical analysis and regulatory compliance, such as cybersecurity management. This study introduces the Structured AI Guided Education (SAGE) framework, which integrates generative AI responsibly to cultivate critical thinking in cybersecurity education and offers systematic, ready-to-adopt implementation blueprints. The implementation strategy followed a two-stage approach, embedding GenAI within tutorial exercises and assessment tasks. Tutorials enabled students to generate, critique, and refine AI-assisted cybersecurity policies, whilst assessments required them to apply AI-generated outputs within real-world industry scenarios, ensuring alignment with academic standards and regulatory requirements. The research provides practical blueprints for curriculum design, tutorial structure, and assessment methodologies that enable educators to leverage GenAI whilst maintaining academic rigour and developing critical thinking competencies. Findings indicate that AI-assisted learning significantly enhanced students’ ability to evaluate security policies, refine risk assessments, and bridge theoretical knowledge with practical application. Student reflections and instructor observations revealed improvements in analytical engagement, yet challenges emerged regarding AI dependence, variability in AI literacy, and contextual limitations of AI-generated content. Through structured intervention and research-driven refinement, students experienced AI’s strengths as a generative tool while recognising the importance of human oversight and critical evaluation. This study contributes a replicable pedagogical model that addresses practical challenges of GenAI integration. It also offers insights into best practices for responsible AI use in cybersecurity education, emphasising the necessity of balancing automation with expert judgment to cultivate industry-ready professionals.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4416717095",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4416760528",
+      "title": "大智移云背景下的高校财务管理课程教学改革研究",
+      "authors": [
+        "然 张",
+        "敬佳佳"
+      ],
+      "year": 2025,
+      "doi": "10.37155/2717-5561-0605-26",
+      "url": "https://doi.org/10.37155/2717-5561-0605-26",
+      "abstract": "随着科技的进步以及时代的发展，各类行业都发生了显著的变化。“大智移云”技术的应用提升了财务 管理效率以及财务管理方式的集约化与创新，促使财务管理工作实现了转型，也就要求财务管理和高校财务管理教育 与时俱进，改进财务管理教育课程设置，迎合市场和行业的需求。“大智移云”技术促进了财务管理企业提出新的财 务管理需求，在这种情况下，我们有研究进行讨论关于高校财务管理教育改进的科学性，以保证符合当今社会对于财 务管理较高水准的要求。本文从目前高校财务管理教育所存在的问题方面进行讨论和分析，以便更好地对当今教育改 革进行针对性的分析，从而能适应新时代的变化，为高校财务管理工作做出科学的变化。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4416760528",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W4416761133",
+      "title": "中职数学智慧课堂教学模式探究",
+      "authors": [
+        "杨祥超"
+      ],
+      "year": 2025,
+      "doi": "10.37155/2717-5561-0602-3",
+      "url": "https://doi.org/10.37155/2717-5561-0602-3",
+      "abstract": "随着信息技术的日新月异，教育领域正迎来深刻变革。中职数学，作为职业教育的核心学科，其教学方 法正不断推陈出新。智慧课堂，作为新式教学模式的代表，巧妙融合了现代信息技术与传统教学手段，为中职数学教 学带来了崭新面貌。本文深入剖析中职数学智慧课堂的本质内涵，审视其当前发展现状及实践应用，同时细致探讨其 多样化的教学模式。通过全面分析，本文旨在为中职数学的教学改革提供有价值的参考与启示，推动教育质量的持续 提升。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W4416761133",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7116393285",
+      "title": "产教融合背景下跨境电商课程教学改革探讨",
+      "authors": [
+        "佳丽 刘"
+      ],
+      "year": 2025,
+      "doi": "10.64649/yh.jydk.2025110008",
+      "url": "https://doi.org/10.64649/yh.jydk.2025110008",
+      "abstract": "在数字经济与职业教育改革双重驱动下，产教融合已成为职业本科跨境电商人才培养的核心路径。针对职业本科跨境电商课程教学中存在的课程体系与产业需求脱节、实践教学实效性不足、师资队伍“双师”特质薄弱等问题，本文立足职业本科“高端技术技能型人才”培养定位，提出构建“产教共同体”课程开发模式、打造“真实项目驱动”实践教学体系、完善“双师双能”师资培养机制及建立“多元协同”评价体系等改革策略，旨在实现课程教学与跨境电商产业岗位需求的精准对接，为职业本科跨境电商专业人才培养提供实践参考。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7116393285",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7117490730",
+      "title": "关于《农业基础与劳动实践》课程教学改革研究",
+      "authors": [
+        "杨学来"
+      ],
+      "year": 2025,
+      "doi": "10.62177/aper.v1i5.985",
+      "url": "https://doi.org/10.62177/aper.v1i5.985",
+      "abstract": "在新时代深化职业教育改革与全面加强劳动教育的双重背景下，农业类高职院校的劳动教育承载着独特的使命。本文以《农业基础与劳动实践》课程为研究对象，针对传统教学中存在的“劳教分离”、“知行脱节”、“育人浅表”等问题，提出以“专业赋能”与“劳动育心”为核心导向的教学改革框架。研究认为，该课程改革应致力于将农业专业知识、技能与劳动过程深度融合，通过劳动实践实现专业技能的内化与迁移（专业赋能）；同时，深入挖掘农业劳动中蕴含的艰苦奋斗、工匠精神、乡土情怀与生态伦理等育人价值，促进学生形成正确的劳动价值观、优良品格与健全人格（劳动育心）。本研究构建了“目标重塑-内容重构-方法创新-评价转型-保障协同”五位一体的教学改革路径，并以具体教学实践案例进行了阐释。改革旨在培养既掌握现代农业科技、又具备深厚“三农”情怀和优秀劳动素养的复合型“新农人”，为同类院校劳动教育课程建设提供参考。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7117490730",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7117491314",
+      "title": "校企合作模式下电子信息类专业人才培养改革研究",
+      "authors": [
+        "蒋纯志",
+        "彭红光",
+        "李亚兰",
+        "王龙",
+        "谭乔来"
+      ],
+      "year": 2025,
+      "doi": "10.62836/jer.v3n12.0822",
+      "url": "https://doi.org/10.62836/jer.v3n12.0822",
+      "abstract": "蒋纯志1，彭红光2*，李亚兰1，王龙1，谭乔来1 1. 湘南学院物理与电子电气工程学院，湖南郴州； 2. 郴州市第十五中学，湖南郴州 摘要：随着地方经济转型升级和产业结构的调整，校企合作成为高校培养应用型人才的重要途径。本文以湘南学院物理与电子电气工程学院为例，探讨了校企合作模式下的人才培养改革，提出了校企协同育人的具体实施方案，包括建立企业参与教学的管理体制、构建紧密对接产业链的课程体系、建设优质实习基地、培养“双师型”教师队伍等。实践表明，校企合作显著提升了学生的实践能力和创新能力，促进了教师科研水平的提高，并为地方经济发展输送了大量高素质人才。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7117491314",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7118524603",
+      "title": "人工智能时代下提高学生课程参与度的挑战与应对",
+      "authors": [
+        "鑫 万",
+        "鹏 彭",
+        "鹤鹤 张",
+        "诚 张",
+        "帅 龙",
+        "祖建 喻",
+        "青山 杨",
+        "庆伟 戴"
+      ],
+      "year": 2025,
+      "doi": "10.33142/fme.v6i10.18127",
+      "url": "https://doi.org/10.33142/fme.v6i10.18127",
+      "abstract": "人工智能（AI）的迅速发展正在重塑高等教育的教学模式，为提升学生课程参与度提供了新契机。AI技术通过学习分析、智能助教与虚拟仿真等手段，实现了教学过程的个性化与数据化。然而，在教学实践中仍存在理念滞后、技术应用复杂、学生依赖性增强和评价体系单一等问题。文中从教学理念、技术支持与制度保障三个层面分析AI教学环境下学生参与度的主要挑战，并提出以“人机协同、数据驱动、过程优化、激励反馈”为核心的应对路径。研究结果表明，AI赋能教学可有效提升学生学习主动性与课堂互动水平，为高校教学改革与智能教育体系建设提供了可行思路。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7118524603",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7124562287",
+      "title": "生成式人工智能赋能大学生职业规划的机制与路径研究",
+      "authors": [
+        "钟嘉仪",
+        "小青 李",
+        "韵诗 方"
+      ],
+      "year": 2025,
+      "doi": "10.64155/gbads.v1i4.100002",
+      "url": "https://doi.org/10.64155/gbads.v1i4.100002",
+      "abstract": "当前我国高校毕业生就业市场结构性矛盾日益突出，传统职业规划模式因信息滞后与个性化不足，难以有效支持大学生的就业决策。本文以生成式人工智能（Generative AI）为研究对象，探讨其在职业规划中的赋能机制及对就业决策效能的影响。研究基于文献综述与典型案例分析，归纳生成式AI在职业规划中的三类功能：数据分析、场景模拟与内容生成。结果表明，生成式AI能够通过实时数据挖掘与岗位匹配，缓解岗位供需失衡与考研避业现象；通过虚拟场景实训提升学生的实践经验积累；通过可视化内容生成促进学生薪资与岗位期望的理性调整。典型企业、高校与政府案例显示，该技术显著提升大学生的就业决策清晰度与匹配度。然而，算法偏见、数据隐私及过度依赖等问题仍需警惕。研究最后提出政府、高校与学生三方协同的优化路径，为构建“技术赋能+人文引导”的职业规划新模式提供参考。At present, the structural contradictions in China’s college graduate employment market have become increasingly prominent. Traditional career planning models, plagued by information lag and lack of personalization, struggle to effectively support college students' employment decisions. This paper takes Generative Artificial Intelligence (Generative AI) as the research object, exploring its empowerment mechanisms in career planning and its impact on the effectiveness of employment decision-making. Based on a literature review and analysis of typical cases, the study summarizes three core functions of Generative AI in career planning: data analysis, scenario simulation, and content generation.The results show that Generative AI can alleviate the imbalance between job supply and demand as well as the phenomenon of postgraduate exam preparation as an avoidance of employment through real-time data mining and job matching; enhance students' accumulation of practical experience via virtual scenario training; and promote the rational adjustment of students' salary and job expectations through visual content generation. Cases from typical enterprises, universities, and government departments indicate that this technology significantly improves the clarity and matching degree of college students' employment decisions. However, issues such as algorithmic bias, data privacy risks, and excessive dependence on the technology still require vigilance.Finally, the study proposes a tripartite collaborative optimization path involving the government, universities, and students, aiming to provide a reference for constructing a new \"technology empowerment + humanistic guidance\" career planning model.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7124562287",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7124700339",
+      "title": "人工智能生成图像检测技术综述",
+      "authors": [
+        "Li Meiling",
+        "Qian Zhenxing",
+        "Zhang Xinpeng"
+      ],
+      "year": 2026,
+      "doi": "10.11834/jig.250053",
+      "url": "https://doi.org/10.11834/jig.250053",
+      "abstract": "人工智能生成图像检测旨在判断图像是否由生成模型生成，是人工智能安全与治理领域一个重要研究方向。然而当前生成图像检测方法因生成模型结构的多样性、生成图像的复杂性以及对生成图像后处理操作的不确定性难以实现高效和鲁棒检测。早期的检测方法重点关注对生成对抗网络生成内容的检测。近年来，扩散模型生成图像的检测受到广泛关注，与之相关的检测方法涌现，并表现出优越性能。因此，首先对近年来的主流图像生成模型进行梳理，然后从监督范式、学习方式、检测依据、骨干网络、技术手段和可解释性多种维度对现有生成图像检测方法进行分类，并以检测依据（像素域特征、频域特征、预训练模型特征、融合特征和特定规则）作为主要划分标准，对各类研究工作的基本思想与特点进行详细阐述与综合分析。此外，列举了当前用于通用生成图像检测的基准数据集，从数据集结构和规模等方面进行综合比较，并对面向检测方法的综合评测基准进行汇总。关于评估维度，从域内准确性、域外泛化性和鲁棒性3个层面进行介绍。之后，对代表性检测方法进行横向比较，就检测结果进行分析。最后，对当前生成图像检测领域待解决的问题进行总结，并对未来的研究方向进行展望。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7124700339",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7133317828",
+      "title": "基于结构化知识网络的《细胞生物学》智慧教学",
+      "authors": [
+        "丽丽 高",
+        "淑静 张",
+        "洁 秦",
+        "秋香 庞"
+      ],
+      "year": 2026,
+      "doi": "10.64649/yh.jydk.2026010007",
+      "url": "https://doi.org/10.64649/yh.jydk.2026010007",
+      "abstract": "随着教育数字化转型持续深化，智慧教育为《细胞生物学》课程的教学革新提供了关键支撑。作为生命科学及生物医药领域的核心基础课程，《细胞生物学》在夯实学生专业根基、培育科学素养与提升创新能力方面具有不可替代的作用。然而，该课程内容具有高度微观性、多尺度性与强逻辑关联性，而传统教学模式普遍存在知识抽象难解、概念间逻辑链断裂、内容碎片化等问题，致使学生面临理解困难、知识迁移乏力与课堂参与度低等现实挑战。本文立足智慧教育理念，围绕课程知识图谱构建、动态资源整合、混合式教学模式创新及评价体系重构四个维度，提出系统性教学改革路径。具体包括：依托结构化知识图谱构建层次清晰的知识网络，强化知识点之间的功能耦合与调控层级关系；整合多元化数字资源，借助人工智能与大数据技术实现个性化学习支持；融合BOPPPS与PBL双驱动教学模式，推动“线上智能辅助-线下深度研讨”协同育人；建立覆盖课前-课中-课后的全过程、多主体、多维度评价机制。本研究旨在探索可复制、可推广的细胞生物学智慧教育实施范式，为生命科学类课程的教学现代化提供理论参考与实践依据。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7133317828",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7136040467",
+      "title": "课程思政视域下《基础日语》教学改革路径探析",
+      "authors": [
+        "张修志"
+      ],
+      "year": 2026,
+      "doi": "10.70693/rwsk.v2i3.332",
+      "url": "https://doi.org/10.70693/rwsk.v2i3.332",
+      "abstract": "随着高校课程思政建设的持续深化，如何在专业基础课程中实现知识传授、能力培养与价值塑造的协同统一，已成为日语教学改革的重要议题。《基础日语》作为日语专业低年级核心课程，既承载语言知识启蒙和技能训练任务，也是学生形成专业认知、树立文化态度与价值观念的关键环节。本文结合《基础日语》的课程属性与《新编日语》第二册（上海外语教育出版社重排本）的特点，以“单元二复习”中的“メーデー（五一劳动节）”和“四川大地震―生死の瀬際の同胞愛（四川大地震——生死攸关的同胞爱）”为切入点，探讨任务设计、课堂活动和评价反馈等环节中的课程思政教学思路。研究认为，《基础日语》课程思政教学的关键不在于附加式灌输，而在于围绕语言训练主线，依托生活化、情境化和情感化的文本，将劳动观念、家国情怀等价值要素自然融入语言训练中，从而实现语言能力与价值引领的有机统一。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7136040467",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7151063772",
+      "title": "核心素养导向下生成式人工智能在高中英语阅读教学中的应用现状与优化路径",
+      "authors": [
+        "杜俊",
+        "刘峻利"
+      ],
+      "year": 2026,
+      "doi": "10.70693/jyxb.v2i2.424",
+      "url": "https://doi.org/10.70693/jyxb.v2i2.424",
+      "abstract": "在信息技术与教育深度融合、高中英语阅读教学转向核心素养导向的双重背景下，生成式人工智能（Generative Artificial Intelligence, GenAI）凭借个性化生成、实时交互等技术优势，为破解高中英语阅读教学中核心素养培养的难点提供了新路径。本文结合高中英语阅读教学实践特征，系统分析生成式AI在核心素养导向下高中英语阅读教学中的应用现状、突出问题及优化路径。研究发现：生成式AI已初步覆盖“读前—读中—读后”全教学流程，对学生语言能力、文化意识、思维品质与学习能力的培养具有潜在赋能价值，但在实践中仍存在技术依赖加剧、师生情感互动弱化、创造性思维受抑、评价体系失序等现实困境。据此，本文提出构建“人机协同”教学范式、融入人文性教学设计、实施“AI+批判性思维”训练模式、建立“过程溯源+分层验证”评价机制等优化路径，推动AI从“辅助工具”向“育人载体”的角色跃迁，以期为核心素养导向下高中英语阅读教学的智能化改革提供理论框架与实践策略。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7151063772",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7162323118",
+      "title": "生成式人工智能背景下非英语专业英语写作教师介入路径研究",
+      "authors": [
+        "娟娟 洪",
+        "京 蒋"
+      ],
+      "year": 2026,
+      "doi": "10.64649/yh.jydk.issn3080-2660.202604007",
+      "url": "https://doi.org/10.64649/yh.jydk.issn3080-2660.202604007",
+      "abstract": "生成式人工智能正在改变高校英语写作教学。对非英语专业学生而言，AI写作工具能够提供构思、润色、结构优化和即时反馈，降低写作门槛，但也可能造成过程弱化、工具依赖、评价失真和学术诚信风险。传统以终稿为核心的写作教学模式已难以准确反映学生真实能力。本文在梳理生成式人工智能对英语写作教学影响的基础上，提出“任务设计—过程干预—评价重构”的教师介入框架，并结合小型教学实证检验其效果。结果显示，基于教师介入的AI协同写作教学能够提升学生写作成绩，改善AI使用行为，增强学习过程体验。研究认为，教师介入的重点不是简单限制AI，而是将其由“替代工具”转化为“认知支架”，促进语言表达能力、逻辑思维能力和AI素养协同发展。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7162323118",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7162459568",
+      "title": "Creative offloading and creative agency in AI-assisted educational game design: A thematic analysis of student reflection essays",
+      "authors": [
+        "Eemeli Eiste",
+        "Antti Koskinen",
+        "Muhterem Dindar",
+        "Kristian Juha Mikael Kiili"
+      ],
+      "year": 2026,
+      "doi": "10.31235/osf.io/82f6v_v3",
+      "url": "https://doi.org/10.31235/osf.io/82f6v_v3",
+      "abstract": "Generative AI has raised growing educational concerns regarding cognitive offloading and the preservation of students’ creative agency in creative learning tasks. This study examined how higher education students reflected on their creative agency when using generative AI as a design partner during the ideation and initiation phase of an educational game design assignment. Using a qualitative case study approach, we thematically analysed reflection essays written by 26 students following an AI-supported game design activity in a university course. The analysis identified a spectrum of reflected creative agency patterns related to how students described delegating, evaluating, and directing creative work with generative AI. Students’ reflections described strategic forms of offloading in which AI was positioned as a complementary support tool while evaluative judgment and authorial direction were retained. At the same time, reflections also revealed more unregulated forms of offloading characterised by overreliance on AI, unclear interaction strategies, and diminished ownership of creative decisions. These patterns sometimes coexisted within individual reflections, suggesting that creative agency may vary across offloading decisions rather than represent fixed student characteristics. The study introduces the concept of creative offloading as a lens for understanding student-AI interaction in creative educational tasks.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7162459568",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7162506137",
+      "title": "人工智能与大数据协同发展中的数据依赖性风险与缓解策略",
+      "authors": [
+        "刘亚乾"
+      ],
+      "year": 2026,
+      "doi": "10.37155/2717-5170-0803-48",
+      "url": "https://doi.org/10.37155/2717-5170-0803-48",
+      "abstract": "人工智能（AI）与大数据作为驱动第四次工业革命的核心引擎，其协同效应已深刻重塑了社会生产方式、 商业模式乃至人类认知范式。然而，在二者深度融合的过程中，一种日益凸显且被广泛忽视的结构性矛盾——“数据依 赖性风险”正逐步成为制约其健康、可持续发展的关键瓶颈。本文旨在系统剖析这一风险的多维内涵、生成机理及其潜 在危害，并在此基础上，围绕技术、治理、伦理与法律等多个层面提出一套综合性、前瞻性的缓解策略。经研究，过度 的数据依赖不仅可能导致模型性能脆弱、算法偏见固化、创新路径锁定等技术性问题，更会引发隐私侵蚀、市场垄断、 社会不公乃至国家安全等深层次的社会性危机。通过构建“以人为本、多元共治、技术向善”的协同发展新范式，才能 有效驾驭数据依赖性风险，释放人工智能与大数据融合的最大潜能，确保其发展真正服务于人类福祉。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7162506137",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7162543112",
+      "title": "人工智能赋能职业教育课堂教学模式改革与实践",
+      "authors": [
+        "敏 王"
+      ],
+      "year": 2026,
+      "doi": "10.37155/2717-5170-0803-31",
+      "url": "https://doi.org/10.37155/2717-5170-0803-31",
+      "abstract": "新一轮科技革命和产业变革下，人工智能正重塑社会生产、生活与教育形态。职业教育与经济社会发展 紧密相关，其人才培养质量关乎国家产业升级和高质量发展。但传统职业教育教学模式存在教学内容滞后、方法单 一等痛点，难以满足新时代对高素质技术技能人才的需求。本文以人工智能赋能为切入点，剖析职业教育课堂教学痛 点，阐述AI技术从教学理念等多维度重构课堂生态。进而提出涵盖基础设施建设、数据治理体系构建等多维度的实 践路径。研究表明，人工智能并非简单替代教师或工具化应用，而是作为催化剂和连接器，推动职业教育课堂向个性 化、智能化等方向演进，助力实现“因材施教”与“精准育人”的教育理想。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7162543112",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        },
+        {
+          "source": "openalex",
+          "source_record_id": "W7162543112",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7162706621",
+      "title": "Creative offloading and creative agency in AI-assisted educational game design: A thematic analysis of student reflection essays",
+      "authors": [
+        "Antti Koskinen",
+        "Muhterem Dindar",
+        "Kristian Juha Mikael Kiili",
+        "Eemeli Eiste"
+      ],
+      "year": 2026,
+      "doi": null,
+      "url": "https://osf.io/82f6v",
+      "abstract": "Generative AI has raised growing educational concerns regarding cognitive offloading and the preservation of students’ creative agency in creative learning tasks. This study examined how higher education students reflected on their creative agency when using generative AI as a design partner during the ideation and initiation phase of an educational game design assignment. Using a qualitative case study approach, we thematically analysed reflection essays written by 26 students following an AI-supported game design activity in a university course. The analysis identified a spectrum of reflected creative agency patterns related to how students described delegating, evaluating, and directing creative work with generative AI. Students’ reflections described strategic forms of offloading in which AI was positioned as a complementary support tool while evaluative judgment and authorial direction were retained. At the same time, reflections also revealed more unregulated forms of offloading characterised by overreliance on AI, unclear interaction strategies, and diminished ownership of creative decisions. These patterns sometimes coexisted within individual reflections, suggesting that creative agency may vary across offloading decisions rather than represent fixed student characteristics. The study introduces the concept of creative offloading as a lens for understanding student-AI interaction in creative educational tasks.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7162706621",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7162850437",
+      "title": "AIGC辅助大中小学思政课主题递进式教学设计",
+      "authors": [
+        "熊高升 熊",
+        "夏慧"
+      ],
+      "year": 2026,
+      "doi": "10.62177/aper.v2i3.1440",
+      "url": "https://doi.org/10.62177/aper.v2i3.1440",
+      "abstract": "数智时代，生成式人工智能正加速推进大中小思政课一体化建设数字化转型。主题递进式教学设计作为思政一体化建设的核心载体，锚定共同思政价值，在各学段形成由浅入深、螺旋递进的教学内容架构与育人逻辑链条，成为打破学段壁垒关键抓手。然而，主题递进式教学设计在实践中面临图谱认知断层、价值算法偏移、师生主体弱化、数据壁垒割裂等深层困境。为此，应构建“技术、价值、主体、数据、制度”五位一体的协同破解路径，构建认知适配图谱贯通内容梯度，植入价值算法防范价值偏差，健全人机协同育人生态激活师生主体，规范数据治理破除孤岛壁垒，完善系统保障评估构建长效闭环。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7162850437",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7164707932",
+      "title": "Cognitive Crutch or Cognitive Coach? A Systematic Literature Review on Generative AI and Critical Thinking in Higher Education",
+      "authors": [
+        "abu toha",
+        "Edward W. N. Bernroider"
+      ],
+      "year": 2026,
+      "doi": null,
+      "url": "https://aisel.aisnet.org/confirm2026/23",
+      "abstract": "Generative artificial intelligence is rapidly diffusing across higher education, yet debates remain polarized between claims that it improves learning and concerns that it weakens independent reasoning. This paper examines how generative AI influences critical thinking in higher education through a PRISMA-guided systematic review (2020–2025), based on records retrieved from Scopus and Web of Science. Using a concept-centric synthesis, evidence is organized around interaction design levers, cognitive mechanisms, and critical thinking outcomes. A Crutch–Coach explanatory lens is advanced to distinguish two ideal-type pathways. In a cognitive crutch pathway, answer-first, product-oriented use is associated with cognitive offloading and overreliance, reduced epistemic effort, and weaker verification practices, with downstream risks for argument quality, source evaluation, and transfer beyond tool use. In a cognitive coach pathway, process-first designs incorporating Socratic questioning, counterargument routines, verification prompts, and reflective checkpoints are more consistently aligned with strengthened epistemic vigilance, improved calibration, and higher-quality justification and error detection. Across studies, key mechanisms (e.g., automation bias, calibration, verification behavior) are rarely measured directly, limiting cumulative comparison. Contributions include an integrative framework, conceptual synthesis matrix, and a research agenda prioritizing mechanism measurement, transfer tests, and boundary-condition analyses across task stakes, assessment design, and student AI literacy.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7164707932",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7164914471",
+      "title": "人工智能在数学教学中的应用研究",
+      "authors": [
+        "Haijun xia"
+      ],
+      "year": 2026,
+      "doi": "10.62177/aper.v2i3.1482",
+      "url": "https://doi.org/10.62177/aper.v2i3.1482",
+      "abstract": "人工智能课堂的建构与其在数学教学应用方面为基础教育高质量发展迎来新的契机。通过对人工智能课堂发展梳理，结合人工智能教学体系的架构，提出人工智能课堂是促进学生核心素养发展为目标，人工智能可以打造高效数学智能课堂。针对数学教学出现的问题，应从人工智能提供三阶段中高阶思维引导与启发、突破教学实施的壁垒、助力创设真实情境实现教学价值等三方面进行阐述，从而更好契合数学教学高质量发展理念。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7164914471",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7164991386",
+      "title": "In-Class AI Use and Attitudes Among University Students: The Different Mediating Roles of Cognitive Relief and Cognitive Offloading",
+      "authors": [
+        "Wenqiang Fan",
+        "Lu Cheng",
+        "Yue Wang",
+        "Qi Zhao",
+        "Yuxia Li"
+      ],
+      "year": 2026,
+      "doi": "10.3390/bs16061014",
+      "url": "https://doi.org/10.3390/bs16061014",
+      "abstract": "AI use is associated with both cognitive relief and cognitive offloading, leading to uncertainty in how users make value judgments and decisions. This study focuses on in-class AI use and explores the perceptions of cognitive relief and cognitive offloading among university students, as well as the distinct mediating mechanisms through which these factors shape the attitudes of students. Based on questionnaire data from 287 respondents, structural equation modeling and bootstrap methods were employed to test the research hypotheses. The results show that cognitive relief exerts a complementary mediating effect between AI use and attitudes, whereas cognitive offloading functions as a competitive mediator. The two mechanisms produce opposing effects on students, with cognitive relief demonstrating a stronger overall mediating effect. These findings suggest that educators should guide students toward a more nuanced understanding of AI use to mitigate confusion and its potential negative psychological consequences. Moreover, educators and institutions should leverage AI to provide cognitive relief for higher-order learning activities, thereby enhancing the engagement, motivation, and deeper learning processes of students, while simultaneously implementing reflective and critical thinking practices to guard against the risks of cognitive offloading. This study is limited by its single-institution convenience sample and reliance on self-reported data; future research incorporating qualitative methods such as interviews and classroom observations is encouraged to further validate and extend these findings.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7164991386",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7165007462",
+      "title": "A conversational AI chatbot enhances the depth and actionability of student teaching feedback in higher education",
+      "authors": [
+        "Luis Medina Gual",
+        "Miguel Ángel Rivera-Navarro",
+        "Dante Fernando Bazaldúa Huerta",
+        "Diego Degetau Arsuaga"
+      ],
+      "year": 2026,
+      "doi": "10.21203/rs.3.rs-9486459/v1",
+      "url": "https://doi.org/10.21203/rs.3.rs-9486459/v1",
+      "abstract": null,
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7165007462",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7165790702",
+      "title": "When Thinking Is Outsourced: Cognitive Offloading and the Heterogeneity of Critical Thinking Among Chinese University Students Using Generative Artificial Intelligence",
+      "authors": [
+        "Shuai Si",
+        "Yong Qi",
+        "Jingming Xu",
+        "Xinyu Qi"
+      ],
+      "year": 2026,
+      "doi": "10.3390/jintelligence14070116",
+      "url": "https://doi.org/10.3390/jintelligence14070116",
+      "abstract": "Generative artificial intelligence (GAI) enables students to offload cognitive tasks to an external system, yet the consequences of such cognitive offloading for the development of critical thinking-a core dimension of human intelligence-remain underexplored. Drawing upon cognitive offloading theory and distributed cognition theory, this study investigates the heterogeneity of critical thinking outcomes among Chinese university students who use GAI, focusing on how different patterns of human-AI collaboration relate to cognitive autonomy relinquishment. A questionnaire survey was administered to 353 university students across multiple provinces in China. Cluster analysis and regression analysis were employed to identify distinct user profiles and to examine predictors of critical thinking gains and cognitive autonomy. Four distinct user profiles emerged, ranging from \"simple Q&A users\" (25.2%) to \"critical co-thinkers\" (15.6%). Learning motivation was the strongest predictor of both critical thinking gains (β = 0.42) and lower cognitive autonomy relinquishment (β = -0.35). Notably, offloading depth positively predicted cognitive autonomy relinquishment (β = 0.25), revealing a paradoxical pattern: sophisticated GAI use was associated with greater dependence. A \"high depth-high dependence\" subgroup (25.8%) was identified, disproportionately composed of female students and Information and Communication Technology (ICT) majors. The findings challenge the assumption that deeper GAI engagement automatically yields cognitive benefits. Because all constructs were measured through self-report, the findings are interpreted as reflecting students' perceptions of their cognitive behaviors and abilities; the methodological implications of this design are discussed in detail. Educational interventions should prioritize metacognitive training over technical skill development to ensure that cognitive offloading enhances rather than undermines critical thinking.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7165790702",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7166539371",
+      "title": "Machine Learning for Predictive Evaluation of Students’ Interactions with AI-Generated Content and Their Critical Thinking Levels",
+      "authors": [
+        "Nataliia Dziubanovska",
+        "Vadym Maslii"
+      ],
+      "year": 2025,
+      "doi": "10.55056/ceur-ws.org/vol-4133/s_03_dziubanovska.pdf",
+      "url": "https://doi.org/10.55056/ceur-ws.org/vol-4133/s_03_dziubanovska.pdf",
+      "abstract": "This article presents the results of an empirical study examining how the use of generative artificial intelligence models in the learning process relates to the level of critical thinking among economics majors. Based on a survey of 210 higher-education students, we collected data on the frequency of AI use, the nature of verification practices, and the structure of cognitive processes, the latter assessed using the standardized Watson–Glaser Critical Thinking Appraisal. Correlation analysis showed that critical thinking is most strongly associated with fact-checking of AI-generated content and a willingness to seek consultation when doubts arise. A binary logistic regression model confirmed the predictive significance of behavioral indicators for classifying students into a high–critical thinking group (AUC = 0.66). Paradoxically, higher levels of doubt unaccompanied by actual verification were associated with a lower likelihood of high test performance. We conclude that the key factor supporting critical thinking is not the mere use of AI, but the implementation of verification strategies during interaction with it. The findings can inform educational interventions aimed at fostering students’ epistemic autonomy in digital environments.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7166539371",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7167671763",
+      "title": "生成式人工智能嵌入大学英语教学的效度危机与重构路径",
+      "authors": [
+        "高圣洁"
+      ],
+      "year": 2026,
+      "doi": "10.64549/jtii.v1i3.73",
+      "url": "https://doi.org/10.64549/jtii.v1i3.73",
+      "abstract": "生成式人工智能（GenAI）的广泛应用正对大学英语的课程秩序与教学范式带来深刻变革。本文依托课堂教学观察、随堂微测及作业文本质性分析获得的第一手材料，考察智能技术全面嵌入民办本科外语教学情境后引发的作业非本真化、语言输出缺位及学情评价失真等教学效度危机。研究表明，高可及性的智能化工具引发了学生普遍的“认知卸载”行为，导致传统学业评价的诊断与育人功能实质性流失。基于输出假说与成果导向教育（OBE）理念，本文从情境化作业重构、过程性评价转向、差异化课堂干预和制度化规范建设四个维度提出范式重构路径，以期为高校外语教学在智能时代的技术治理提供实践参考。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7167671763",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7167731096",
+      "title": "Generative AI, Cognitive Offloading, and Learner Agency in Higher Education: A Scoping Review",
+      "authors": [
+        "Guanhua Wang",
+        "W Wang",
+        "Daozhou Yang",
+        "Jifan Ren"
+      ],
+      "year": 2026,
+      "doi": "10.3390/bs16071150",
+      "url": "https://doi.org/10.3390/bs16071150",
+      "abstract": "Generative artificial intelligence (GenAI) is increasingly integrated into higher education, where it supports writing, feedback, problem solving, and research-related tasks while also raising concerns about cognitive offloading and learner dependence. This scoping review maps the literature on the relationships among GenAI, cognitive offloading, and learner agency in higher education. Following PRISMA-ScR guidance, searches were conducted on 24 June 2026 across six database sources: Web of Science Core Collection, Scopus, EBSCOhost ERIC, EBSCOhost Education Source, APA PsycInfo via ProQuest, and ProQuest Education Collection via ProQuest Social Science Premium Collection. English-language peer-reviewed or scholarly journal literature published from 2022 to 24 June 2026 was eligible for inclusion. Data were charted using a structured extraction matrix and synthesized through descriptive mapping and theory-informed configurative synthesis. After duplicate removal, 5327 records were screened by title and abstract, 691 full-text reports were assessed, and 123 studies were included in the final charting matrix and synthesis. The review shows that learner agency is conceptualized as a multidimensional construct involving self-regulation, reflective judgement, intentionality, and responsible action. Across the literature, GenAI is best interpreted through an interpretive dual-pattern account: agency-supportive patterns are associated with self-regulated learning, self-efficacy, feedback literacy, and reflective engagement, whereas agency-eroding patterns are associated with cognitive offloading, overreliance, dependence, uncritical uptake, and weakened judgement. These patterns should be interpreted as a configurative synthesis of heterogeneous evidence rather than as causal effect estimates. Overall, the findings suggest that the educational value of GenAI depends less on the technology itself than on how it is pedagogically embedded, with augmentation-oriented and scaffolded use being more supportive of learner agency than replacement-oriented use.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7167731096",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7167897175",
+      "title": "Human Agency and Skill in AI-Supported Work: Countering Cognitive Offloading",
+      "authors": [
+        "Caterina Fregosi",
+        "Simon W. S. Fischer",
+        "Chiara Natali",
+        "Hanna Schraffenberger",
+        "Federico Cabitza"
+      ],
+      "year": 2026,
+      "doi": "10.1145/3805029.3818273",
+      "url": "https://doi.org/10.1145/3805029.3818273",
+      "abstract": "This workshop responds to the observation that, in work contexts, AI systems may promote unintended socio-cognitive consequences, including automation bias, overreliance, reduced critical engagement and sense of agency, and gradual deskilling. It reframes cognitive offloading as a design challenge and proposes a longitudinal perspective on AI-supported work across three time horizons (short, medium, and long term) and three dimensions: performance, agency, and skills. Through structured collaborative activities, participants will identify benefits, risks, protective factors, design strategies, and evaluation measures. The workshop aims to develop a shared vocabulary and a capability-aware research agenda that foregrounds human agency and skill sustainability in AI design.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7167897175",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7171428267",
+      "title": "在人工智能发展大背景下食品化学课程体系的改革探究",
+      "authors": [
+        "祁静",
+        "Xiayun Liao",
+        "于迪",
+        "谢文佩",
+        "毛彦",
+        "李海"
+      ],
+      "year": 2026,
+      "doi": "10.62836/jer.v4n7.1293",
+      "url": "https://doi.org/10.62836/jer.v4n7.1293",
+      "abstract": "祁静，廖夏云，于迪，谢文佩，毛彦，李海 广西中医药大学公共卫生与管理学院，广西南宁 摘要：人工智能（AI）技术正逐渐重塑食品行业与高等教育格局，传统食品化学课程存在内容更新滞后、教学模式单一、教学实践与产业脱节、评价体系片面等突出问题。本文以食品质量与安全专业核心课程《食品化学》为研究对象，立足AI赋能教育时代背景，剖析现行课程体系与智能产业需求的不匹配问题，从课程内容重构、教学模式革新、实践体系优化、评价体系完善、师资队伍建设5个维度，构建“AI+食品化学”一体化课程体系。通过引入智能检测、虚拟仿真等技术，实现理论教学具象化、实验教学智能化、人才培养精准化，旨在培养兼具扎实化学功底与AI应用能力的复合型食品专业人才，为新工科背景下食品类基础课程改革提供参考范式。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7171428267",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7203540081",
+      "title": "The Double-Edged Sword of Automation: Impact of Generative Ai Adoption on Student’s Critical Thinking Skills in Higher Education Considering Cognitive Offloading as a Mediator",
+      "authors": [
+        "Zainab Faiz Jaffar",
+        "Asma Alvi",
+        "Abdul Rahim",
+        "Shagufta Ambreen",
+        "Mahwish Mushtaq Jaffar"
+      ],
+      "year": 2026,
+      "doi": "10.63056/jllsa.2.5.2026.253",
+      "url": "https://doi.org/10.63056/jllsa.2.5.2026.253",
+      "abstract": "The rapid integration of Generative AI in education has ignited a critical debate regarding its impacts in education. Present study investigates the role of Generative AI as “double-edged sword\" of automation on intellectual development of students. Specific objectives of the study were to examine the association of Generative AI tool usage with cognitive offloading and critical thinking skills after that examining the potential mediating role of cognitive offloading. A quantitative, cross-sectional research design was employed. Data was collected from 153 higher education student from four different universities of District Quetta. In order to test the association of Generative AI tools with cognitive offloading and critical thinking skills, a Pearson correlation & linear regression analysis was conducted. The results revealed i) a significant moderate to strong positive correlation among AI usage and cognitive offloading and ii) a significant inverse relationship among AI and critical thinking skills. Mediating effect of Cognitive Offloading was examined using Hayes’ PROCESS macro (Model 4) in SPSS. Results reveal that according to current sample cognitive offloading did not significantly mediate the relationship between AI usage and critical thinking. These findings suggest that the educational consequences of generative AI may depend on how students engage with the technology. Meanwhile AI is not a supernatural, self-regulating entity, it’s just a tool created, & guided by human intelligence. In order to sustain the role as architects of this technology, human must utilize their own unbeatable critical thinking rather than blindly relying on it.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7203540081",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7203700312",
+      "title": "Teachers as reflective regulators of cognition: Understanding cognitive offloading in AI-augmented practice",
+      "authors": [
+        "Chun Sing Maxwell Ho",
+        "Junjun Chen"
+      ],
+      "year": 2026,
+      "doi": "10.1016/j.caeai.2026.100670",
+      "url": "https://doi.org/10.1016/j.caeai.2026.100670",
+      "abstract": "This study investigates how teachers perceive, manage, and reflect on the cognitive implications of integrating Generative Artificial Intelligence (GenAI) into their professional practice with a focus on the evolving interplay between human judgment and automation. Using a collective case-study design, we conducted interviews with 18 in-service teachers selected from mainland Chinese and Hong Kong educational settings. We employed the cognitive offloading framework to guide data collection and thematic coding, aiming to capture teachers’ reasoning within AI-supported teaching and administration. Results revealed three interrelated processes: recognising and evaluating the need of using GenAI, redistributing cognition between human and machine systems, and reflectively re-engaging after use. The participating teachers generally framed GenAI not as a substitute for thinking but as a partner in cognitive regulation shaped by institutional and ethical contexts. Building from the findings and Risko and Gilbert’s cognitive offloading framework, the study later proposes metacognitive ecology as a discussion-level interpretive lens for understanding how participating teachers’ cognitive monitoring, pedagogical interpretation, ethical boundary-setting, and institutional-technological conditions shaped GenAI-mediated cognitive redistribution.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7203700312",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7204495850",
+      "title": "Layer-sensitive cognitive offloading in generative AI-assisted writing: supported performance and independent no-AI outcomes",
+      "authors": [
+        "Xinran Chen"
+      ],
+      "year": 2026,
+      "doi": "10.3389/fpsyg.2026.1906199",
+      "url": "https://doi.org/10.3389/fpsyg.2026.1906199",
+      "abstract": "Introduction Writing with generative artificial intelligence (GenAI) can improve a supported product without necessarily strengthening the competence that remains after support is removed. This study examined that distinction through a layer-sensitive account of cognitive offloading. Methods In this eight-week quasi-experimental classroom study, 180 Chinese undergraduates from six intact English academic-writing classes entered the study and 168 completed the protocol. Two classes were assigned to each of three conditions: no-AI writing, bounded AI support with compulsory reflection, and open AI collaboration. Students completed a baseline task, three intervention assignments, and a supervised Week 8 independent no-AI near-transfer task. Results Open AI collaboration had the highest observed supported-writing mean ( M = 4.02), although the class-clustered open–bounded contrast was imprecise (adjusted difference = 0.21, 95% CI [0.06, 0.36], wild-cluster p = 0.064). At Week 8, the bounded-support condition showed higher adjusted outcomes than open collaboration in writing quality (difference = 0.27), higher-order thinking (0.35), argument depth (0.42), and independent revision quality (0.39); exact wild-cluster p values ranged from 0.050 to 0.063. Within the 112 AI-exposed students, open collaboration involved more prompts, greater text incorporation, less self-generated text, and deeper idea and reasoning offloading. An adjusted associative decomposition showed that open collaboration predicted higher aggregate offloading ( a = 0.77, SE = 0.06), which was associated with lower Week 8 higher-order thinking ( b = −0.45, SE = 0.08); the bootstrap indirect estimate was −0.34, 95% CI [−0.48, −0.21]. Self-regulated writing attenuated, but did not eliminate, this negative association. Discussion Because conditions were allocated by only six intact classes and the bounded condition combined delegation restrictions with compulsory reflection, the results are interpreted as classroom-level, mechanism-consistent associations rather than definitive causal effects. The findings distinguish performance achieved with GenAI from competence demonstrated independently after support is removed.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7204495850",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7204551485",
+      "title": "人工智能时代高职管理会计人才培养模式改革路径探讨",
+      "authors": [
+        "黄 业妙"
+      ],
+      "year": 2026,
+      "doi": "10.71411/jyyjx.2026.v1i7.1575",
+      "url": "https://doi.org/10.71411/jyyjx.2026.v1i7.1575",
+      "abstract": "人工智能正在改变会计工作的内容和分工，高职管理会计人才培养也面临课程、师资和实践教学的同步调整。本文采用政策文本分析法和文献研究法，结合《“人工智能+教育”行动计划》及相关研究，梳理行业岗位变化和高职教学中的突出问题。现有培养方案仍偏重核算技能，数据工具与管理会计业务衔接不够，教师的技术实践经验不足，校企合作也多停留在资源引入层面。改革的重点不是简单增加技术课程，而是重新安排专业知识、数据能力和职业素养之间的关系：以真实业务任务组织课程，以企业项目改善实践教学，以教师企业实践带动案例更新，并通过稳定投入和多元评价保障改革落地。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7204551485",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7204834467",
+      "title": "Cognitive offloading and metacognitive calibration in generative AI-mediated doctoral learning: a grounded theory study of accountable reconstruction",
+      "authors": [
+        "Lingyun Gao",
+        "Feng Zhang"
+      ],
+      "year": 2026,
+      "doi": "10.3389/fpsyg.2026.1920947",
+      "url": "https://doi.org/10.3389/fpsyg.2026.1920947",
+      "abstract": "Background: Generative artificial intelligence (GenAI) is increasingly used to explain concepts, summarize literature, suggest methods, generate arguments, and revise academic writing. These functions may reduce entry barriers to complex learning tasks while reshaping the cognitive and metacognitive work through which learners develop understanding. Doctoral research learning provides a high-complexity context for examining this issue because students must move from understanding existing knowledge to producing, justifying, and defending original claims. Objective: This study examines how GenAI-mediated cognitive offloading redistributes cognitive work in doctoral research learning, how it may support or weaken learner-controlled engagement, and how learners recalibrate and reconstruct AI-supported outputs into defensible understanding and research judgment. Methods: A grounded theory design was adopted. After four pilot interviews were used to refine the interview protocol, formal data were collected from 28 semi-structured interviews, 42 voluntarily provided AI-use artifacts, and 12 stimulated-recall discussions. Open coding, axial coding, selective coding, constant comparison, theoretical sampling, and theoretical saturation testing were used to construct a mechanism model. Interview transcripts were coded in Chinese to preserve participants' original meanings, and representative quotations were translated into English after analysis. Results: The analysis generated a five-part mechanism consisting of task-entry scaffolding, modular generation, metacognitive calibration crisis, critical reconstruction, and research accountability. Episodes reflected more learner-controlled engagement when GenAI reduced entry difficulty while preserving students' reading, verification, and reconstruction. Substitution risk appeared when AI-generated frameworks, method suggestions, thesis structures, or texts appeared coherent before learners had developed corresponding understanding. Calibration crisis appeared when recognition was mistaken for understanding, fluency for mastery, and coherence for justification. Critical reconstruction addressed this risk through source verification, self-explanation, contextual adaptation, and counterargument generation. Conclusion: Learner-controlled engagement was most evident in episodes where doctoral students transformed AI-generated outputs into owned understanding, calibrated judgment, and defensible research decisions. These episodes suggest that accountable reconstruction helps preserve learners' responsibility for verification, reasoning, and final judgment in GenAI-supported doctoral learning.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7204834467",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7210283623",
+      "title": "Reliability Risks of Generative AI in Education: A Systematic Review of Hallucinations, Misinformation, Overreliance, and Assessment Validity",
+      "authors": [
+        "İsmail Kaşarcı"
+      ],
+      "year": 2026,
+      "doi": "10.46328/ijces.315",
+      "url": "https://doi.org/10.46328/ijces.315",
+      "abstract": "Generative AI (GenAI) has introduced reliability risks in education, including hallucinations, fabricated citations, factual inaccuracies, overreliance, and threats to assessment validity. Empirical evidence on these risks has not been systematically synthesized. This review synthesizes that evidence and its consequences for learning and assessment across four research questions. Following PRISMA 2020, Web of Science and Scopus were searched. After duplicate removal, 155 records were screened by two independent doctoral researchers (Cohen's κ = .847). Thirty-five empirical studies were included; 32 (91.4%) were rated high quality using the Mixed Methods Appraisal Tool (MMAT). Thematic synthesis identified four themes: (1) hallucinations and factual inaccuracies taken up as misinformation, moderated by domain expertise; (2) reliability limitations in automated essay scoring, classroom observation, and AI detection, with fairness disparities for EFL learners; (3) overreliance and cognitive offloading, with preliminary evidence of cognitive atrophy; and (4) malleable trustworthiness perceptions, protected by domain knowledge and metacognitive accuracy. The findings reveal a paradox of fluent unreliability: AI-generated errors are often indistinguishable from accurate content, and this risk is inversely distributed with student competence. The themes are integrated into an Epistemic Reliability Framework, that supports epistemic scaffolding, assessment redesign, and AI literacy targeting metacognition.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7210283623",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7213345809",
+      "title": "Generative AI for Writing: Student Interactions with AI Feedback in a High School English Classroom",
+      "authors": [
+        "Kyungbin Kwon",
+        "Juhyun Park",
+        "Uğur Kale",
+        "Keunjae Kim",
+        "Sohheon Yang"
+      ],
+      "year": 2026,
+      "doi": "10.2139/ssrn.7471093",
+      "url": "https://doi.org/10.2139/ssrn.7471093",
+      "abstract": null,
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7213345809",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7213348456",
+      "title": "Making Generative AI Expectations Visible: Extending the TILT Framework for Transparent Assignment Design",
+      "authors": [
+        "Andrew Wiss",
+        "Karen E. Singer‐Freeman",
+        "Jennifer Pattershall-Geide",
+        "Kyle Dobbeck",
+        "Christina Heminger",
+        "Scott Quinlan",
+        "Joy Volarich",
+        "George Gray"
+      ],
+      "year": 2026,
+      "doi": "10.24059/olj.v30i3.6398",
+      "url": "https://doi.org/10.24059/olj.v30i3.6398",
+      "abstract": "Instructor practices in higher education for setting assignment-level expectations have been meaningfully shaped by the Transparency in Learning and Teaching (TILT) Framework (Winkelmes, 2023a, 2023b) which encourages the development of clear guidance for students around each assignment’s purpose, core tasks, and assessment criteria. The TILT Framework has been widely adopted by faculty and instructional support professionals (Winkelmes et al., n.d.) as a methodology that can align instructor expectations with student understanding and effort on a given assignment. The line of applied research contained in this article extends the existing TILT model to provide students with transparent genAI guidance. The authors introduce their TILTai Framework that is inclusive of instructors’ intentions surrounding genAI use. They then describe a pilot faculty development model that was implemented using their TILTai Framework (Wiss et al., 2025). The authors introduce a new and preliminarily validated instrument for measuring student perceptions of a particular assignment’s transparency related to genAI (the TILTai Scale) and describe a research study conducted across a series of graduate-level courses in which the instrument was piloted. This study also considered the influence that student perceptions of genAI transparency may have on commonly held concerns regarding genAI (Singer-Freeman et al., 2025). Results from the TILTai Scale, perceptions of genAI transparency as measured by the TILTai Scale, their influence on commonly held student concerns, and the efficacy and potential future applications of the TILTai Framework are discussed.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7213348456",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7213546535",
+      "title": "生成式人工智能在ISEC口语教学中的实践研究",
+      "authors": [
+        "丁建华",
+        "高鹏飞"
+      ],
+      "year": 2026,
+      "doi": "10.70693/202608109205",
+      "url": "https://doi.org/10.70693/202608109205",
+      "abstract": "本研究在ISEC（本科学术互认课程）项目非英语专业口语教学中开展为期16周的AIGC辅助口语教学实验。研究采用量化数据与质性分析相结合的方法，对比实验组（AIGC辅助教学）与对照组（传统课堂教学）的学习成效。研究结果显示，实验组口语流利度提高（p",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7213546535",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7213556044",
+      "title": "生成式人工智能赋能中职财经商贸类课程学业评价的内在逻辑、场景风险与优化路径",
+      "authors": [
+        "贾瑜",
+        "谷笑笑"
+      ],
+      "year": 2026,
+      "doi": "10.70693/202607034621",
+      "url": "https://doi.org/10.70693/202607034621",
+      "abstract": "职业教育数字化转型与教育评价改革的推进，对中职课程学业评价提出了由结果判定走向过程诊断、由知识考查走向能力评价的新要求。中职财经商贸类课程具有岗位导向鲜明、操作规范严格、数据属性敏感和职业素养要求较高等特点，传统学业评价在评价内容、过程证据、反馈方式和职业情境融入等方面仍存在不足。生成式人工智能为学习过程留痕、个性化反馈、职业任务情境创设和评价证据整合提供了新的技术条件，但也可能引发合规性误判、成果真实性削弱、数据安全隐患、技术依赖以及职业素养判断不足等风险。本文基于文献研究、逻辑分析与场景分析认为，生成式人工智能赋能中职财经商贸类课程学业评价的关键，不在于替代教师评分，而在于辅助教师更准确地识别学生在职业任务中的知识运用、技能表现、规范意识和反思能力。为此，应构建“AI初评—学生修正—教师终评”的评价流程，完善“知识—技能—规范—反思”多维评价标准，形成“原始作品—修改过程—AI反馈—教师意见”的评价证据链，推动中职财经商贸类课程学业评价向过程性、诊断性和素养导向转型。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7213556044",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7214461828",
+      "title": "Protecting Statistical Reasoning from Cognitive Offloading: An AI-Resilient Framework for Malaysian Undergraduates",
+      "authors": [
+        "Khairun Nazrah Wahidin"
+      ],
+      "year": 2026,
+      "doi": "10.47772/ijriss.2026.102400018",
+      "url": "https://doi.org/10.47772/ijriss.2026.102400018",
+      "abstract": "The utilisation of generative artificial intelligence (GenAI) by undergraduate students has exceeded that of institutional governance. Introductory statistics is particularly susceptible to this trend due to the easy delegation of its procedural tasks. It is possible for students to obtain accurate responses without engaging in the reasoning that the tasks were intended to foster. This conceptual paper examines the potential for unregulated GenAI reliance to erode the statistical reasoning of Malaysian bachelor's degree students and suggests strategies to safeguard this ability. The conceptual synthesis employed in the paper is structured. This study integrates the statistical thinking framework, cognitive load theory, cognitive offloading, self-efficacy theory, and evaluative judgement. It utilises sources from Scopus, Web of Science, ERIC, and Malaysian indexed databases, with a particular emphasis on Malaysian evidence and Malaysian Qualifications Agency guidance. Local cohorts approach statistics as a mandatory service course with documented anxiety, and national adoption is driven by perceived learning value rather than institutional facilitation, which exacerbates the concern in the Malaysian context. The primary mechanism by which GenAI use may impede three outcomes: the match between perceived and demonstrated competence, assessment validity, and statistical reasoning development is cognitive offloading. The paper suggests the AI-Resilient Statistical Reasoning (ARSR) framework in response, which is founded on three pillars: AI-transparent assessment, reasoning-first pedagogy, and calibrated AI use. It is accompanied by five testable propositions, each of which is linked to a research design, a level of analysis, and a pillar. The paper's contribution is not the individual constructs, which are well-established, but rather their statistical synthesis and conversion into falsifiable claims. Statistics educators, curriculum designers, and policymakers are provided with a structured foundation for utilising GenAI to enhance rather than replace statistical reasoning by the framework, which is in accordance with Sustainable Development Goal 4.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7214461828",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7216723541",
+      "title": "EVALUATING THE IMPACT OF GENERATIVE AI TOOLS ON STUDENT LEARNING OUTCOMES AND CRITICAL THINKING SKILLS IN HIGHER EDUCATION",
+      "authors": [
+        "B. Narendra Kumar,Kumbala Pradeep Reddy,S Jagadeesh"
+      ],
+      "year": 2023,
+      "doi": null,
+      "url": "https://www.pegegog.net/index.php/pegegog/article/view/5165",
+      "abstract": "The rapid advancement of Generative Artificial Intelligence (Generative AI) technologies has introducednew opportunities and challenges in higher education. Tools such as AI-powered chatbots, intelligent writing assistants, automated content generators, and personalized learning systems",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7216723541",
+          "query_id": "en-1",
+          "retrieved_at": "2026-10-27T14:45:38.543Z",
+          "raw_ref": "raw/openalex.jsonl#L3"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7220151103",
+      "title": "智能商业能力导向的商科人工智能课程建设研究",
+      "authors": [
+        "陈语时"
+      ],
+      "year": 2026,
+      "doi": null,
+      "url": "https://lkpress.com/index.php/xdrw/article/view/86",
+      "abstract": "人工智能技术正在深刻改变商业组织的信息处理方式、业务运行逻辑与管理决策模式，也对商科本科人才培养提出了新的能力要求。与计算机类专业不同，商科人工智能教学不宜以算法开发和模型训练为主要目标，而应围绕商业问题识别、数据理解、智能工具应用、人机协同决策和负责任使用展开。当前商科人工智能教学中仍存在内容技术化、课程嵌入碎片化、实践任务浅层化、评价方式滞后等问题，影响了人工智能与商科专业教育的深度融合。本文依托教育部产学合作协同育人项目“人工智能教学内容与课程体系建设”，基于OBE理念、TPACK框架、体验式学习和真实性评价理论，提出商科人工智能课程建设的“智能商业能力”目标，并从技术知识问题化、专业场景任务化、人机协同过程化、课程资源协同化和学习评价证据化五个方面分析其运行机制。在此基础上，本文构建“认知理解、场景识别、工具应用、项目实践、伦理治理”五维教学内容框架，以及“通识导入、专业融合、综合实践、持续改进”四层递进式课程体系。项目阶段性评价表明，该课程建设路径有助于提升学生人工智能认知、商业场景分析、AI工具应用、结果核验与伦理规范意识。研究认为，商科人工智能课程建设的关键不在于简单增设技术类课程，而在于将人工智能嵌入专业课程、商业案例、项目任务和评价机制之中，形成可持续迭代的课程生态。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7220151103",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7220213003",
+      "title": "基于专业认证下的单片机课程教学内容及方法的改革与研究",
+      "authors": [
+        "莫定红",
+        "杨勇"
+      ],
+      "year": 2026,
+      "doi": null,
+      "url": "https://lkpress.com/index.php/xdrw/article/view/84",
+      "abstract": "在工程教育专业认证和人工智能时代背景下，为满足培养高素质应用型人才的需求，本文以“单片机原理与应用”课程为例，围绕教学内容和方法的改革展开研究。结合“学生中心、成果导向、持续改进”的认证理念，提出以“优化教学内容、创新教学方法、强化实践体系、完善评价机制”为核心的课程改革路径。通过引入阶梯式项目驱动教学、人工智能辅助教学平台、虚实结合的实践教学模式，构建“理论－仿真－实践－竞赛”一体化的教学体系，从而提升学生的工程实践能力、创新思维与综合素养，实现教育与产业需求的精准对接。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7220213003",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7220386030",
+      "title": "生成式人工智能影响大学生学习的作用机制 ——AI素养、自我调节学习与认知卸载的整合性综述",
+      "authors": [
+        "王陈"
+      ],
+      "year": 2026,
+      "doi": "10.70693/202609223645",
+      "url": "https://doi.org/10.70693/202609223645",
+      "abstract": "生成式人工智能支持下的作品改善能否转化为独立能力，需要结合具体学习过程判断。本文采用问题导向的整合性综述，比较实证研究、学位论文与机构调查的测量对象、观察时间和教学条件，考察AI素养、自我调节学习与认知卸载的联系。现有证据支持部分技术辅助表现和即时学习收益，但连续任务及多波调查尚不足以证明长期技能衰退。具体分析以课程目标为依据，分别考察学生原有的评价能力、任务中的行动调整，以及人与AI各自承担的工作。工具介入后，学生能否继续完成必要的判断、重构和练习，是认知增强与认知替代两种解释的分界。教师同伴回应、时间压力、工具机会及授权范围可能改变这一过程。为检验上述关系，文章给出事件级测量预研、分层比较及课程评价方案，结合独立测评与反例分析，并讨论多模态、智能体及实操课程的适用条件。两条路径仍需跨任务检验。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7220386030",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7220842318",
+      "title": "From Support to Substitution: A Systematic Review of Students' Overreliance on Generative AI in Education",
+      "authors": [
+        "Sezer Kizilates",
+        "Sonsoles López‐Pernas",
+        "Leonie Vogelsmeier",
+        "Aras Bozkurt",
+        "Mohammed Saqr"
+      ],
+      "year": 2026,
+      "doi": "10.2139/ssrn.7574738",
+      "url": "https://doi.org/10.2139/ssrn.7574738",
+      "abstract": null,
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7220842318",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7221358837",
+      "title": "人工智能赋能《防水工程导论》课程教学改革研究",
+      "authors": [
+        "Shun Chen"
+      ],
+      "year": 2026,
+      "doi": "10.64649/yh.jydk.issn3080-2660.202609012",
+      "url": "https://doi.org/10.64649/yh.jydk.issn3080-2660.202609012",
+      "abstract": "在国家新防水通用规范实施与人工智能技术（AI）加速建筑行业转型的双重背景下，土木工程专业《防水工程导论》课程正面临教学内容更新迟滞、实践教学深度匮乏及评价方式单一化等结构性困境。本研究立足课程定位与既有教学实际，系统提出人工智能赋能课程改革的三重实施路径：通过构建可视化知识图谱，引导学生在体系化认知结构中完成对防水知识架构的重组与内化；借助AI技术实时抓取行业动态与典型工程案例，推动教学内容的动态更新与情境转化；在“师—机—生”三元协同教学框架下，重塑课堂互动关系与过程性评价机制，将考核重心从知识再现层面转移至复杂工程问题的综合解决能力之上。AI赋能的核心价值并非对传统教学模式的全然否定，而是驱动课程实现从“经验防水”向“智能防水”的范式跃迁，最终达成兼具扎实专业功底与智能技术应用能力的复合型工程人才培养目标。此外，教师群体AI素养的系统提升与校企协同下的教学资源联合开发，是构成改革落地实施的关键支撑条件，亦是保障课程持续进化的内生动力所在。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7221358837",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7222167806",
+      "title": "生成式人工智能辅助教案设计的主体性表达研究",
+      "authors": [
+        "Qinyi Song"
+      ],
+      "year": 2026,
+      "doi": "10.46451/ijclt.260922",
+      "url": "https://doi.org/10.46451/ijclt.260922",
+      "abstract": "理念与实践能力的双重功能。近年来，多项研究发现生成式人工智能(GAI)辅助写作可能导 致语言表达的同质化(homogenization) ，削弱使用者的个人声音 (Alvero et al., 2024",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7222167806",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7222985482",
+      "title": "迈向人机共生医学：医学智能体时代的共生临床契约",
+      "authors": [
+        "达伟 杨",
+        "元林 宋",
+        "春学 白"
+      ],
+      "year": 2026,
+      "doi": "10.61189/066985xintdh",
+      "url": "https://doi.org/10.61189/066985xintdh",
+      "abstract": "医学人工智能（artificial intelligence，AI）正在由执行单一预测的算法，演变为可持续感知情境、分解目标、调用工具、协同沟通并追踪结果的医学智能体。技术能力的跃迁使临床问题从“AI 能否替代医生”转向“患者、医生、智能体与医疗机构如何共同形成判断、授权行动并承担后果”。现有研究显示，大语言模型（large language model，LLM）在医学问答、鉴别诊断与管理推理中可达到较高水平，但“模型优于人”并不等同于“人机组合优于人”：随机试验和影像学研究同时揭示交互设计、自动化偏倚、错误放大、责任扩散与能力退化等系统风险。本文提出共生临床契约（symbiotic clinical compact，SCC），以共享智能、有界行动、患者共治和责任追溯4 项契约，规范患者—医生—智能体—医疗体系的权利、权限与责任；提出界定问题（Frame）—智能体分析（Analyse）—共同审议（Deliberate）—人类授权（Authorise）的FADA 临床闭环，以及从人工审核到人机共生医学的四阶段转化路径；并以人机共生增益（human –AI symbiotic gain，HASG）和共生相关伤害（symbiosis-related harm， SRH）作为双锚点评价终点。SCC 不是赋予智能体无限医疗权力，而是将任务自主性嵌入可撤回授权、风险分层、持续监测和机构问责。未来研究应从静态模型验证转向真实世界组合系统评价，从平均准确率转向患者结局、分层公平、关系质量、专业能力与全生命周期安全。人机共生医学的目标，是让智能体承担信息与流程复杂性，让医生聚焦判断、责任与关怀，让患者成为医疗决策的共同主体，并使医疗体系由间断服务转向可学习、可追溯的连续健康伙伴。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7222985482",
+          "query_id": "zh-1",
+          "retrieved_at": "2026-10-27T14:45:24.910Z",
+          "raw_ref": "raw/openalex.jsonl#L1"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7223388822",
+      "title": "Supporting or Replacing Students' Reasoning? Cognitive Offloading in AI-Assisted Proof Learning",
+      "authors": [
+        "Eason Chen",
+        "Sophia Judicke",
+        "Kayla Beigh",
+        "Xinyi Tang",
+        "Isabel Wang",
+        "Nina Yuan",
+        "Zimo Xiao",
+        "Chuangji Li",
+        "Siyi Li",
+        "Reed Luttmer",
+        "Shreya Singh",
+        "Maria Yampolsky",
+        "Naman P. Parikh",
+        "Yvonne Zhao",
+        "Meiyi Chen",
+        "Scarlett Huang",
+        "Anishka Mohanty",
+        "Gregory Johnson",
+        "John Mackey",
+        "Jionghao Lin",
+        "Ken Koedinger"
+      ],
+      "year": 2026,
+      "doi": "10.48550/arxiv.2610.31481",
+      "url": "https://arxiv.org/abs/2610.31481",
+      "abstract": "We studied 153 students in an undergraduate proof-based mathematics course with staggered-access to an AI support system. Students were randomly assigned to receive an AI chatbot and a homework-feedback interface earlier or later in the course. During the period when only the early-access group had access, their homework scores were 2.56 points higher, but exam performance did not differ significantly between groups, suggesting that improved AI-supported homework performance did not translate into detectable gains on a subsequent exam. After all students received access, every additional 100 messages sent to the AI chatbot was associated with a 3.02-point lower score on the subsequent exam. A mediation analysis showed a significant indirect association linking lower baseline self-efficacy to greater chatbot use and, in turn, lower exam scores: a one-point decrease in self-efficacy corresponded to 0.62 fewer exam points through chatbot use. These findings raise concerns that students may use the chatbot to offload their cognitive reasoning. Use of the homework-feedback interface, which required students to submit their proof attempts before receiving feedback, was not negatively associated with exam performance. We recommend against using a chatbot for AI tutoring and suggest exploring a tutor embedded in the course activities.",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7223388822",
+          "query_id": "en-2",
+          "retrieved_at": "2026-10-27T14:45:39.965Z",
+          "raw_ref": "raw/openalex.jsonl#L4"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    },
+    {
+      "record_id": "openalex:W7223419107",
+      "title": "岗课赛证融合下高职财务管理课程教学探索",
+      "authors": [
+        "容 李"
+      ],
+      "year": 2026,
+      "doi": null,
+      "url": "https://cn.niepublish.com/cjci/article/view/832",
+      "abstract": "财会行业又处在转型升级的关键阶段，故企业对财务管理人才的需求从传统的“核算型”转向“复合型、实战型”，而中小企业更急需一批专业技能扎实、职业素养优良、能快速适配出纳、会计核算、财务分析、税务申报诸种岗位的高素质技术技能人才。因此，高职教育作为培养技术技能人才的核心阵地，其财务管理课程有十分明确、重要的使命：衔接理论知识与岗位实践，切实培育学生的职业能力。《国家职业教育改革实施方案》对此做了十分系统、有力的部署：“深化‘岗课赛证’综合育人”，把职业院校课程内容与职业标准、岗位需求直接对接，将职业技能等级证书有机融入人才培养方案，以技能竞赛为抓手切实提高学生实践能力，这一政策导向为高职财务管理课程教学改革指明了方向。",
+      "provenance": [
+        {
+          "source": "openalex",
+          "source_record_id": "W7223419107",
+          "query_id": "zh-2",
+          "retrieved_at": "2026-10-27T14:45:28.248Z",
+          "raw_ref": "raw/openalex.jsonl#L2"
+        }
+      ],
+      "screening_status": "uncertain",
+      "screening_reason": "",
+      "verification_status": "unresolved",
+      "verification_notes": []
+    }
+  ]
+}

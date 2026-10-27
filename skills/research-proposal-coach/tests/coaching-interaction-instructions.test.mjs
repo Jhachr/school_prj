@@ -39,14 +39,36 @@ test('dialogue health detects assistant-created confirmation fatigue', async () 
   assert.match(health, /黄色[^\n]*(减少|停止)[^\n]*(问题|追问)/);
 });
 
-test('large artifacts require a backbone and full instruments require evidence and design', async () => {
+test('cards are working snapshots rather than consecutive approval checkpoints', async () => {
+  const [skill, stage, guidance, method, template, health, scenarios] = await Promise.all([
+    read('SKILL.md'),
+    read('rules/stage-contract.md'),
+    read('rules/guidance-principles.md'),
+    read('modules/method-outcome-design.md'),
+    read('templates/research-backbone-card.md'),
+    read('rules/dialogue-health.md'),
+    read('maintenance/evals/coaching-interaction-scenarios.md'),
+  ]);
+  assert.match(skill, /working snapshot[^\n]*not a teacher approval checkpoint/i);
+  assert.match(stage, /工作快照[^\n]*不是[^\n]*审批/);
+  assert.match(stage, /decision delta/i);
+  assert.match(guidance, /Cards organize state[^\n]*do not create a new action/i);
+  assert.match(method, /Do not ask the teacher to confirm the whole card/i);
+  assert.doesNotMatch(method, /confirm the whole card once/i);
+  assert.match(template, /不要求老师再确认整张卡/);
+  assert.match(health, /card_confirmation_cascade/);
+  assert.match(scenarios, /Direction Choice Does Not Trigger Card Approval/);
+});
+
+test('large artifacts require backbone completeness and full instruments require evidence and design', async () => {
   const [skill, method, template] = await Promise.all([
     read('SKILL.md'),
     read('modules/method-outcome-design.md'),
     read('templates/research-backbone-card.md'),
   ]);
-  assert.match(skill, /研究骨架卡[^\n]*大型产物/);
-  assert.match(method, /研究骨架卡/);
+  assert.match(skill, /研究骨架[^\n]*大型产物/);
+  assert.match(method, /研究骨架/);
+  assert.match(method, /validity-critical fields are teacher-owned/);
   assert.match(method, /Full Research Instrument Gate/);
   assert.match(method, /evidence_and_design/);
   for (const field of ['真实问题', '核心问题', '改变措施', '判断证据', '预期成果', '结论边界']) {

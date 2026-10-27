@@ -1,0 +1,38 @@
+{
+  "topic": "AI 生成初稿 + 学生审题的电商作业改造对判断准确率的影响",
+  "teacher_context": {
+    "role_or_course": "电子商务相关课程教师（临时会话，具体课程名待补充）",
+    "work_scene": "课程作业/实训环节，学生使用 AI 生成初稿",
+    "observed_problem": "学生不复核 AI 产出、说不清方案理由、判不出 AI 结果对错",
+    "current_method": "作业改造：AI 生成初稿 + 学生强制审题单（找错并写依据），单班前后测",
+    "resources": "教师自有的一个教学班，班额待补充",
+    "confirmation_source": "temporary_session_user_confirmed"
+  },
+  "queries": [
+    {
+      "query_id": "zh-1",
+      "language": "zh",
+      "text": "生成式人工智能 大学生 过度依赖 批判性思维 教学干预"
+    },
+    {
+      "query_id": "zh-2",
+      "language": "zh",
+      "text": "电子商务 课程教学 人工智能 作业改革 学生 审核"
+    },
+    {
+      "query_id": "en-1",
+      "language": "en",
+      "text": "students critically evaluating AI-generated content intervention higher education"
+    },
+    {
+      "query_id": "en-2",
+      "language": "en",
+      "text": "generative AI overreliance cognitive offloading students assignment design"
+    }
+  ],
+  "filters": {
+    "from_year": 2022,
+    "to_year": 2026
+  },
+  "per_query_limit": 20
+}

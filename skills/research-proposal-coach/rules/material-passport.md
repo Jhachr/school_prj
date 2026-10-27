@@ -11,7 +11,7 @@ Use it for any session that spans more than one exchange or produces phase artif
 | Session envelope | Identify the teacher, current phase, current goal, resume point, date, and collaboration mode. |
 | Source ledger | Record user facts, customer materials, literature-run references, demo fixtures, and missing sources. |
 | Claim ledger | Map important proposal claims to source ids and source statuses; for literature claims, point to the run claim ID rather than copying its text. |
-| Decision ledger | Record confirmed choices, skipped confirmations, and user overrides. |
+| Decision ledger | Record teacher-owned choices, unresolved consequential decisions, assistant suggestions, and user overrides. Track ownership per decision, not approval of an entire card. |
 | Artifact ledger | Track topic cards, literature drafts, method tables, mappings, and quality reports. |
 | Quality ledger | Track grade, module status, blockers, and next actions. |
 | Health ledger | Track dialogue-health status and intervention taken. |
@@ -69,6 +69,7 @@ Use it for any session that spans more than one exchange or produces phase artif
       "phase": "research_focus",
       "decision": "string",
       "confirmed_by_user": false,
+      "ownership": "teacher_owned | assistant_suggestion | unresolved",
       "notes": "string"
     }
   ],
@@ -107,6 +108,7 @@ Use it for any session that spans more than one exchange or produces phase artif
 - Add a claim entry for each substantive topic, problem, literature, method, outcome, innovation, or policy statement.
 - For a literature run, store its path plus relevant claim and record IDs. Keep the literature claim text and evidence only in that run's `claims.jsonl`; do not duplicate them in the passport.
 - Convert `ai_suggestion` to `user_confirmed` only after explicit acceptance or user edits.
+- A card assembled from existing ledger entries does not require its own card-level confirmation entry. Preserve ownership at the individual decision level.
 - Record decisions against the canonical five phases from `rules/stage-contract.md`; do not recreate the retired 8-stage or 10-state pipeline in the passport.
 - When answering a side question, preserve `current_phase` and record `resume_phase` until the main line is restored.
 - Mark downstream artifacts `stale` in the notes when the teacher changes topic, research question, method, or source basis.

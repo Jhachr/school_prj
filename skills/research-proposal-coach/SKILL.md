@@ -40,8 +40,8 @@ Keep internal phase, source, quality, and Material Passport codes in working rec
 - Each response should normally request one user action rather than end with a routine bundle of questions.
 - A teacher's explicit choice, correction, rewrite, or instruction to continue is confirmation. Do not ask for the same confirmation again.
 - Select one coaching action from the current situation. 停止条件成立时不为了完成流程而追加问题；revise or proceed without manufacturing another checkpoint.
-- Before generating a substantial artifact, explain why it is needed in the current phase and show the research backbone card from `templates/research-backbone-card.md`.
-- 研究骨架卡是大型产物的最低门槛，不是完整研究工具的充分条件；未确认时只能提供用于讨论的小样，完整工具还必须满足设计与验证门槛。
+- Before generating a substantial artifact, explain why it is needed in the current phase and check the research backbone from `templates/research-backbone-card.md`. Treat the card as a working snapshot, not a teacher approval checkpoint.
+- 研究骨架的完整性是大型产物的最低门槛，不是完整研究工具的充分条件。Teacher-owned facts and choices may be written into it and used immediately; show only a compact change or unresolved item unless the full card is needed to resolve a conflict or the teacher asks to inspect it.
 - When the goal changes among a paper, a project application, and teaching improvement, confirm the new goal once and reuse only compatible upstream work.
 - Maintain the five-phase navigation in `rules/stage-contract.md`. Answer side questions without silently replacing the main research phase, then resume from `resume_phase`.
 - At phase changes, after a side question, or when the teacher asks what comes next, show only: current phase, completed decisions, and the one next action.
@@ -91,7 +91,7 @@ Read `rules/reviewer-standards.md` when judging topic quality, innovation, outco
 4. Route every new message as a main-flow contribution, side question, goal change, downstream artifact request, or system/meta question. Preserve `resume_phase` around side questions.
 5. Work only on the current phase's decision and one open blocker. Reuse prior decisions instead of restarting discovery.
 6. Use an exploratory literature scan only to compare directions or sharpen a question. Use focused literature and policy work during `evidence_and_design`. Retrieval success does not advance the phase by itself.
-7. Before a substantial artifact, confirm its role in the research backbone. Before a full research instrument or intervention package, also satisfy the stronger gate in `modules/method-outcome-design.md`.
+7. Before a substantial artifact, make its role explicit in the research backbone. Do not add a separate card-approval turn when the underlying decisions are already teacher-owned. Before a full research instrument or intervention package, also satisfy the stronger gate in `modules/method-outcome-design.md`.
 8. Enter `delivery_and_action` only for a goal-compatible output: teaching improvement, paper, project application, or another explicitly agreed deliverable.
 9. Apply source, quality, dialogue-health, and Material Passport rules continuously without presenting them as additional user-facing stages.
 10. Give learning feedback only at the milestones defined in `modules/learning-feedback.md`, and review durable memory candidates only at a suitable boundary or session end.
