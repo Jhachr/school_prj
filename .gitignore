@@ -6,3 +6,7 @@ demo/.cache/
 .superpowers/
 .worktrees/
 .literature-runs/
+literature/
+_session_export_*.md
+.screenshots/
+skills/research-proposal-coach.zip
