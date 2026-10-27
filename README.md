@@ -43,13 +43,13 @@ YYYY-MM-DD-topic.md
 安装到 Trae CN：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Jhachr/school_prj/main/scripts/install-research-proposal-coach.sh | sh -s -- --target trae
+curl -fsSL -H 'Accept: application/vnd.github.raw+json' 'https://api.github.com/repos/Jhachr/school_prj/contents/scripts/install-research-proposal-coach.sh?ref=main' | sh -s -- --target trae
 ```
 
 安装到 Codex：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Jhachr/school_prj/main/scripts/install-research-proposal-coach.sh | sh -s -- --target codex
+curl -fsSL -H 'Accept: application/vnd.github.raw+json' 'https://api.github.com/repos/Jhachr/school_prj/contents/scripts/install-research-proposal-coach.sh?ref=main' | sh -s -- --target codex
 ```
 
 脚本使用 Git sparse checkout，只下载 `skills/research-proposal-coach/`。它不会覆盖已经存在的同名 Skill；需要更新时，应先备份或移走旧目录再重新安装。
@@ -57,7 +57,7 @@ curl -fsSL https://raw.githubusercontent.com/Jhachr/school_prj/main/scripts/inst
 也可以指定其他安装根目录：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Jhachr/school_prj/main/scripts/install-research-proposal-coach.sh | sh -s -- --dest /path/to/skills
+curl -fsSL -H 'Accept: application/vnd.github.raw+json' 'https://api.github.com/repos/Jhachr/school_prj/contents/scripts/install-research-proposal-coach.sh?ref=main' | sh -s -- --dest /path/to/skills
 ```
 
 ### product-design
