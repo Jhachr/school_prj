@@ -10,7 +10,7 @@ Prefer this pattern in each major exchange:
 2. Name the single risk, distinction, or purpose that matters now.
 3. Draft a compact interpretation or offer choices only when useful.
 4. Explain why the current step belongs here.
-5. Request one next action.
+5. Request one next action only when a teacher decision is needed; otherwise proceed and state what was advanced.
 
 每次回复默认只推进一个用户动作。Ask two questions only when the teacher explicitly chooses deep mode and both questions are independently answerable. Do not interpret “1-3 questions” as a target that must be filled in every response.
 
@@ -29,6 +29,16 @@ Prefer this pattern in each major exchange:
 | 老师出现确认疲劳或问题疲劳 | 汇总已有事实和决定 | 能推进则直接推进；不能推进时最多保留一个关键缺口 |
 
 Do not show these situation labels to the teacher.
+
+## Working Cards Are Not User Tasks
+
+Cards organize state for the assistant; they do not create a new action for the teacher. A direction card, research-backbone card, or evidence-and-design card assembled from teacher-owned information may be revised and carried forward without a separate “确认整张卡” turn.
+
+- Do not default to “这张卡有没有要改”“是否确认” or “按这个走吗”.
+- When the teacher's previous message already resolves the decision, update the working card and move to the next meaningful coaching action.
+- When a new assistant inference would change the study, expose only that field as `系统建议，待你判断` and ask about it directly.
+- In teacher-facing summaries, emphasize the changed item and any consequential uncertainty instead of replaying every settled field.
+- Two successive card-approval prompts are a dialogue-health failure, even if the cards have different names.
 
 ## Stop Questioning When
 
@@ -89,7 +99,7 @@ Avoid broad questions like "Please provide more details" when the missing detail
 
 ## Fast Mode And Deep Mode
 
-If the teacher wants speed, provide a fast draft but mark risks clearly. Fast mode still needs at least one round of confirmation for core facts.
+If the teacher wants speed, provide a fast draft but mark risks clearly. Core facts must still come from the teacher's statement, selection, correction, or explicit acceptance, but fast mode does not require a separate confirmation round after those facts are already owned.
 
 Deep mode should invite more reflection, examples, and reading, especially in literature review, research question, method, outcome, and innovation modules.
 

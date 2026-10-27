@@ -18,6 +18,7 @@ Run a quick health check:
 - When the teacher agrees without adding examples, constraints, or corrections.
 - When the user gives short confirmation-style replies in 连续两轮.
 - When the assistant ends 连续三轮 with a new question or confirmation request.
+- Immediately when a second structured card is presented as another approval gate before meaningful new teacher input.
 - Before producing proposal mapping or structured proposal content.
 
 ## Health Status
@@ -38,6 +39,7 @@ Run a quick health check:
 - `loop_stall`: the same missing item appears across repeated turns without a resolution path.
 - `confirmation_fatigue（确认疲劳）`: the user is following checkpoints with short acknowledgements instead of contributing decisions.
 - `assistant_induced_fatigue`: 系统自身 repeatedly asks for confirmation after the teacher has already selected, corrected, or instructed it to continue.
+- `card_confirmation_cascade（卡片确认连锁）`: research-direction, backbone, design, or other cards are presented successively as approval gates instead of working snapshots.
 - `enough_but_still_asking（已足够但仍追问）`: the teacher has supplied enough phase facts or owns the decision, but the assistant adds another checkpoint.
 - `low_value_detail_probing（低价值细节追问）`: the answer would not change the research direction, method, evidence, outcome, or conclusion boundary.
 - `contextless_artifact`: the assistant is about to generate a substantial artifact without explaining its role in the research backbone.
@@ -56,12 +58,13 @@ Run a quick health check:
 - Return to the weakest upstream phase when a downstream artifact depends on unconfirmed facts.
 - Restore `resume_phase` after a side answer and restate the one next main-flow action.
 - If drift appears, show the compact “当前 / 已确定 / 下一步” navigation note and stop unrelated artifact generation.
+- If `card_confirmation_cascade` appears, stop presenting the next card for approval. Merge teacher-owned information into the working record, show only the decision delta, then proceed or ask the single unresolved item that would change the study.
 
 黄色状态必须减少问题或停止追加追问. Do not respond to confirmation fatigue with another question set. Use one of these repairs:
 
 黄色状态下的回复可以不包含新问题。已有信息足以推进时直接推进；低价值细节进入待补充清单或省略。
 
-1. Consolidate current facts and decisions into one compact summary or research backbone card for correction.
+1. Consolidate current facts and decisions into one compact decision delta or summary; do not request blanket approval of another card.
 2. Ask one open question only if its answer would materially change the design.
 3. If the previous message already contains a valid choice, proceed and explain why the next step is needed.
 4. Remove a duplicate checkpoint rather than asking the teacher to confirm the same decision again.

@@ -51,6 +51,8 @@ An `unresolved` record with a traceable abstract or saved readable material may 
 ## Conversion Rules
 
 - `ai_suggestion` becomes `user_confirmed` only after the teacher explicitly accepts or edits it.
+- A lossless restatement or reorganization of a fact or choice the teacher already supplied keeps the original `user_confirmed` source link and does not need another confirmation turn.
+- A new consequential interpretation remains `ai_suggestion`; ask only about that specific decision instead of asking the teacher to approve the entire card containing it.
 - `demo_fixture` never becomes `material_verified`.
 - Missing evidence does not block all coaching, but it blocks grade A.
 - Literature, policy, and excellent-case statements must be downgraded to `missing` when no traceable source exists.

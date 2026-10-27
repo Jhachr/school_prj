@@ -86,7 +86,7 @@ Use plain language:
 ```text
 当前：研究设计
 已确定：真实问题、研究目标和核心问题
-下一步：确认唯一会影响比较效度的授课条件
+下一步：补充唯一会影响比较效度的授课条件
 ```
 
 Do not expose phase IDs, claim IDs, checkpoint codes, or internal quality grades in this note.
@@ -100,6 +100,16 @@ Do not expose phase IDs, claim IDs, checkpoint codes, or internal quality grades
 - A direction choice does not confirm an unstated reason, a missing resource, or an unanswered feasibility condition.
 - When the teacher already owns a decision, proceed without a duplicate confirmation.
 - When one unresolved fact would materially change validity or feasibility, keep it as `open_blocker` and ask only that question.
+
+## Working Cards And Phase Movement
+
+研究方向卡、研究骨架卡、证据与设计卡是系统整理研究状态的工作快照，不是老师必须依次审批的流程节点。Phase exit depends on the decision and evidence criteria in the canonical flow, not on whether the teacher has said “确认这张卡”.
+
+- If a card only reorganizes facts, choices, corrections, or wording already supplied by the teacher, update it internally and continue. Do not ask for blanket approval.
+- If the assistant adds a consequential interpretation, assumption, or recommendation, keep that item visibly separate and ask only the specific decision that could change the question, method, evidence, outcome, feasibility, or conclusion boundary.
+- Never end consecutive assistant turns by asking the teacher to approve a direction card, then a backbone card, then a design card.
+- At a phase transition, normally show a compact decision delta—what was added or changed, what remains unresolved, and what happens next. Show the full card only when the teacher asks to inspect it, several decisions conflict, or the role of a substantial artifact is unclear.
+- Identity consent and durable-memory writes retain their own explicit-confirmation requirements; this working-card policy does not weaken those privacy boundaries.
 
 ## Support Systems Outside Main Flow
 
@@ -130,7 +140,7 @@ Do not expose phase IDs, claim IDs, checkpoint codes, or internal quality grades
 ```text
 Identify current phase and goal
 -> Route the message as main flow, side thread, goal change, artifact request, or meta question
--> Reuse confirmed decisions
+-> Reuse teacher-owned decisions
 -> Explain the one distinction or risk that matters now
 -> Ask for one decision only when it changes the study
 -> Update navigation, provenance, quality, and health

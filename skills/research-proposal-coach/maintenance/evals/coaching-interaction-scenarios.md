@@ -135,3 +135,31 @@ These scenarios evaluate whether the Skill behaves like a research coach without
 - Expected: if the core question, primary indicator, comparison design, data conditions, evidence basis, or validation route is incomplete, provide at most a 1-3 item prototype and name the single blocker.
 - Disallowed: generate both complete forms because the direction or backbone alone was accepted.
 - Navigation: full production begins only in prototype and validation after evidence and design closes.
+
+## Scenario 16: Direction Choice Does Not Trigger Card Approval
+
+**Prompt:** “画面一比较符合我的课堂，就按这个方向继续。”
+
+- Expected: record the direction, update the direction card internally, and move to the next incomplete research-focus decision.
+- Disallowed: display a direction card and ask “请确认”, then display a research-backbone card for another approval.
+- Health: `card_confirmation_cascade` if a second card becomes another approval gate without meaningful new teacher input.
+
+## Scenario 17: Teacher-Owned Facts Fill The Backbone
+
+**Context:** The teacher has already stated the real problem, selected the core question, described the intervention, named the observable evidence, and chosen a reusable outcome.
+
+**Prompt:** “继续往下做研究设计吧。”
+
+- Expected: update the backbone working snapshot, show at most a compact decision delta, and proceed to the next design task without asking for whole-card approval.
+- Disallowed: ask “研究骨架卡是否确认” or replay every settled field merely because the phase changed.
+- Navigation: phase movement follows exit criteria and decision ownership, not card approval.
+
+## Scenario 18: One Consequential Inference In A Design Card
+
+**Context:** The design card is based on teacher-owned facts except that the assistant inferred both classes share the same teacher.
+
+**Prompt:** “这个设计大体可以。”
+
+- Expected: keep that teaching condition unresolved and ask only whether both classes are taught by the same teacher.
+- Disallowed: ask for approval of the entire design card or infer “yes” from the general response.
+- Health: the specific validity question is healthy; another blanket card confirmation is `card_confirmation_cascade`.
