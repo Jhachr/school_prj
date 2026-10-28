@@ -7,6 +7,27 @@ import { fileURLToPath } from 'node:url';
 const skillRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const readmePath = path.join(skillRoot, 'README.md');
 
+function parseTopLevelDirectoryHeadings(markdown) {
+  const headings = [...markdown.matchAll(/^###[ \t]+`([^`/\r\n]+)\/`/gm)].map(
+    (match) => match[1],
+  );
+  return [...new Set(headings)].sort();
+}
+
+test('directory headings ignore body mentions and nested directory headings', () => {
+  const markdown = [
+    '# Directory guide',
+    '',
+    '### `rules/`: top-level rules',
+    '',
+    'The implementation also uses `lib/` internally.',
+    '',
+    '#### `helpers/`: nested test helpers',
+  ].join('\n');
+
+  assert.deepEqual(parseTopLevelDirectoryHeadings(markdown), ['rules']);
+});
+
 test('README maps every top-level directory', async () => {
   const [entries, readme] = await Promise.all([
     readdir(skillRoot, { withFileTypes: true }),
@@ -18,23 +39,22 @@ test('README maps every top-level directory', async () => {
     .sort();
 
   assert.ok(directories.length > 0, 'expected at least one top-level directory');
-  for (const directory of directories) {
-    assert.ok(
-      readme.includes(`\`${directory}/\``),
-      `README must mention \`${directory}/\``,
-    );
-  }
+  assert.deepEqual(parseTopLevelDirectoryHeadings(readme), directories);
 });
 
 test('README relative Markdown links resolve from the Skill root', async () => {
   const readme = await readFile(readmePath, 'utf8');
   const markdownLinks = [...readme.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)].map(
-    (match) => match[1].trim(),
+    (match) => match[1].trim().replace(/^<|>$/g, ''),
   );
   const localTargets = markdownLinks
-    .filter((target) => !target.startsWith('#') && !target.includes('://'))
-    .map((target) => target.replace(/^<|>$/g, '').split('#', 1)[0])
-    .filter(Boolean);
+    .filter(
+      (target) =>
+        !target.startsWith('#') && !/^[a-z][a-z0-9+.-]*:/i.test(target),
+    )
+    .map((target) => target.split('#', 1)[0])
+    .filter(Boolean)
+    .map(decodeURIComponent);
 
   assert.ok(localTargets.length > 0, 'README must contain at least one local link');
   for (const target of localTargets) {

@@ -36,9 +36,9 @@ research-proposal-coach/
 
 ### `agents/`：宿主展示与发现元数据
 
-当前包含 [`openai.yaml`](agents/openai.yaml)，定义 Skill 在支持该格式的宿主中显示的名称、简短说明和默认提示。这里负责“如何被看见和启动”，不承载科研辅导规则。
+当前包含 [`openai.yaml`](agents/openai.yaml)，仅定义 Skill 在支持该格式的宿主中使用的 `display_name` 与 `short_description`。这里负责“如何被看见”，不承载科研辅导规则。
 
-调整宿主展示、默认启动提示或验收 Skill 发现效果时读这里。修改后至少检查 YAML 可解析、名称与 `SKILL.md` 的实际能力一致，并运行 Skill 结构校验。
+调整或验收宿主中的显示名称与简短说明时读这里。修改后至少检查 YAML 可解析、两个字段与 `SKILL.md` 的实际能力一致，并运行 Skill 结构校验。
 
 ### `rules/`：跨阶段统一生效的规则
 
@@ -130,7 +130,7 @@ research-proposal-coach/
 
 ### `references/`：重型参考资料预留目录
 
-该目录当前为空。只有无法合理放入 `SKILL.md`、`rules/` 或 `modules/` 的大体量参考资料才应放在这里，例如稳定的外部规范摘要或长篇字段说明。新增资料时必须从运行入口或相关模块明确链接，不能把未被引用的资料当成生效规则。
+该目录当前只有[目录说明](references/README.md)，没有运行时参考资料。只有无法合理放入 `SKILL.md`、`rules/` 或 `modules/` 的大体量稳定参考资料才应放在这里。新增资料时必须从运行入口或相关模块明确链接，不能把未被引用的资料当成生效规则。
 
 ## 这些部分如何协作
 
