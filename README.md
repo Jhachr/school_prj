@@ -6,7 +6,7 @@
 
 ## 当前产品
 
-当前核心交付物是 [`research-proposal-coach`](skills/research-proposal-coach/SKILL.md)。它不是一键代写工具，而是帮助教师把真实教学或工作问题转化为可回答的研究问题、证据与研究设计、经过验证的工具或材料，以及与目标匹配的教学改进、论文或课题申报产物。
+当前交付物由两个一起安装的 Skill 组成：[`research-proposal-coach`](skills/research-proposal-coach/SKILL.md) 负责科研辅导，[`session-to-feishu-doc`](skills/session-to-feishu-doc/SKILL.md) 负责在用户明确同意后，把当前可见会话脱敏保存到飞书并通知指定接收者。科研教练不是一键代写工具，会话上传也不是静默遥测。
 
 目前已经具备：
 
@@ -16,6 +16,7 @@
 - 探索性检索、聚焦文献综述和逐条证据追溯；
 - 研究工具、干预材料和大型产物的生成门槛；
 - 对确认疲劳、提问疲劳和流程跑偏的检测；
+- 流程结束或暂停时只提议一次的自愿会话反馈，以及用户主动提出上传时的确认流程；
 - Trae CN、Codex 和自定义目录的命令行安装；
 - 自动化测试和真实交互评估场景。
 
@@ -23,8 +24,8 @@
 
 仓库中的资料按以下优先级理解。出现冲突时，以更靠前的内容为准：
 
-1. **运行规则**：`skills/research-proposal-coach/SKILL.md` 以及它引用的 `rules/`、`modules/`、`templates/` 和 `scripts/`。
-2. **行为验证**：`skills/research-proposal-coach/tests/` 与 `maintenance/evals/`，用于固定已经确认的交互和质量边界。
+1. **运行规则**：两个 `skills/*/SKILL.md` 以及它们引用的规则、模块和脚本。
+2. **行为验证**：两个 Skill 的 `tests/` 与科研教练的 `maintenance/evals/`，用于固定已经确认的交互和质量边界。
 3. **客户证据**：`customer-communications/raw/` 保存原始沟通，`summaries/` 保存可追溯的需求理解。
 
 已经被实现替代的旧 Demo、8/10 状态蓝图、实施计划、压缩包和会话生成物不继续保留在当前工作树中；需要追溯时使用 Git 历史。当前结论必须落实到上述三类资料之一，不能只存在于聊天或临时计划中。
@@ -90,18 +91,23 @@
 │   └── summaries/            # 从原始材料提炼的需求、决定和未决问题
 ├── scripts/
 │   └── install-research-proposal-coach.sh
-└── skills/research-proposal-coach/
-    ├── SKILL.md              # Skill 入口、路由和硬边界
-    ├── rules/                # 跨模块的主流程、来源、质量、记忆和交互规则
-    ├── modules/              # 当前阶段按需加载的辅导模块
-    ├── templates/            # 工作快照、报告和长期记忆模板
-    ├── scripts/              # 画像、检索与证据一致性工具
-    ├── tests/                # 自动化行为与脚本测试
-    ├── maintenance/evals/    # 真实交互回归场景
-    └── maintenance/update-log.md
+└── skills/
+    ├── research-proposal-coach/
+    │   ├── SKILL.md              # 科研辅导入口、路由和硬边界
+    │   ├── rules/                # 主流程、来源、质量、记忆和交互规则
+    │   ├── modules/              # 当前阶段与会话分享模块
+    │   ├── templates/            # 工作快照、报告和长期记忆模板
+    │   ├── scripts/              # 画像、检索与证据一致性工具
+    │   ├── tests/                # 自动化行为与脚本测试
+    │   ├── maintenance/evals/    # 真实交互回归场景
+    │   └── maintenance/update-log.md
+    └── session-to-feishu-doc/
+        ├── SKILL.md              # 会话上传、同意、脱敏和事务规则
+        ├── scripts/              # 配置、创建、授权和通知工具
+        └── tests/                # 配置与上传回归测试
 ```
 
-`skills/research-proposal-coach/` 是 Skill 的唯一编辑源。不要直接修改安装目录后再反向覆盖仓库。
+`skills/research-proposal-coach/` 和 `skills/session-to-feishu-doc/` 是两个 Skill 的唯一编辑源。不要直接修改 Trae、Codex 或其他宿主的安装副本后再反向覆盖仓库。
 
 ## 推荐阅读路径
 
@@ -123,6 +129,7 @@
 | 文献检索、引用与证据追溯 | `modules/literature-review.md`、`rules/source-policy.md`、检索脚本与测试 |
 | 题库、量表、量规或干预材料 | `modules/method-outcome-design.md`、`templates/research-backbone-card.md` |
 | 课题申报字段映射 | `modules/proposal-mapping.md`，并先确认当前目标和真实指南模板 |
+| 会话结束提议、上传同意或飞书反馈 | `modules/session-sharing.md`、`skills/session-to-feishu-doc/SKILL.md` |
 | 客户为什么提出这些需求 | `customer-communications/raw/` 与对应 `summaries/` |
 
 ## 本地验证
@@ -131,6 +138,7 @@
 
 ```bash
 node --test skills/research-proposal-coach/tests/*.test.mjs
+node --test skills/session-to-feishu-doc/tests/*.test.mjs
 ```
 
 检查 Skill 结构（本机已安装 Codex 系统 Skill 时）：
@@ -138,6 +146,8 @@ node --test skills/research-proposal-coach/tests/*.test.mjs
 ```bash
 python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" \
   skills/research-proposal-coach
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" \
+  skills/session-to-feishu-doc
 ```
 
 检查补丁格式和安装脚本入口：
@@ -173,7 +183,9 @@ curl -fsSL -H 'Accept: application/vnd.github.raw+json' \
   | sh -s -- --dest /path/to/skills
 ```
 
-安装脚本通过 Git sparse checkout 只下载 Skill 目录，并拒绝覆盖已经存在的同名目录。它默认拉取 `main`，所以未提交、未推送的本地修改不会进入命令行安装版本。
+以上每条命令都会同时安装两个 Skill。安装脚本通过 Git sparse checkout 只下载两个 Skill 目录，并在复制前检查两个目标；任一同名目录已存在时整体停止。它默认拉取 `main`，所以未提交、未推送的本地修改不会进入命令行安装版本。
+
+第一次上传时，用户只需对助手说“初始化会话反馈上传”。向导会完成飞书应用与用户授权，并配置接收者。会话上传始终需要明确同意；配置的接收者必须能被当前飞书应用和租户识别，跨租户 `open_id` 不保证可用。
 
 开发时需要把仓库版本同步到本机 Trae 安装目录，可使用：
 
@@ -181,6 +193,10 @@ curl -fsSL -H 'Accept: application/vnd.github.raw+json' \
 rsync -a --exclude '.DS_Store' \
   skills/research-proposal-coach/ \
   "${TRAE_HOME:-$HOME/.trae-cn}/skills/research-proposal-coach/"
+
+rsync -a --exclude '.DS_Store' \
+  skills/session-to-feishu-doc/ \
+  "${TRAE_HOME:-$HOME/.trae-cn}/skills/session-to-feishu-doc/"
 ```
 
 同步后应在新对话中使用，或重新加载宿主的 Skill 列表。

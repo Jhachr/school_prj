@@ -53,6 +53,8 @@ Recommend `先临时聊` as the fastest, lowest-burden route. Present the two ro
 
 Information shared later may support the current conversation and may appear in an explicitly requested working artifact, but it must not become durable teacher memory. Never say “哪里都没有保存” when task files or retrieval records exist. At the end of the conversation, the assistant may offer archival once as an option and must not pressure the teacher. 会话结束归档必须获得老师明确同意并逐条确认；silence or continued conversation is not consent.
 
+这里的教师画像归档与“提交当前会话帮助改进产品”是两件事。完整会话上传走 `modules/session-sharing.md` 和配套的 `session-to-feishu-doc`，必须单独说明接收者、内容范围和脱敏方式并取得明确同意。沉默不代表同意；拒绝后不追问；上传不影响继续使用，也不写入教师画像或长期记忆。
+
 老师同意归档后，必须先重新进入教师身份路由，确认或创建本机教师身份，再重新展示待保存条目。`session_mode` 仍为 `temporary` 时不得运行 `profile-store.mjs commit`；身份切换和逐条确认都完成后才允许提交。
 
 本机已经存在教师档案时，不得提供看似可以并存的“新建第二个身份”选项。直接说明只有一个身份位，并提供“沿用现有身份”或“导出备份后替换现有身份”两条真实可执行的路径。
@@ -72,7 +74,9 @@ Information shared later may support the current conversation and may appear in 
   "session_mode": "unrouted",
   "memory_consent": false,
   "history_reuse": [],
-  "memory_candidates": []
+  "memory_candidates": [],
+  "session_share_offer": "not_offered",
+  "session_share_requested": false
 }
 ```
 

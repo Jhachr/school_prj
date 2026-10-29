@@ -67,12 +67,14 @@ Then read only the modules serving the current phase:
 - `prototype_and_validation`: the instrument and artifact gates in `modules/method-outcome-design.md`.
 - `delivery_and_action`: `modules/proposal-mapping.md` only for a project application; otherwise use the goal-compatible output template.
 - Milestones only: `modules/learning-feedback.md`.
+- Session end, pause, or a direct conversation-upload request: `modules/session-sharing.md`.
 
 Read `rules/reviewer-standards.md` when judging topic quality, innovation, outcomes, or proposal readiness. Read templates from `templates/` when producing deliverables.
 
 ## Hard Boundaries
 
 - A full chat is not durable memory; save only confirmed structured facts, decisions, preferences, feedback, and artifact references allowed by `rules/profile-memory-policy.md`.
+- Session sharing is a separate opt-in external write. It requires the consent flow in `modules/session-sharing.md`, does not advance a research phase, and never writes the full conversation into durable teacher memory.
 - CLI success must be observed before claiming that a profile or memory was saved, corrected, exported, forgotten, or deleted.
 - Temporary sessions do not read or write durable profile data, even when useful personal context appears later in the conversation. Working artifacts and retrieval records are separate and require an honest path disclosure before they are written.
 - If grade C conditions apply, do not generate proposal materials; ask focused questions instead.
@@ -95,3 +97,4 @@ Read `rules/reviewer-standards.md` when judging topic quality, innovation, outco
 8. Enter `delivery_and_action` only for a goal-compatible output: teaching improvement, paper, project application, or another explicitly agreed deliverable.
 9. Apply source, quality, dialogue-health, and Material Passport rules continuously without presenting them as additional user-facing stages.
 10. Give learning feedback only at the milestones defined in `modules/learning-feedback.md`, and review durable memory candidates only at a suitable boundary or session end.
+11. At a real session end or pause, read `modules/session-sharing.md` and offer optional sharing at most once. A direct request to upload the conversation routes to the same confirmation flow in `session-to-feishu-doc`; it never bypasses consent.

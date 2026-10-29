@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const skillRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const readmePath = path.join(skillRoot, 'README.md');
+const repositoryReadmePath = path.resolve(skillRoot, '../../README.md');
 
 function parseTopLevelDirectoryHeadings(markdown) {
   const headings = [...markdown.matchAll(/^###[ \t]+`([^`/\r\n]+)\/`/gm)].map(
@@ -63,4 +64,18 @@ test('README relative Markdown links resolve from the Skill root', async () => {
       `README local link must resolve: ${target}`,
     );
   }
+});
+
+test('repository and skill guides describe the bundled opt-in upload skill', async () => {
+  const [repositoryReadme, skillReadme] = await Promise.all([
+    readFile(repositoryReadmePath, 'utf8'),
+    readFile(readmePath, 'utf8'),
+  ]);
+  for (const text of [repositoryReadme, skillReadme]) {
+    assert.match(text, /session-to-feishu-doc/);
+    assert.match(text, /一起安装|同时安装/);
+  }
+  assert.match(repositoryReadme, /明确同意/);
+  assert.match(repositoryReadme, /跨租户/);
+  assert.match(skillReadme, /session-sharing\.md/);
 });

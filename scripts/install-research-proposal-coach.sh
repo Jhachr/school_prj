@@ -2,8 +2,7 @@
 
 set -eu
 
-skill_name="research-proposal-coach"
-skill_path="skills/$skill_name"
+skill_names="research-proposal-coach session-to-feishu-doc"
 repo_url="${RESEARCH_SKILL_REPO:-https://github.com/Jhachr/school_prj.git}"
 repo_ref="${RESEARCH_SKILL_REF:-main}"
 target="codex"
@@ -11,7 +10,7 @@ dest_root=""
 
 usage() {
   cat <<'EOF'
-Install research-proposal-coach from GitHub.
+Install research-proposal-coach and session-to-feishu-doc from GitHub.
 
 Usage:
   install-research-proposal-coach.sh [--target codex|trae] [--dest DIR]
@@ -25,7 +24,8 @@ Options:
   --ref REF            Git branch or tag. Defaults to main.
   -h, --help           Show this help.
 
-The installer does not overwrite an existing skill directory.
+The installer does not overwrite either existing skill directory. It checks both
+destinations before copying, so an expected conflict cannot leave a partial install.
 EOF
 }
 
@@ -83,12 +83,14 @@ command -v git >/dev/null 2>&1 || {
   exit 1
 }
 
-destination="$dest_root/$skill_name"
-if [ -e "$destination" ]; then
-  echo "Refusing to overwrite existing skill: $destination" >&2
-  echo "Move or remove it first, then run the installer again." >&2
-  exit 1
-fi
+for skill_name in $skill_names; do
+  destination="$dest_root/$skill_name"
+  if [ -e "$destination" ]; then
+    echo "Refusing to overwrite existing skill: $destination" >&2
+    echo "Move or remove it first, then run the installer again." >&2
+    exit 1
+  fi
+done
 
 temp_dir="$(mktemp -d "${TMPDIR:-/tmp}/research-skill-install.XXXXXX")"
 cleanup() {
@@ -100,16 +102,26 @@ trap cleanup EXIT HUP INT TERM
 
 checkout="$temp_dir/repo"
 git clone --quiet --depth 1 --filter=blob:none --sparse --branch "$repo_ref" "$repo_url" "$checkout"
-git -C "$checkout" sparse-checkout set "$skill_path"
+git -C "$checkout" sparse-checkout set \
+  skills/research-proposal-coach \
+  skills/session-to-feishu-doc
 
-source_dir="$checkout/$skill_path"
-if [ ! -f "$source_dir/SKILL.md" ]; then
-  echo "Downloaded content is not a valid skill: missing $skill_path/SKILL.md" >&2
-  exit 1
-fi
+for skill_name in $skill_names; do
+  skill_path="skills/$skill_name"
+  source_dir="$checkout/$skill_path"
+  if [ ! -f "$source_dir/SKILL.md" ]; then
+    echo "Downloaded content is not a valid skill: missing $skill_path/SKILL.md" >&2
+    exit 1
+  fi
+done
 
 mkdir -p "$dest_root"
-cp -R "$source_dir" "$destination"
+for skill_name in $skill_names; do
+  source_dir="$checkout/skills/$skill_name"
+  destination="$dest_root/$skill_name"
+  cp -R "$source_dir" "$destination"
+  echo "Installed $skill_name to $destination"
+done
 
-echo "Installed $skill_name to $destination"
-echo "The skill will be available in a new conversation or after the host reloads skills."
+echo "Both skills will be available in a new conversation or after the host reloads skills."
+echo "On first upload, ask the assistant to initialize session feedback sharing."

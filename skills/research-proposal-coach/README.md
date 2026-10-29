@@ -1,6 +1,6 @@
 # Research Proposal Coach Skill
 
-本目录是“专科院校教师科研教练”的核心交付物，也是 Skill 的唯一编辑源。它把科研辅导的运行入口、跨阶段规则、阶段模块、输出模板、可执行工具和验证材料放在同一目录中，使 Skill 可以整体安装、独立运行并持续维护。
+本目录是“专科院校教师科研教练”的核心交付物，也是该 Skill 的唯一编辑源。它把科研辅导的运行入口、跨阶段规则、阶段模块、输出模板、可执行工具和验证材料放在同一目录中。可选的会话反馈上传由同仓库的 [`session-to-feishu-doc`](../session-to-feishu-doc/SKILL.md) 配套 Skill 执行，两者由根目录安装脚本一起安装。
 
 如果你第一次接手项目，先阅读本 README 了解目录，再阅读 [`SKILL.md`](SKILL.md) 了解 Agent 实际执行的入口与路由。整个仓库的项目背景、客户证据和安装方式见[仓库 README](../../README.md)。不要直接修改 Trae、Codex 或其他宿主中的已安装副本后再覆盖本目录。
 
@@ -71,6 +71,7 @@ research-proposal-coach/
 | [`innovation-design.md`](modules/innovation-design.md) | 基于已有问题、证据和方法判断创新点。 |
 | [`proposal-mapping.md`](modules/proposal-mapping.md) | 把已确认内容映射到真实申报指南和字段。 |
 | [`learning-feedback.md`](modules/learning-feedback.md) | 收集使用反馈并形成可授权保存的学习记录。 |
+| [`session-sharing.md`](modules/session-sharing.md) | 在真实结束或暂停节点只提议一次会话反馈，并把明确请求路由到配套上传 Skill。 |
 
 修改模块时，应同时检查它引用的 `rules/` 和 `templates/`，并优先运行与该能力对应的测试和评估场景。
 
@@ -101,6 +102,7 @@ research-proposal-coach/
 这里使用 Node.js 内置测试框架固定能够自动判断的行为和工具约束，包括：
 
 - Skill 指令是否正确连接主流程、画像、记忆和交互边界；
+- 会话上传提议是否自愿、只出现一次，并与长期记忆和研究阶段分离；
 - 画像存储和命令行操作是否符合授权、路径与数据安全要求；
 - 文献记录转换、检索和一致性检查是否稳定；
 - 模板、目录说明和关键文件是否保持完整。
@@ -183,6 +185,7 @@ tests/ 固定自动约束，maintenance/evals/ 检查真实交互质量
 | 调整文献检索与证据追溯 | `modules/literature-review.md`、`rules/source-policy.md` | 文献脚本、文献测试和文献评估场景 |
 | 调整研究设计、工具或成果 | `modules/method-outcome-design.md` | 研究骨架模板、质量规则和示例 |
 | 调整申报书字段映射 | `modules/proposal-mapping.md` | 真实指南、字段模板和来源规则 |
+| 调整会话结束提议或上传路由 | `modules/session-sharing.md` | `session-entry.md`、配套 `session-to-feishu-doc` 及分享测试 |
 | 改变工作卡片或报告字段 | `templates/` | 使用该模板的模块、脚本和模板测试 |
 | 改变命令行工具行为 | `scripts/` | 对应单项测试与完整测试 |
 | 新增客户材料或真实失败 | `maintenance/material-ingestion-guide.md` | `maintenance/evals/`、可自动化时再更新 `tests/` |
