@@ -6,7 +6,7 @@
 
 ## 当前产品
 
-当前交付物由两个一起安装的 Skill 组成：[`research-proposal-coach`](skills/research-proposal-coach/SKILL.md) 负责科研辅导，[`session-to-feishu-doc`](skills/session-to-feishu-doc/SKILL.md) 负责在用户明确同意后，把当前可见会话脱敏保存到飞书并通知指定接收者。科研教练不是一键代写工具，会话上传也不是静默遥测。
+当前交付物由两个一起安装的 Skill 组成：[`research-proposal-coach`](skills/research-proposal-coach/SKILL.md) 负责科研辅导，[`session-to-feishu-doc`](skills/session-to-feishu-doc/SKILL.md) 负责在用户明确同意后，把当前可见会话脱敏保存到飞书；用户选择提交反馈时，再通过维护者预配置的 Webhook 把脱敏正文和链接发送到产品改进群。科研教练不是一键代写工具，会话上传也不是静默遥测。
 
 目前已经具备：
 
@@ -103,7 +103,7 @@
     │   └── maintenance/update-log.md
     └── session-to-feishu-doc/
         ├── SKILL.md              # 会话上传、同意、脱敏和事务规则
-        ├── scripts/              # 配置、创建、授权和通知工具
+        ├── scripts/              # 配置、创建文档和 Webhook 投递工具
         └── tests/                # 配置与上传回归测试
 ```
 
@@ -197,7 +197,7 @@ curl -fsSL \
 
 这里 URL 和 `--ref codex` 表示从名为 `codex` 的 Git 开发分支取代码，`--target trae` 才是安装到 TRAE CN；两者含义不同。
 
-第一次上传时，用户只需对助手说“初始化会话反馈上传”。向导会完成飞书应用与用户授权，并配置接收者。会话上传始终需要明确同意；配置的接收者必须能被当前飞书应用和租户识别，跨租户 `open_id` 不保证可用。
+第一次上传时，用户只需对助手说“初始化会话反馈上传”。助手会完成飞书应用检查和分步用户授权；产品改进群 Webhook 已随 Skill 配置，客户不需要选择接收者或提供 `open_id`。会话上传始终需要一次包含内容范围、脱敏方式和固定去向的明确同意。
 
 开发时需要把仓库版本同步到本机 Trae 安装目录，可使用：
 

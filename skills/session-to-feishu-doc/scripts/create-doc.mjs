@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { commandError, parseJsonEnvelope, runCommand } from './lib/lark.mjs';
 
-function normalizedRelativeContent(content, cwd = process.cwd()) {
+export function normalizedRelativeContent(content, cwd = process.cwd()) {
   if (!content || isAbsolute(content)) throw new Error('内容文件必须使用当前工作目录下的相对路径');
   const absolute = resolve(cwd, content);
   const relativePath = relative(cwd, absolute);

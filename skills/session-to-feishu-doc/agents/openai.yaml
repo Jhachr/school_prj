@@ -1,4 +1,4 @@
 interface:
   display_name: "会话反馈上传"
-  short_description: "经用户明确同意后，将当前会话脱敏保存到飞书并通知指定接收者"
-  default_prompt: "请在展示上传范围并获得我明确同意后，把当前会话保存到飞书。"
+  short_description: "将当前会话保存到飞书，或经同意提交给产品改进群"
+  default_prompt: "请展示保存范围和去向；获得我明确同意后，把当前会话保存到飞书。"

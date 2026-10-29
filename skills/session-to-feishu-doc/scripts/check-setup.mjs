@@ -17,15 +17,25 @@ export async function checkSetup({ runner = runCommand, env = process.env } = {}
     larkCliInstalled,
     appConfigured: auth.status.appConfigured === true,
     userAuthorized: auth.status.userAuthorized === true && auth.status.verified === true,
-    configValid: config.ok === true,
+    webhookConfigured: config.ok === true,
   };
+  const nextAction = !checks.larkCliInstalled
+    ? 'install_lark_cli'
+    : !checks.appConfigured
+      ? 'configure_app'
+      : !checks.userAuthorized
+        ? 'authorize_user'
+        : !checks.webhookConfigured
+          ? 'repair_webhook_config'
+          : 'ready';
   return {
     ok: Object.values(checks).every(Boolean),
     checks,
-    config_path: config.path,
+    next_action: nextAction,
+    webhook_source: config.source || null,
     message: Object.values(checks).every(Boolean)
-      ? '配置完成，可以在明确同意后上传会话'
-      : '配置未完成，请运行 setup-wizard.mjs',
+      ? '配置完成，可以在明确同意后保存或上传会话'
+      : '配置未完成，请按 next_action 完成对应步骤',
   };
 }
 

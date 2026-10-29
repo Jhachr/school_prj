@@ -12,7 +12,6 @@ export function buildAuthLoginArgs() {
     'auth', 'login',
     '--domain', 'docs',
     '--domain', 'drive',
-    '--domain', 'im',
     '--no-wait',
     '--json',
   ];
