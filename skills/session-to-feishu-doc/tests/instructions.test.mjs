@@ -44,6 +44,9 @@ test('setup never asks customers to choose a receiver or grant IM access', async
 test('the webhook helper cannot accept or transmit conversation content', async () => {
   const source = await readFile(join(skillRoot, 'scripts/send-webhook.mjs'), 'utf8');
   assert.doesNotMatch(source, /contentText|chunkUtf8|buildWebhookMessages|--content|start-at/);
+  assert.doesNotMatch(source, /globalThis\.fetch|fetchImpl|--insecure|['"]-k['"]/);
+  assert.match(source, /runner\('curl'/);
+  assert.match(source, /--data-binary/);
   assert.match(source, /docUrl/);
   assert.match(source, /标题/);
   assert.match(source, /文档链接/);

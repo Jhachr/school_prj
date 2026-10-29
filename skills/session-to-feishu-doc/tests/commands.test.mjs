@@ -8,7 +8,11 @@ import {
   buildSetPublicPermissionArgs,
   setPublicAccess,
 } from '../scripts/set-public-access.mjs';
-import { buildWebhookMessage, sendWebhookNotification } from '../scripts/send-webhook.mjs';
+import {
+  buildCurlArgs,
+  buildWebhookMessage,
+  sendWebhookNotification,
+} from '../scripts/send-webhook.mjs';
 import { uploadSession } from '../scripts/upload-session.mjs';
 
 function validWebhookConfig() {
@@ -145,9 +149,19 @@ test('webhook contains only the title and public document link, never conversati
   assert.doesNotMatch(body.content.text, /完整对话|会话正文|教学改进内容/);
 });
 
+test('webhook curl command keeps TLS verification and reads JSON from stdin', () => {
+  const args = buildCurlArgs({
+    webhookUrl: 'https://open.feishu.cn/open-apis/bot/v2/hook/test',
+  });
+  assert.ok(args.includes('@-'));
+  assert.ok(args.includes('=https'));
+  assert.equal(args.includes('--insecure'), false);
+  assert.equal(args.includes('-k'), false);
+});
+
 test('webhook refuses to load its credential or send without explicit confirmation', async () => {
   let loaded = false;
-  let fetched = false;
+  let executed = false;
   await assert.rejects(sendWebhookNotification({
     title: '会话记录',
     docUrl: 'https://example.feishu.cn/docx/dox1',
@@ -156,30 +170,52 @@ test('webhook refuses to load its credential or send without explicit confirmati
       loaded = true;
       return {};
     },
-    fetchImpl: async () => {
-      fetched = true;
-      return {};
+    runner: async () => {
+      executed = true;
+      return { code: 0, stdout: '{}\n200', stderr: '' };
     },
   }), /明确确认/);
   assert.equal(loaded, false);
-  assert.equal(fetched, false);
+  assert.equal(executed, false);
 });
 
-test('webhook sends one link notification without returning its credential', async () => {
+test('webhook uses curl once and returns no credential', async () => {
   const requests = [];
   const result = await sendWebhookNotification({
     title: '会话记录',
     docUrl: 'https://example.feishu.cn/docx/dox1',
     confirmed: true,
     configLoader: async () => ({ ok: true, config: validWebhookConfig() }),
-    fetchImpl: async (url, options) => {
-      requests.push({ url, options });
-      return { ok: true, status: 200, json: async () => ({ code: 0 }) };
+    runner: async (command, args, options) => {
+      requests.push({ command, args, options });
+      return { code: 0, stdout: '{"code":0,"msg":"success"}\n200', stderr: '' };
     },
   });
   assert.equal(requests.length, 1);
+  assert.equal(requests[0].command, 'curl');
+  assert.match(requests[0].options.input, /文档链接/);
+  assert.doesNotMatch(requests[0].options.input, /完整对话|教学改进内容/);
   assert.equal(result.receiver_label, '产品改进群');
   assert.equal('webhook_url' in result, false);
+});
+
+test('curl TLS diagnostics are preserved without retrying or disabling verification', async () => {
+  let attempts = 0;
+  await assert.rejects(sendWebhookNotification({
+    title: '会话记录',
+    docUrl: 'https://example.feishu.cn/docx/dox1',
+    confirmed: true,
+    configLoader: async () => ({ ok: true, config: validWebhookConfig() }),
+    runner: async () => {
+      attempts += 1;
+      return {
+        code: 60,
+        stdout: '\n000',
+        stderr: 'curl: (60) SSL certificate problem: self-signed certificate in certificate chain',
+      };
+    },
+  }), /self-signed certificate/);
+  assert.equal(attempts, 1);
 });
 
 test('upload transaction creates, publishes, verifies, then notifies in order', async () => {

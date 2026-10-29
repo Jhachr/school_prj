@@ -45,7 +45,8 @@ test('machine-readable lark calls suppress notifier noise', () => {
 });
 
 test('setup is ready without a receiver prompt when app, user, and bundled webhook are valid', async () => {
-  const runner = async (_command, args) => {
+  const runner = async (command, args) => {
+    if (command === 'curl') return { code: 0, stdout: 'curl 8.0.0', stderr: '' };
     if (args[0] === '--version') return { code: 0, stdout: '1.0.0', stderr: '' };
     return {
       code: 0,
@@ -66,6 +67,32 @@ test('setup is ready without a receiver prompt when app, user, and bundled webho
   });
   assert.equal(result.ok, true);
   assert.equal(result.next_action, 'ready');
+});
+
+test('setup reports a missing system curl before an upload can reach the webhook step', async () => {
+  const runner = async (command, args) => {
+    if (command === 'curl') return { code: 127, stdout: '', stderr: 'not found' };
+    if (args[0] === '--version') return { code: 0, stdout: '1.0.0', stderr: '' };
+    return {
+      code: 0,
+      stdout: JSON.stringify({
+        appId: 'cli_x',
+        identity: 'user',
+        verified: true,
+        identities: { user: { status: 'ready', userName: 'Teacher' } },
+      }),
+      stderr: '',
+    };
+  };
+  const result = await checkSetup({
+    runner,
+    env: {
+      SESSION_TO_FEISHU_WEBHOOK_URL: 'https://open.feishu.cn/open-apis/bot/v2/hook/test',
+    },
+  });
+  assert.equal(result.ok, false);
+  assert.equal(result.checks.curlInstalled, false);
+  assert.equal(result.next_action, 'install_curl');
 });
 
 test('setup wizard uses split authorization and never waits on readline stdin', async () => {

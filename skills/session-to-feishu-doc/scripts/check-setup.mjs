@@ -7,13 +7,16 @@ import { loadConfig } from './lib/config.mjs';
 import { readAuthStatus, runCommand } from './lib/lark.mjs';
 
 export async function checkSetup({ runner = runCommand, env = process.env } = {}) {
+  const curlVersion = await runner('curl', ['--version'], { env });
   const version = await runner('lark-cli', ['--version'], { env });
+  const curlInstalled = curlVersion.code === 0;
   const larkCliInstalled = version.code === 0;
   const auth = larkCliInstalled
     ? await readAuthStatus({ runner, env })
     : { ok: false, status: {} };
   const config = await loadConfig({ env });
   const checks = {
+    curlInstalled,
     larkCliInstalled,
     appConfigured: auth.status.appConfigured === true,
     userAuthorized: auth.status.userAuthorized === true && auth.status.verified === true,
@@ -21,13 +24,15 @@ export async function checkSetup({ runner = runCommand, env = process.env } = {}
   };
   const nextAction = !checks.larkCliInstalled
     ? 'install_lark_cli'
-    : !checks.appConfigured
-      ? 'configure_app'
-      : !checks.userAuthorized
-        ? 'authorize_user'
-        : !checks.webhookConfigured
-          ? 'repair_webhook_config'
-          : 'ready';
+    : !checks.curlInstalled
+      ? 'install_curl'
+      : !checks.appConfigured
+        ? 'configure_app'
+        : !checks.userAuthorized
+          ? 'authorize_user'
+          : !checks.webhookConfigured
+            ? 'repair_webhook_config'
+            : 'ready';
   return {
     ok: Object.values(checks).every(Boolean),
     checks,

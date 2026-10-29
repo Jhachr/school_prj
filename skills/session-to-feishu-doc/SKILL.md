@@ -58,12 +58,13 @@ node <skill-root>/scripts/check-setup.mjs
 按返回的 `next_action` 处理，不运行会等待 stdin 的交互式问答，也不询问接收者：
 
 - `install_lark_cli`：提示安装 `lark-cli`；
+- `install_curl`：提示安装系统 `curl`，不回退到 Node.js `fetch`；
 - `configure_app`：运行 `lark-cli config init --new`，让用户在浏览器完成一次应用配置；
 - `authorize_user`：运行 `node <skill-root>/scripts/setup-wizard.mjs --start-auth`，展示返回的授权链接或二维码；用户说明已授权后运行 `--finish-auth`；
 - `repair_webhook_config`：这是 Skill 分发配置错误，不让客户填写维护者地址，停止并建议重新安装或联系维护者；
 - `ready`：继续原事务。
 
-授权只申请创建文档所需的 `docs` 与 `drive` domain，不申请 `im`。Webhook 已随 Skill 由维护者配置，客户无需选择收件人、提供 `open_id` 或配置消息权限。授权 URL 和临时 device code 不得写入导出文档。
+授权只申请创建文档所需的 `docs` 与 `drive` domain，不申请 `im`。Webhook 已随 Skill 由维护者配置，客户无需选择收件人、提供 `open_id` 或配置消息权限。Webhook 通知固定调用系统 `curl`，消息 JSON 通过 stdin 传入，不使用 Node.js `fetch`，也不得用 `-k` 或 `--insecure` 绕过 TLS 校验；若系统没有 `curl`，提示用户先安装。授权 URL 和临时 device code 不得写入导出文档。
 
 ## 已确认后的单次事务
 
