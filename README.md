@@ -185,17 +185,27 @@ curl -fsSL \
   | sh -s -- --dest /path/to/skills
 ```
 
-以上每条命令都会同时安装两个 Skill。安装脚本默认通过公开的 Gitee HTTPS 仓库 `https://gitee.com/jhachr/school_prj.git` 执行 Git sparse checkout，不要求安装者配置 Gitee SSH Key；它只下载两个 Skill 目录，并在复制前检查两个目标，任一同名目录已存在时整体停止。它默认拉取 `main`，所以未提交、未推送到 Gitee 的修改不会进入命令行安装版本。
+以上每条命令都会同时安装两个 Skill。安装脚本默认通过公开的 Gitee HTTPS 仓库 `https://gitee.com/jhachr/school_prj.git` 执行 Git sparse checkout，不要求安装者配置 Gitee SSH Key；它只下载两个 Skill 目录。默认安装模式会在复制前检查两个目标，任一同名目录已存在时整体停止。脚本默认拉取 `main`，所以未提交、未推送到 Gitee 的修改不会进入命令行安装版本。
+
+已有版本升级到 `main` 时，显式添加 `--upgrade`：
+
+```bash
+curl -fsSL \
+  'https://gitee.com/jhachr/school_prj/raw/main/scripts/install-research-proposal-coach.sh' \
+  | sh -s -- --target trae --upgrade
+```
+
+默认安装仍拒绝覆盖；`--upgrade` 会先下载并校验两个 Skill，再把两个已安装目录作为一个可回滚事务整体替换。只有看起来是正常 Skill 的现有目录才允许自动升级；不识别的目录或符号链接仍要求人工移开。
 
 测试尚未合并到 `main` 的 `codex` 分支时，安装脚本本身和 Skill 内容必须使用同一个分支：
 
 ```bash
 curl -fsSL \
   'https://gitee.com/jhachr/school_prj/raw/codex/scripts/install-research-proposal-coach.sh' \
-  | sh -s -- --target trae --ref codex
+  | sh -s -- --target trae --ref codex --upgrade
 ```
 
-这里 URL 和 `--ref codex` 表示从名为 `codex` 的 Git 开发分支取代码，`--target trae` 才是安装到 TRAE CN；两者含义不同。
+这里 URL 和 `--ref codex` 表示从名为 `codex` 的 Git 开发分支取代码，`--target trae` 才是安装到 TRAE CN，`--upgrade` 表示替换已有版本；三者含义不同。首次安装时可以省略 `--upgrade`。
 
 第一次上传时，用户只需对助手说“初始化会话反馈上传”。助手会完成飞书应用检查和分步用户授权；产品改进群 Webhook 已随 Skill 配置，客户不需要选择接收者或提供 `open_id`。会话上传始终需要一次包含内容范围、脱敏方式、互联网公开只读权限和固定去向的明确同意；Webhook 仅发送标题和链接，不发送会话正文。
 
