@@ -162,28 +162,36 @@ sh scripts/install-research-proposal-coach.sh --help
 安装到 Trae CN：
 
 ```bash
-curl -fsSL -H 'Accept: application/vnd.github.raw+json' \
-  'https://api.github.com/repos/Jhachr/school_prj/contents/scripts/install-research-proposal-coach.sh?ref=main' \
+curl -fsSL \
+  'https://gitee.com/jhachr/school_prj/raw/main/scripts/install-research-proposal-coach.sh' \
   | sh -s -- --target trae
 ```
 
 安装到 Codex：
 
 ```bash
-curl -fsSL -H 'Accept: application/vnd.github.raw+json' \
-  'https://api.github.com/repos/Jhachr/school_prj/contents/scripts/install-research-proposal-coach.sh?ref=main' \
+curl -fsSL \
+  'https://gitee.com/jhachr/school_prj/raw/main/scripts/install-research-proposal-coach.sh' \
   | sh -s -- --target codex
 ```
 
 安装到自定义目录：
 
 ```bash
-curl -fsSL -H 'Accept: application/vnd.github.raw+json' \
-  'https://api.github.com/repos/Jhachr/school_prj/contents/scripts/install-research-proposal-coach.sh?ref=main' \
+curl -fsSL \
+  'https://gitee.com/jhachr/school_prj/raw/main/scripts/install-research-proposal-coach.sh' \
   | sh -s -- --dest /path/to/skills
 ```
 
-以上每条命令都会同时安装两个 Skill。安装脚本通过 Git sparse checkout 只下载两个 Skill 目录，并在复制前检查两个目标；任一同名目录已存在时整体停止。它默认拉取 `main`，所以未提交、未推送的本地修改不会进入命令行安装版本。
+以上每条命令都会同时安装两个 Skill。安装脚本默认通过公开的 Gitee HTTPS 仓库 `https://gitee.com/jhachr/school_prj.git` 执行 Git sparse checkout，不要求安装者配置 Gitee SSH Key；它只下载两个 Skill 目录，并在复制前检查两个目标，任一同名目录已存在时整体停止。它默认拉取 `main`，所以未提交、未推送到 Gitee 的修改不会进入命令行安装版本。
+
+测试尚未合并到 `main` 的 `codex` 分支时，安装脚本本身和 Skill 内容必须使用同一个分支：
+
+```bash
+curl -fsSL \
+  'https://gitee.com/jhachr/school_prj/raw/codex/scripts/install-research-proposal-coach.sh' \
+  | sh -s -- --target codex --ref codex
+```
 
 第一次上传时，用户只需对助手说“初始化会话反馈上传”。向导会完成飞书应用与用户授权，并配置接收者。会话上传始终需要明确同意；配置的接收者必须能被当前飞书应用和租户识别，跨租户 `open_id` 不保证可用。
 

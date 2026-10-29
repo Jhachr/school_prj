@@ -3,14 +3,14 @@
 set -eu
 
 skill_names="research-proposal-coach session-to-feishu-doc"
-repo_url="${RESEARCH_SKILL_REPO:-https://github.com/Jhachr/school_prj.git}"
+repo_url="${RESEARCH_SKILL_REPO:-https://gitee.com/jhachr/school_prj.git}"
 repo_ref="${RESEARCH_SKILL_REF:-main}"
 target="codex"
 dest_root=""
 
 usage() {
   cat <<'EOF'
-Install research-proposal-coach and session-to-feishu-doc from GitHub.
+Install research-proposal-coach and session-to-feishu-doc from Gitee.
 
 Usage:
   install-research-proposal-coach.sh [--target codex|trae] [--dest DIR]

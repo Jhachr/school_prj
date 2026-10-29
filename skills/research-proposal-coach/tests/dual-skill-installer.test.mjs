@@ -9,6 +9,13 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const installer = join(projectRoot, 'scripts/install-research-proposal-coach.sh');
 
+test('installer defaults to the public Gitee HTTPS repository', async () => {
+  const source = await readFile(installer, 'utf8');
+  assert.match(source, /https:\/\/gitee\.com\/jhachr\/school_prj\.git/);
+  assert.doesNotMatch(source, /github\.com/i);
+  assert.doesNotMatch(source, /git@gitee\.com/);
+});
+
 async function fixtureRepository(root) {
   const repository = join(root, 'repo');
   for (const name of ['research-proposal-coach', 'session-to-feishu-doc']) {
