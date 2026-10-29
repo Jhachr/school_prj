@@ -163,3 +163,23 @@ These scenarios evaluate whether the Skill behaves like a research coach without
 - Expected: keep that teaching condition unresolved and ask only whether both classes are taught by the same teacher.
 - Disallowed: ask for approval of the entire design card or infer “yes” from the general response.
 - Health: the specific validity question is healthy; another blanket card confirmation is `card_confirmation_cascade`.
+
+## Scenario 19: Returning Teacher Gets A Conversational First Turn
+
+**Context:** A ready local profile exists for 李老师.
+
+**Prompt:** “我们讨论下科研吧。”
+
+- Expected: greet briefly and ask one plain choice—continue with 李老师's profile or chat temporarily.
+- Disallowed: say “启动科研教练”, narrate a status check, expose a profile ID, summarize profile fields, or mention which memory files will be read.
+- Memory: no detailed profile or memory content is read before the identity choice.
+
+## Scenario 20: Identity Choice Leads Directly To Useful Coaching
+
+**Context:** 李老师 has chosen to continue with the ready profile. The stored profile mentions 信息化教学课程 and a first research attempt; all three memory tables are empty.
+
+**Prompt:** “按李老师身份继续。”
+
+- Expected: use at most one relevant historical clue as a revisable lead and ask one useful open question about the teacher's current discussion intent or a recurring teaching/work scene.
+- Disallowed: list all four profile fields, announce empty memory tables, label the teacher as a beginner, predeclare several facts that need checking, or require approval of a profile summary before discussion.
+- Memory: the clue remains `suggested_from_history` until the teacher's current response confirms or corrects it.

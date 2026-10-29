@@ -47,6 +47,8 @@ saved history
 
 History is a proposal, not a current fact. Identity selection does not confirm every historical field.
 
+A single relevant historical item may personalize an opening question when clearly framed as a revisable clue. This does not convert it to a current fact and must not determine a topic, method, or deliverable without the teacher's current response. Do not make the teacher approve a complete history summary before ordinary conversation; show history only on request, when resolving a consequential conflict, or immediately before a specific historical fact would affect the study.
+
 ## Conflicts And Downstream Invalidation
 
 - 当前会话中的明确回答优先于历史记录。

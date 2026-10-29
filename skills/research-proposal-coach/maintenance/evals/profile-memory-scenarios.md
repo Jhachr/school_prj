@@ -63,9 +63,9 @@ An independent evaluator re-ran the same three prompts after reading only the in
 
 ### Scenario 1 Result
 
-- The Skill asks the single required question “检测到本机的李老师档案，是否以李老师身份继续？” before reading detailed history or recommending from it.
+- The Skill asks one conversational choice—continue with 李老师's profile or chat temporarily—before reading detailed history or recommending from it. It does not narrate status checks or profile IDs.
 - A rushed “按你记得的” request does not bypass the route or silently confirm historical facts.
-- After identity confirmation, reused facts remain `suggested_from_history（根据历史推荐）` until the teacher confirms, corrects, ignores, or deletes them.
+- After identity confirmation, at most one relevant clue may personalize the opening question. It remains `suggested_from_history（根据历史推荐）` until the teacher's current response confirms or corrects it; the Skill does not require approval of a complete profile summary before useful coaching.
 
 ### Scenario 2 Result
 

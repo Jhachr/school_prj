@@ -12,9 +12,26 @@ function read(relativePath) {
 
 test('first use offers one low-friction route before profile collection', async () => {
   const entry = await read('modules/session-entry.md');
-  assert.match(entry, /只问一个路由问题/);
+  assert.match(entry, /只问一个[^\n]*路由问题/);
   assert.match(entry, /先临时聊/);
   assert.match(entry, /一次性收集/);
+});
+
+test('returning startup is conversational and reaches useful coaching after one route choice', async () => {
+  const [entry, profile, policy, scenarios] = await Promise.all([
+    read('modules/session-entry.md'),
+    read('modules/teacher-profile.md'),
+    read('rules/profile-memory-policy.md'),
+    read('maintenance/evals/coaching-interaction-scenarios.md'),
+  ]);
+  assert.match(entry, /identity route is a privacy boundary, not a system-status report/i);
+  assert.match(entry, /use at most one relevant historical clue/i);
+  assert.match(entry, /Do not list all profile fields/i);
+  assert.match(entry, /Do not require a standalone profile-summary confirmation/i);
+  assert.match(profile, /Do not turn profile review into a mandatory form/i);
+  assert.match(policy, /Do not make the teacher approve a complete history summary/i);
+  assert.match(scenarios, /Returning Teacher Gets A Conversational First Turn/);
+  assert.match(scenarios, /Identity Choice Leads Directly To Useful Coaching/);
 });
 
 test('question format follows information type and defaults to one user action', async () => {

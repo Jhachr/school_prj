@@ -17,7 +17,7 @@ test('session entry defines first-use, returning, temporary, and malformed route
     'profile missing',
     'profile ready',
     'profile malformed',
-    '是否以 X 老师身份继续',
+    'continue with X 老师',
     'temporary（临时会话）',
     'memory_consent',
     '只读模式',
