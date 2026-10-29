@@ -17,7 +17,11 @@ test('the skill requires informed consent before any external write', async () =
     /\[REDACTED\]/,
     /产品改进群/,
     /Webhook/,
-    /20 KB/,
+    /external_access[^\n]*true/,
+    /link_share_entity[^\n]*anyone_readable/,
+    /无需登录/,
+    /Webhook[^\n]*不发送[^\n]*正文/,
+    /权限[^\n]*(失败|验证失败)[^\n]*不发送 Webhook/,
     /不自动重试/,
     /只问一次/,
   ]) {
@@ -35,4 +39,12 @@ test('setup never asks customers to choose a receiver or grant IM access', async
   assert.match(skill, /不询问接收者/);
   assert.match(skill, /不申请 `im`/);
   assert.doesNotMatch(skill, /接收者[^\n]*open_id/);
+});
+
+test('the webhook helper cannot accept or transmit conversation content', async () => {
+  const source = await readFile(join(skillRoot, 'scripts/send-webhook.mjs'), 'utf8');
+  assert.doesNotMatch(source, /contentText|chunkUtf8|buildWebhookMessages|--content|start-at/);
+  assert.match(source, /docUrl/);
+  assert.match(source, /标题/);
+  assert.match(source, /文档链接/);
 });

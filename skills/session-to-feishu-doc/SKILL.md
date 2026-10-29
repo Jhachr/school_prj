@@ -1,16 +1,16 @@
 ---
 name: session-to-feishu-doc
-description: Use when a user wants to configure, preview, save, export, archive, upload, or voluntarily submit the current conversation to Feishu; supports saving privately or sending a redacted copy to the product-improvement group after informed consent, not historical chats or unrelated local files.
+description: Use when a user wants to configure, preview, save, export, archive, upload, or voluntarily submit the current conversation to Feishu; supports private saving or publishing a read-only link to the product-improvement group after informed consent, not historical chats or unrelated local files.
 ---
 
 # Session to Feishu Doc
 
-把当前宿主仍可见的会话脱敏后保存为用户自己的新飞书文档。只有用户明确选择“提交反馈”时，才把同一份脱敏内容和文档链接通过维护者预配置的 Webhook 发送到“科研教练产品改进群”。这不是静默遥测。
+把当前宿主仍可见的会话脱敏后保存为用户自己的新飞书文档。只有用户明确选择“提交反馈”时，才把该文档设置为“互联网上获得链接的任何人可阅读”，并通过维护者预配置的 Webhook 把标题和链接发送到“科研教练产品改进群”。Webhook 不发送会话正文。这不是静默遥测。
 
 ## 路由
 
 - “保存、导出、归档到我的飞书”表示**仅保存**：创建用户自己的飞书文档，不调用 Webhook。
-- “上传、提交给产品团队、帮助优化”表示**提交反馈**：创建文档，并把脱敏后的会话正文和链接发送到产品改进群。
+- “上传、提交给产品团队、帮助优化”表示**提交反馈**：创建文档，开启互联网链接只读权限，再把标题和链接发送到产品改进群。
 - 意图不清时，只问“仅保存到你的飞书，还是同时提交给产品改进群？”；不能默认提交反馈。
 - 没有当前会话保存或上传意图时，不得创建文档或调用 Webhook。
 
@@ -22,7 +22,7 @@ description: Use when a user wants to configure, preview, save, export, archive,
 - 文档标题和详细程度；
 - 范围：当前可见的用户与助手消息，以及是否包含技能和工具调用；
 - 脱敏：API key、token、密码、secret、authorization、credential 和疑似密钥替换为 `[REDACTED]`；
-- 去向：文档创建在当前登录用户的飞书空间；提交反馈时，脱敏正文和链接还会发送到“科研教练产品改进群”；
+- 去向与权限：文档创建在当前登录用户的飞书空间；提交反馈时会把 `external_access` 改为 `true`、把 `link_share_entity` 改为 `anyone_readable`，即任何获得链接的人无需登录即可阅读；Webhook 只向“科研教练产品改进群”发送标题和链接，不发送正文；
 - 本地临时 Markdown 路径。
 
 沉默、继续原任务、接受研究产物或“可以看看”都不算同意。拒绝后停止且本次不再追问，不影响其他功能。用户主动说“上传当前会话”仍需看到一次上述摘要；确认后如需首次授权，完成授权便自动继续原事务，不再询问接收者或二次确认上传。
@@ -84,22 +84,28 @@ node <skill-root>/scripts/upload-session.mjs \
   --yes
 ```
 
-提交反馈时，脚本先创建文档，再把脱敏正文按飞书 20 KB 请求限制分片发送到维护者群；因此机器人不需要客户文档的访问权限。文档创建失败时停止。文档成功但 Webhook 失败时状态为 `partial`：返回文档 URL，明确说明反馈提交未完成及已发送分片数，不自动重试，避免群里出现重复内容。只有用户主动要求重试时，才从失败分片继续，不重新创建文档：
+提交反馈时，脚本严格按以下事务执行：
+
+1. 创建文档；
+2. 检查当前用户是否有 `manage_public` 权限，读取当前公开设置；
+3. 只修改 `external_access=true` 和 `link_share_entity=anyone_readable`，然后重新读取并验证；
+4. 只有权限验证成功后，才通过 Webhook 发送标题和文档链接。
+
+上传确认已经明确展示公开范围和准确字段变化，因此同时授权权限脚本使用 `--yes`；不得在未确认时单独调用权限脚本。文档创建失败时停止。权限开启或验证失败时返回 `permission_failed`，保留文档 URL 且不发送 Webhook；遇到 `91009`、`91010`、`91011`、`91012` 时分别说明租户策略、文档对外分享或密级限制，不当成普通登录错误。Webhook 失败时返回 `notification_failed`，明确说明文档已经公开但通知未送达，不自动重试。只有用户主动要求重试通知时，才复用已有公开文档，不重新创建文档或修改权限：
 
 ```bash
 node <skill-root>/scripts/send-webhook.mjs \
   --doc-url "<已有文档URL>" \
   --title "会话记录：[主题或日期]" \
-  --content "./_session_export_YYYYMMDD-HHmmss.md" \
-  --start-at <已发送分片数> \
   --yes
 ```
 
-完成后报告文档状态、Webhook 状态、轮次、技能数、工具数和详细程度。不要展示 Webhook URL。临时 Markdown 默认保留且不主动询问清理；只有用户要求删除时才取得明确同意。
+完成后报告文档状态、公开权限验证状态、Webhook 状态、轮次、技能数、工具数和详细程度。不要展示 Webhook URL。临时 Markdown 默认保留且不主动询问清理；只有用户要求删除时才取得明确同意。
 
 ## 边界
 
 - 只处理当前会话，不读取历史聊天或其他本地文件。
 - 不修改已有飞书文档，每次新建。
+- “仅保存”模式不修改公开权限；“提交反馈”模式产生互联网公开只读链接，链接被转发后仍可访问。
 - 提交反馈不等于教师长期记忆，不把完整会话写入教师画像。
 - 自定义机器人只负责向固定产品改进群投递，不读取群消息，也不启动后台监听。

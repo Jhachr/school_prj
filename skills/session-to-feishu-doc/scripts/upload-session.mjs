@@ -1,11 +1,20 @@
 #!/usr/bin/env node
 
-import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { createDocument, normalizedRelativeContent } from './create-doc.mjs';
+import { createDocument } from './create-doc.mjs';
 import { sendWebhookNotification } from './send-webhook.mjs';
+import { setPublicAccess } from './set-public-access.mjs';
+
+function documentToken(document) {
+  if (document.document_id) return document.document_id;
+  try {
+    return new URL(document.url).pathname.match(/\/docx\/([^/?#]+)/)?.[1] || '';
+  } catch {
+    return '';
+  }
+}
 
 export async function uploadSession({
   title,
@@ -14,36 +23,51 @@ export async function uploadSession({
   localOnly = false,
   cwd = process.cwd(),
   create = createDocument,
+  publish = setPublicAccess,
   notify = sendWebhookNotification,
 }) {
   if (!confirmed) throw new Error('必须先获得用户对本次保存或上传范围的明确确认');
-  const relativeContent = normalizedRelativeContent(content, cwd);
-  const contentText = await readFile(resolve(cwd, relativeContent), 'utf8');
   const document = await create({ title, content, confirmed: true, cwd });
 
   if (localOnly) {
-    return { ok: true, status: 'saved_only', document, webhook: { skipped: true } };
+    return {
+      ok: true,
+      status: 'saved_only',
+      document,
+      permission: { skipped: true },
+      webhook: { skipped: true },
+    };
+  }
+
+  let permission;
+  try {
+    const token = documentToken(document);
+    if (!token) throw new Error('文档创建成功，但未获得可用于权限设置的 document_id');
+    permission = await publish({ token, confirmed: true });
+  } catch (error) {
+    return {
+      ok: false,
+      status: 'permission_failed',
+      document,
+      permission: { ok: false, code: error.code || null, error: error.message },
+      webhook: { skipped: true },
+    };
   }
 
   try {
     const webhook = await notify({
       title,
       docUrl: document.url,
-      contentText,
       confirmed: true,
     });
-    return { ok: true, status: 'uploaded', document, webhook };
+    return { ok: true, status: 'uploaded', document, permission, webhook };
   } catch (error) {
     return {
       ok: false,
-      status: 'partial',
+      status: 'notification_failed',
       document,
-      webhook: {
-        ok: false,
-        error: error.message,
-        messages_sent: error.messagesSent || 0,
-        messages_total: error.messagesTotal || 0,
-      },
+      permission,
+      webhook: { ok: false, error: error.message },
     };
   }
 }

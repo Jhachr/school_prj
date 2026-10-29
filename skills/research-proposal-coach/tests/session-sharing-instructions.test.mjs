@@ -20,6 +20,8 @@ test('session sharing is optional, one-time, and separate from research progress
     /沉默[^\n]*不[^\n]*同意/,
     /不影响[^\n]*使用/,
     /session-to-feishu-doc/,
+    /互联网上获得链接的任何人可阅读/,
+    /Webhook[^\n]*不发送正文/,
     /不[^\n]*推进[^\n]*研究阶段/,
     /不[^\n]*长期记忆/,
   ]) {
@@ -30,5 +32,6 @@ test('a direct upload request still enters the companion consent summary', async
   const sharing = await readFile(join(skillRoot, 'modules/session-sharing.md'), 'utf8');
   assert.match(sharing, /主动[^\n]*(上传|提交)/);
   assert.match(sharing, /确认摘要/);
+  assert.match(sharing, /互联网公开只读权限/);
   assert.match(sharing, /不得[^\n]*直接上传/);
 });

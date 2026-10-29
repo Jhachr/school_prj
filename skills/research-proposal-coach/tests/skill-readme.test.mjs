@@ -77,6 +77,8 @@ test('repository and skill guides describe the bundled opt-in upload skill', asy
   }
   assert.match(repositoryReadme, /明确同意/);
   assert.match(repositoryReadme, /Webhook/);
+  assert.match(repositoryReadme, /互联网公开只读权限/);
+  assert.match(repositoryReadme, /Webhook[^\n]*不发送会话正文/);
   assert.match(repositoryReadme, /不需要选择接收者或提供 `open_id`/);
   assert.match(repositoryReadme, /https:\/\/gitee\.com\/jhachr\/school_prj\/raw\/main/);
   assert.match(repositoryReadme, /~\/\.trae-cn\/skills/);

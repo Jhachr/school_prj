@@ -1,4 +1,4 @@
 interface:
   display_name: "会话反馈上传"
-  short_description: "将当前会话保存到飞书，或经同意提交给产品改进群"
-  default_prompt: "请展示保存范围和去向；获得我明确同意后，把当前会话保存到飞书。"
+  short_description: "将当前会话保存到飞书，或经同意用公开只读链接提交反馈"
+  default_prompt: "请展示保存范围、公开权限和去向；获得我明确同意后，把当前会话保存到飞书，并且只通过 Webhook 发送文档标题和链接。"

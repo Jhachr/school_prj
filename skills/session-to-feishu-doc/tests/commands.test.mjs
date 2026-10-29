@@ -1,15 +1,14 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import test from 'node:test';
 
 import { buildCreateDocArgs, createDocument } from '../scripts/create-doc.mjs';
 import {
-  buildWebhookMessages,
-  chunkUtf8,
-  sendWebhookNotification,
-} from '../scripts/send-webhook.mjs';
+  buildGetPublicPermissionArgs,
+  buildManagePublicAuthArgs,
+  buildSetPublicPermissionArgs,
+  setPublicAccess,
+} from '../scripts/set-public-access.mjs';
+import { buildWebhookMessage, sendWebhookNotification } from '../scripts/send-webhook.mjs';
 import { uploadSession } from '../scripts/upload-session.mjs';
 
 function validWebhookConfig() {
@@ -18,6 +17,10 @@ function validWebhookConfig() {
     receiver_label: '产品改进群',
     security_keyword: '科研会话反馈',
   };
+}
+
+function success(data = {}) {
+  return { code: 0, stdout: JSON.stringify({ ok: true, data }), stderr: '' };
 }
 
 test('document creation uses a safe relative Markdown reference', () => {
@@ -46,21 +49,100 @@ test('document creation refuses file access and lark calls without confirmation'
   assert.equal(called, false);
 });
 
-test('webhook content is UTF-8 safe and every request remains below the Feishu limit', () => {
-  const contentText = `老师说：${'教学改进🙂\n'.repeat(1800)}`;
-  const chunks = chunkUtf8(contentText);
-  assert.equal(chunks.join(''), contentText);
-  const messages = buildWebhookMessages({
+test('public-link commands use manage-public precheck and exact read-only internet settings', () => {
+  assert.deepEqual(buildManagePublicAuthArgs({ token: 'dox1' }), [
+    'drive', 'permission.members', 'auth',
+    '--token', 'dox1', '--type', 'docx', '--action', 'manage_public',
+    '--as', 'user', '--json',
+  ]);
+  assert.deepEqual(buildGetPublicPermissionArgs({ token: 'dox1' }), [
+    'drive', 'permission.public', 'get',
+    '--token', 'dox1', '--type', 'docx', '--as', 'user', '--json',
+  ]);
+  assert.deepEqual(buildSetPublicPermissionArgs({ token: 'dox1' }), [
+    'drive', 'permission.public', 'patch',
+    '--token', 'dox1', '--type', 'docx',
+    '--data', '{"external_access":true,"link_share_entity":"anyone_readable"}',
+    '--as', 'user', '--yes', '--json',
+  ]);
+});
+
+test('public-link permission refuses all lark calls without explicit confirmation', async () => {
+  let called = false;
+  await assert.rejects(setPublicAccess({
+    token: 'dox1',
+    confirmed: false,
+    runner: async () => {
+      called = true;
+      return success();
+    },
+  }), /明确确认/);
+  assert.equal(called, false);
+});
+
+test('public-link permission checks capability, snapshots state, patches, and fresh-reads verification', async () => {
+  const actions = [];
+  let reads = 0;
+  const result = await setPublicAccess({
+    token: 'dox1',
+    confirmed: true,
+    runner: async (_command, args) => {
+      const action = `${args[1]} ${args[2]}`;
+      actions.push(action);
+      if (action === 'permission.members auth') return success({ auth_result: true });
+      if (action === 'permission.public patch') return success({ permission_public: {} });
+      reads += 1;
+      return success({
+        permission_public: reads === 1
+          ? { external_access: false, link_share_entity: 'closed' }
+          : { external_access: true, link_share_entity: 'anyone_readable' },
+      });
+    },
+  });
+  assert.deepEqual(actions, [
+    'permission.members auth',
+    'permission.public get',
+    'permission.public patch',
+    'permission.public get',
+  ]);
+  assert.equal(result.changed, true);
+  assert.equal(result.verified, true);
+  assert.deepEqual(result.after, {
+    external_access: true,
+    link_share_entity: 'anyone_readable',
+  });
+});
+
+test('tenant external-sharing policy errors are surfaced without retry', async () => {
+  let step = 0;
+  await assert.rejects(setPublicAccess({
+    token: 'dox1',
+    confirmed: true,
+    runner: async () => {
+      step += 1;
+      if (step === 1) return success({ auth_result: true });
+      if (step === 2) {
+        return success({ permission_public: { external_access: false, link_share_entity: 'closed' } });
+      }
+      return {
+        code: 1,
+        stdout: '',
+        stderr: JSON.stringify({ ok: false, error: { code: 91009, message: 'forbidden' } }),
+      };
+    },
+  }), /租户安全策略/);
+  assert.equal(step, 3);
+});
+
+test('webhook contains only the title and public document link, never conversation body', () => {
+  const body = buildWebhookMessage({
     title: '会话记录',
     docUrl: 'https://example.feishu.cn/docx/dox1',
-    contentText,
     keyword: '科研会话反馈',
   });
-  assert.ok(messages.length > 1);
-  for (const message of messages) {
-    assert.ok(Buffer.byteLength(JSON.stringify(message)) < 20_000);
-    assert.match(message.content.text, /科研会话反馈/);
-  }
+  assert.match(body.content.text, /会话记录/);
+  assert.match(body.content.text, /https:\/\/example\.feishu\.cn\/docx\/dox1/);
+  assert.doesNotMatch(body.content.text, /完整对话|会话正文|教学改进内容/);
 });
 
 test('webhook refuses to load its credential or send without explicit confirmation', async () => {
@@ -69,7 +151,6 @@ test('webhook refuses to load its credential or send without explicit confirmati
   await assert.rejects(sendWebhookNotification({
     title: '会话记录',
     docUrl: 'https://example.feishu.cn/docx/dox1',
-    contentText: 'content',
     confirmed: false,
     configLoader: async () => {
       loaded = true;
@@ -84,105 +165,112 @@ test('webhook refuses to load its credential or send without explicit confirmati
   assert.equal(fetched, false);
 });
 
-test('webhook sends all chunks to the configured receiver without returning its URL', async () => {
+test('webhook sends one link notification without returning its credential', async () => {
   const requests = [];
   const result = await sendWebhookNotification({
     title: '会话记录',
     docUrl: 'https://example.feishu.cn/docx/dox1',
-    contentText: '内容'.repeat(5000),
     confirmed: true,
-    configLoader: async () => ({
-      ok: true,
-      config: validWebhookConfig(),
-    }),
+    configLoader: async () => ({ ok: true, config: validWebhookConfig() }),
     fetchImpl: async (url, options) => {
       requests.push({ url, options });
       return { ok: true, status: 200, json: async () => ({ code: 0 }) };
     },
-    wait: async () => {},
   });
-  assert.ok(requests.length > 1);
-  assert.equal(result.messages_sent, requests.length);
+  assert.equal(requests.length, 1);
   assert.equal(result.receiver_label, '产品改进群');
   assert.equal('webhook_url' in result, false);
 });
 
-test('an explicitly requested retry resumes after already delivered chunks', async () => {
-  const requests = [];
-  const contentText = '内容'.repeat(5000);
-  const total = buildWebhookMessages({
+test('upload transaction creates, publishes, verifies, then notifies in order', async () => {
+  const calls = [];
+  const result = await uploadSession({
     title: '会话记录',
-    docUrl: 'https://example.feishu.cn/docx/dox1',
-    contentText,
-  }).length;
-  const result = await sendWebhookNotification({
-    title: '会话记录',
-    docUrl: 'https://example.feishu.cn/docx/dox1',
-    contentText,
+    content: './_session.md',
     confirmed: true,
-    startAt: 1,
-    configLoader: async () => ({ ok: true, config: validWebhookConfig() }),
-    fetchImpl: async (...args) => {
-      requests.push(args);
-      return { ok: true, status: 200, json: async () => ({ code: 0 }) };
+    create: async () => {
+      calls.push('create');
+      return { ok: true, document_id: 'dox1', url: 'https://example.feishu.cn/docx/dox1' };
     },
-    wait: async () => {},
+    publish: async () => {
+      calls.push('publish');
+      return { ok: true, verified: true };
+    },
+    notify: async () => {
+      calls.push('notify');
+      return { ok: true };
+    },
   });
-  assert.equal(requests.length, total - 1);
-  assert.equal(result.messages_sent, total);
+  assert.deepEqual(calls, ['create', 'publish', 'notify']);
+  assert.equal(result.ok, true);
+  assert.equal(result.status, 'uploaded');
 });
 
-test('the upload transaction runs without intermediate prompts and reports partial delivery', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'session-upload-'));
-  try {
-    await writeFile(join(root, '_session.md'), '脱敏后的会话');
-    const calls = [];
-    const result = await uploadSession({
-      title: '会话记录',
-      content: './_session.md',
-      confirmed: true,
-      cwd: root,
-      create: async () => {
-        calls.push('create');
-        return { ok: true, url: 'https://example.feishu.cn/docx/dox1' };
-      },
-      notify: async () => {
-        calls.push('notify');
-        const error = new Error('群机器人暂时不可用');
-        error.messagesSent = 1;
-        error.messagesTotal = 2;
-        throw error;
-      },
-    });
-    assert.deepEqual(calls, ['create', 'notify']);
-    assert.equal(result.ok, false);
-    assert.equal(result.status, 'partial');
-    assert.equal(result.document.url, 'https://example.feishu.cn/docx/dox1');
-    assert.equal(result.webhook.messages_sent, 1);
-  } finally {
-    await rm(root, { recursive: true, force: true });
-  }
+test('permission failure preserves the private document and never invokes webhook', async () => {
+  let notified = false;
+  const result = await uploadSession({
+    title: '会话记录',
+    content: './_session.md',
+    confirmed: true,
+    create: async () => ({
+      ok: true,
+      document_id: 'dox1',
+      url: 'https://example.feishu.cn/docx/dox1',
+    }),
+    publish: async () => {
+      const error = new Error('租户安全策略禁止对外分享');
+      error.code = 91009;
+      throw error;
+    },
+    notify: async () => {
+      notified = true;
+    },
+  });
+  assert.equal(result.status, 'permission_failed');
+  assert.equal(result.permission.code, 91009);
+  assert.equal(result.webhook.skipped, true);
+  assert.equal(notified, false);
 });
 
-test('local-only mode creates a document and never invokes the webhook', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'session-upload-'));
-  try {
-    await writeFile(join(root, '_session.md'), '仅保存');
-    let notified = false;
-    const result = await uploadSession({
-      title: '会话记录',
-      content: './_session.md',
-      confirmed: true,
-      localOnly: true,
-      cwd: root,
-      create: async () => ({ ok: true, url: 'https://example.feishu.cn/docx/dox1' }),
-      notify: async () => {
-        notified = true;
-      },
-    });
-    assert.equal(result.status, 'saved_only');
-    assert.equal(notified, false);
-  } finally {
-    await rm(root, { recursive: true, force: true });
-  }
+test('notification failure reports that the document is already public', async () => {
+  const result = await uploadSession({
+    title: '会话记录',
+    content: './_session.md',
+    confirmed: true,
+    create: async () => ({
+      ok: true,
+      document_id: 'dox1',
+      url: 'https://example.feishu.cn/docx/dox1',
+    }),
+    publish: async () => ({ ok: true, verified: true }),
+    notify: async () => {
+      throw new Error('群机器人暂时不可用');
+    },
+  });
+  assert.equal(result.status, 'notification_failed');
+  assert.equal(result.permission.verified, true);
+  assert.match(result.webhook.error, /暂时不可用/);
+});
+
+test('local-only mode creates a private document and skips permission and webhook', async () => {
+  let published = false;
+  let notified = false;
+  const result = await uploadSession({
+    title: '会话记录',
+    content: './_session.md',
+    confirmed: true,
+    localOnly: true,
+    create: async () => ({ ok: true, url: 'https://example.feishu.cn/docx/dox1' }),
+    publish: async () => {
+      published = true;
+    },
+    notify: async () => {
+      notified = true;
+    },
+  });
+  assert.equal(result.status, 'saved_only');
+  assert.equal(result.permission.skipped, true);
+  assert.equal(result.webhook.skipped, true);
+  assert.equal(published, false);
+  assert.equal(notified, false);
 });
