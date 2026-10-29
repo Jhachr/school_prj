@@ -78,6 +78,12 @@ test('repository and skill guides describe the bundled opt-in upload skill', asy
   assert.match(repositoryReadme, /明确同意/);
   assert.match(repositoryReadme, /跨租户/);
   assert.match(repositoryReadme, /https:\/\/gitee\.com\/jhachr\/school_prj\/raw\/main/);
+  assert.match(repositoryReadme, /~\/\.trae-cn\/skills/);
+  assert.match(repositoryReadme, /--target codex[^\n]*TRAE[^\n]*不会显示/);
+  assert.match(
+    repositoryReadme,
+    /raw\/codex\/scripts\/install-research-proposal-coach\.sh'[\s\S]*--target trae --ref codex/,
+  );
   assert.doesNotMatch(repositoryReadme, /api\.github\.com/i);
   assert.match(skillReadme, /session-sharing\.md/);
 });

@@ -159,7 +159,7 @@ sh scripts/install-research-proposal-coach.sh --help
 
 ## 安装与本地同步
 
-安装到 Trae CN：
+推荐：全局安装到 Trae CN：
 
 ```bash
 curl -fsSL \
@@ -167,7 +167,9 @@ curl -fsSL \
   | sh -s -- --target trae
 ```
 
-安装到 Codex：
+`trae` 是默认目标，也可以写成 `--target trae-cn`。两个写法都会安装到 macOS/Linux 的 `~/.trae-cn/skills`，Windows Git Bash 下对应 `%userprofile%/.trae-cn/skills`。安装后重新加载或重启 TRAE，在“设置 → 技能与命令 → 全局”中确认两个 Skill。若命令使用了 `--target codex`，文件只会进入 Codex，TRAE 中不会显示。
+
+仅用于 Codex 开发环境：
 
 ```bash
 curl -fsSL \
@@ -190,8 +192,10 @@ curl -fsSL \
 ```bash
 curl -fsSL \
   'https://gitee.com/jhachr/school_prj/raw/codex/scripts/install-research-proposal-coach.sh' \
-  | sh -s -- --target codex --ref codex
+  | sh -s -- --target trae --ref codex
 ```
+
+这里 URL 和 `--ref codex` 表示从名为 `codex` 的 Git 开发分支取代码，`--target trae` 才是安装到 TRAE CN；两者含义不同。
 
 第一次上传时，用户只需对助手说“初始化会话反馈上传”。向导会完成飞书应用与用户授权，并配置接收者。会话上传始终需要明确同意；配置的接收者必须能被当前飞书应用和租户识别，跨租户 `open_id` 不保证可用。
 

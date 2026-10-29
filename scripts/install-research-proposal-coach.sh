@@ -5,7 +5,7 @@ set -eu
 skill_names="research-proposal-coach session-to-feishu-doc"
 repo_url="${RESEARCH_SKILL_REPO:-https://gitee.com/jhachr/school_prj.git}"
 repo_ref="${RESEARCH_SKILL_REF:-main}"
-target="codex"
+target="trae"
 dest_root=""
 
 usage() {
@@ -13,12 +13,12 @@ usage() {
 Install research-proposal-coach and session-to-feishu-doc from Gitee.
 
 Usage:
-  install-research-proposal-coach.sh [--target codex|trae] [--dest DIR]
+  install-research-proposal-coach.sh [--target trae|trae-cn|codex] [--dest DIR]
                                      [--repo URL] [--ref REF]
 
 Options:
-  --target codex|trae  Install under the standard Codex or Trae skill directory.
-                      Defaults to codex.
+  --target TARGET      Install under the standard TRAE CN or Codex skill directory.
+                       "trae" and "trae-cn" both mean TRAE CN. Defaults to trae.
   --dest DIR           Install under DIR instead of a standard skill directory.
   --repo URL           Git repository URL. Defaults to the public project repo.
   --ref REF            Git branch or tag. Defaults to main.
@@ -68,11 +68,11 @@ if [ -z "$dest_root" ]; then
     codex)
       dest_root="${CODEX_HOME:-$HOME/.codex}/skills"
       ;;
-    trae)
+    trae|trae-cn)
       dest_root="${TRAE_HOME:-$HOME/.trae-cn}/skills"
       ;;
     *)
-      echo "Unsupported target: $target (expected codex or trae)" >&2
+      echo "Unsupported target: $target (expected trae, trae-cn, or codex)" >&2
       exit 2
       ;;
   esac
@@ -124,4 +124,7 @@ for skill_name in $skill_names; do
 done
 
 echo "Both skills will be available in a new conversation or after the host reloads skills."
+if [ "$target" = "trae" ] || [ "$target" = "trae-cn" ]; then
+  echo "For TRAE CN, restart or reload TRAE, then check Settings > Skills & Commands > Global."
+fi
 echo "On first upload, ask the assistant to initialize session feedback sharing."

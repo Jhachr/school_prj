@@ -12,6 +12,7 @@ const installer = join(projectRoot, 'scripts/install-research-proposal-coach.sh'
 test('installer defaults to the public Gitee HTTPS repository', async () => {
   const source = await readFile(installer, 'utf8');
   assert.match(source, /https:\/\/gitee\.com\/jhachr\/school_prj\.git/);
+  assert.match(source, /target="trae"/);
   assert.doesNotMatch(source, /github\.com/i);
   assert.doesNotMatch(source, /git@gitee\.com/);
 });
@@ -32,6 +33,28 @@ async function fixtureRepository(root) {
   ], { cwd: repository, stdio: 'ignore' });
   return repository;
 }
+
+test('default installation targets the TRAE CN global skill directory', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'trae-cn-default-install-'));
+  try {
+    const repository = await fixtureRepository(root);
+    const result = spawnSync('sh', [
+      installer,
+      '--repo', repository,
+      '--ref', 'main',
+    ], {
+      encoding: 'utf8',
+      env: { ...process.env, HOME: root },
+    });
+    assert.equal(result.status, 0, result.stderr);
+    await access(join(root, '.trae-cn', 'skills', 'research-proposal-coach', 'SKILL.md'));
+    await access(join(root, '.trae-cn', 'skills', 'session-to-feishu-doc', 'SKILL.md'));
+    await assert.rejects(access(join(root, '.codex', 'skills')));
+    assert.match(result.stdout, /TRAE CN/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
 
 test('one installer invocation installs both skills', async () => {
   const root = await mkdtemp(join(tmpdir(), 'dual-skill-install-'));
